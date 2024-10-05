@@ -1,6 +1,6 @@
 import React from 'react';
 import * as cls from './MessengerPage.module.scss';
-import {ContactListForm} from "@/features/contactList";
+import {ContactListForm} from "@/features/ContactList";
 
 const MessengerPage = () => {
     return (

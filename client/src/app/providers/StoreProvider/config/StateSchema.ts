@@ -7,7 +7,7 @@ import {AxiosInstance} from "axios";
 import {NavigateOptions} from "react-router-dom";
 import {To} from "history";
 import {RegistrationSchema} from "@/features/Registration/model/types/registrationSchema";
-import {ContactListSearchSchema} from "@/features/contactList/model/types/contactListSearchSchema";
+import {ContactListSearchSchema} from "@/features/ContactList/model/types/contactListSearchSchema";
 
 export interface StateSchema {
     user: UserSchema;

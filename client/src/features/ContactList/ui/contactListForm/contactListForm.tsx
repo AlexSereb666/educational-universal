@@ -2,13 +2,13 @@ import {memo, useCallback, useEffect} from "react";
 import {InputContainer} from "@/shared/ui/InputContainer/InputContainer";
 import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
-import {getSearchString} from "@/features/contactList/model/selectors/getSearchString/getSearchString";
-import {searchActions, searchReducer} from "@/features/contactList/model/slice/searchSlice";
-import {getSearchListUsers} from "@/features/contactList/model/selectors/getSearchListUsers/getSearchListUsers";
-import {getSearchIsLoading} from "@/features/contactList/model/selectors/getSearchIsLoading/getSearchIsLoading";
-import {getSearchError} from "@/features/contactList/model/selectors/getSearchError/getSearchError";
+import {getSearchString} from "@/features/ContactList/model/selectors/getSearchString/getSearchString";
+import {searchActions, searchReducer} from "@/features/ContactList/model/slice/searchSlice";
+import {getSearchListUsers} from "@/features/ContactList/model/selectors/getSearchListUsers/getSearchListUsers";
+import {getSearchIsLoading} from "@/features/ContactList/model/selectors/getSearchIsLoading/getSearchIsLoading";
+import {getSearchError} from "@/features/ContactList/model/selectors/getSearchError/getSearchError";
 import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {searchUsersByUsername} from "@/features/contactList/model/services/searchUsersByUsername/searchUsersByUsername";
+import {searchUsersByUsername} from "@/features/ContactList/model/services/searchUsersByUsername/searchUsersByUsername";
 
 const initialReducers: ReducersList = {
     search: searchReducer,
