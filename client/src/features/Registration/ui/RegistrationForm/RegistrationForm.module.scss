@@ -1,0 +1,36 @@
+.container {
+  border: 10px solid var(--color-white);
+  border-radius: 20px;
+  padding: 20px;
+  width: 500px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-white);
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  span {
+    color: var(--color-red);
+    font-size: var(--font-size-m);
+  }
+
+  .register {
+    margin-top: 5px;
+
+    span {
+      color: var(--color-white);
+      cursor: pointer;
+    }
+  }
+}

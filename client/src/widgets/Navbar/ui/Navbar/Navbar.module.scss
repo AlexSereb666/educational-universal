@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  height: var(--navbar-height);
+  background-color: black;
+  color: white;
+  box-shadow: 0 5px 10px -1px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+}
