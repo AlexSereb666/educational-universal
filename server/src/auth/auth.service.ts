@@ -26,6 +26,39 @@ export class AuthService {
         return this.generateToken(user)
     }
 
+    async generateRandomUsers() {
+        for (let i = 0; i < 1000; i++) {
+            const randomLogin = this.generateRandomLogin();
+            const randomPassword = this.generateRandomPassword();
+
+            const candidate = await this.userService.getUserByLogin(randomLogin);
+            if (!candidate) {
+                const hashPassword = await bcrypt.hash(randomPassword, 5);
+                await this.userService.createUser({ login: randomLogin, password: hashPassword });
+            }
+        }
+    }
+
+    private generateRandomLogin(): string {
+        const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        let login = '';
+        const length = Math.floor(Math.random() * 20) + 1;
+        for (let i = 0; i < length; i++) {
+            login += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return login;
+    }
+
+    private generateRandomPassword(): string {
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+        let password = '';
+        const length = Math.floor(Math.random() * 10) + 6; // Длина пароля от 6 до 15 символов
+        for (let i = 0; i < length; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return password;
+    }
+
     private async generateToken(user: User) {
         const payload = {id: user.id, login: user.login}
         return {

@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  color: var(--color-white);
+  font-size: var(--font-size-m);
+  display: flex;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.container:hover {
+  transform: scale(1.02);
+
+  .info {
+    text-decoration: underline;
+  }
+}
+
+.image img {
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.info {
+  padding-left: 10px;
+}

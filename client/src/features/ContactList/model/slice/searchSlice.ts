@@ -16,6 +16,7 @@ export const searchSlice = createSlice({
     reducers: {
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
+            state.listUsers = [];
         },
         setLimit: (state, action: PayloadAction<number>) => {
             state.limit = action.payload;
@@ -32,7 +33,7 @@ export const searchSlice = createSlice({
             })
             .addCase(searchUsersByUsername.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.listUsers = action.payload.rows;
+                state.listUsers = state.listUsers.concat(action.payload.rows);
             })
             .addCase(searchUsersByUsername.rejected, (state, action) => {
                 state.isLoading = false;
