@@ -5,6 +5,7 @@ import * as cls from './ItemListUsers.module.scss';
 export interface ItemListUsersProps {
     id: number,
     login: string,
+    onClick: () => void;
 }
 
 const truncateLogin = (login: string) => {
@@ -14,9 +15,9 @@ const truncateLogin = (login: string) => {
     return login;
 };
 
-export const ItemListUsers = memo( ({id, login}: ItemListUsersProps) => {
+export const ItemListUsers = memo( ({id, login, onClick}: ItemListUsersProps) => {
     return (
-        <div className={cls.container}>
+        <div className={cls.container} onClick={onClick}>
             <div className={cls.image}>
                 <img
                     src={defaultAvatar as string}

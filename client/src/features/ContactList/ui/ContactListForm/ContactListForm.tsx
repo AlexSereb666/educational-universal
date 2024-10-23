@@ -14,9 +14,14 @@ import {ItemListUsers} from "@/features/ContactList/ui/ItemListUsers/ItemListUse
 import {getSearchOffset} from "@/features/ContactList/model/selectors/getSearchOffset/getSearchOffset";
 import {getSearchLimit} from "@/features/ContactList/model/selectors/getSearchLimit/getSearchLimit";
 import {Loader} from "@/shared/ui/Loader/Loader";
+import {
+    selectedUserMessangerActions,
+    selectedUserMessangerReducer
+} from "@/entities/SelectedUserMessanger/model/slice/selectedUserMessangerSlice";
 
 const initialReducers: ReducersList = {
     search: searchReducer,
+    selectedUserMessanger: selectedUserMessangerReducer,
 }
 
 export const ContactListForm = memo(() => {
@@ -76,6 +81,10 @@ export const ContactListForm = memo(() => {
         };
     }, [offset, search, isLoading]);
 
+    const selectedUser = (id: number) => {
+        dispatch(selectedUserMessangerActions.setSelectedIdUser(id))
+    }
+
     const listFoundUsers = () => {
         return (
             <div className={cls.container_list_users} ref={containerRef}>
@@ -84,6 +93,7 @@ export const ContactListForm = memo(() => {
                         key={`${id}-${login}`}
                         id={id}
                         login={login}
+                        onClick={() => selectedUser(id)}
                     />
                 ))}
                 {!isLoading && listUsers && !listUsers.length && (
