@@ -3,11 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Chat } from './chat.model';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { ChatUser } from '../chatUsers/chatUsers.model';
+import { Message } from '../chatMessages/chatMessages.model'
 
 @Injectable()
 export class ChatService {
     constructor(@InjectModel(Chat) private chatRepository: typeof Chat,
-                @InjectModel(ChatUser) private chatUserRepository: typeof ChatUser) {}
+                @InjectModel(ChatUser) private chatUserRepository: typeof ChatUser,
+                @InjectModel(Message) private messageRepository: typeof Message) {}
 
     async createChat(dto: CreateChatDto) {
         if (!dto.type) {
@@ -36,6 +38,7 @@ export class ChatService {
             where: { userId: userId1 },
             include: [{
                 model: Chat,
+                where: { type: 'private' },
                 include: [{
                     model: ChatUser,
                     where: { userId: userId2 }
@@ -44,14 +47,25 @@ export class ChatService {
         });
 
         if (chats.length > 0 && chats[0].chat) {
-            return chats[0].chat;
+            const chat = chats[0].chat;
+            const messages = await this.messageRepository.findAll({
+                where: { chatId: chat.id },
+                order: [['createdAt', 'ASC']]
+            });
+            return {
+                chat,
+                messages
+            };
         } else {
             const newChat = await this.createChat({ type: 'private' });
             await this.chatUserRepository.bulkCreate([
                 { chatId: newChat.id, userId: userId1 },
                 { chatId: newChat.id, userId: userId2 }
             ]);
-            return newChat;
+            return {
+                chat: newChat,
+                messages: []
+            };
         }
     }
 }

@@ -1,17 +1,33 @@
-import {memo, useEffect} from "react";
+import {memo} from "react";
 import {useSelector} from "react-redux";
-import {getIdSelectedUserMessanger} from "@/entities/SelectedUserMessanger";
+import * as cls from './ChatBox.module.scss';
+import {getChatMessangerChat, getChatMessangerIsLoading} from "@/entities/ChatMessanger";
+import {Loader} from "@/shared/ui/Loader/Loader";
 
 export const ChatBox = memo(() => {
-    const id = useSelector(getIdSelectedUserMessanger);
-
-    useEffect(() => {
-        console.log('ПРОВЕРКА', id)
-    }, [id]);
+    const chat = useSelector(getChatMessangerChat);
+    const isLoading = useSelector(getChatMessangerIsLoading);
 
     return (
-        <div>
-            {id}
+        <div className={cls.chat_box}>
+            {isLoading ? (
+                <div className={cls.not_found_chat}>
+                    <Loader/>
+                </div>
+            ) : chat ? (
+                <div>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            ) : (
+                <div className={cls.not_found_chat}>
+                    Выберите чат для начала общения
+                </div>
+            )}
         </div>
     )
 })

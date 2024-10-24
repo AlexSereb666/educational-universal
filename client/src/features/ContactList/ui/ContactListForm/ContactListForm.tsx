@@ -7,21 +7,19 @@ import {searchActions, searchReducer} from "@/features/ContactList/model/slice/s
 import {getSearchListUsers} from "@/features/ContactList/model/selectors/getSearchListUsers/getSearchListUsers";
 import {getSearchIsLoading} from "@/features/ContactList/model/selectors/getSearchIsLoading/getSearchIsLoading";
 import {getSearchError} from "@/features/ContactList/model/selectors/getSearchError/getSearchError";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {searchUsersByUsername} from "@/features/ContactList/model/services/searchUsersByUsername/searchUsersByUsername";
 import * as cls from './ContactListForm.module.scss';
 import {ItemListUsers} from "@/features/ContactList/ui/ItemListUsers/ItemListUsers";
 import {getSearchOffset} from "@/features/ContactList/model/selectors/getSearchOffset/getSearchOffset";
 import {getSearchLimit} from "@/features/ContactList/model/selectors/getSearchLimit/getSearchLimit";
 import {Loader} from "@/shared/ui/Loader/Loader";
-import {
-    selectedUserMessangerActions,
-    selectedUserMessangerReducer
-} from "@/entities/SelectedUserMessanger/model/slice/selectedUserMessangerSlice";
+import {fetchChatByUserIds} from "@/entities/ChatMessanger/model/services/searchChatMessanger/searchChatMessanger";
+import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {chatMessangerReducer} from "@/entities/ChatMessanger/model/slice/chatMessangerSlice";
 
 const initialReducers: ReducersList = {
     search: searchReducer,
-    selectedUserMessanger: selectedUserMessangerReducer,
+    chatMessanger: chatMessangerReducer,
 }
 
 export const ContactListForm = memo(() => {
@@ -81,8 +79,8 @@ export const ContactListForm = memo(() => {
         };
     }, [offset, search, isLoading]);
 
-    const selectedUser = (id: number) => {
-        dispatch(selectedUserMessangerActions.setSelectedIdUser(id))
+    const selectedUser = (otherUserId: number) => {
+        dispatch(fetchChatByUserIds({ otherUserId }));
     }
 
     const listFoundUsers = () => {
@@ -90,7 +88,7 @@ export const ContactListForm = memo(() => {
             <div className={cls.container_list_users} ref={containerRef}>
                 {listUsers && listUsers.map(({id, login}: any) => (
                     <ItemListUsers
-                        key={`${id}-${login}`}
+                        key={id}
                         id={id}
                         login={login}
                         onClick={() => selectedUser(id)}

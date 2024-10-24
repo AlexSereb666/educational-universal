@@ -8,14 +8,14 @@ import {NavigateOptions} from "react-router-dom";
 import {To} from "history";
 import {RegistrationSchema} from "@/features/Registration/model/types/registrationSchema";
 import {ContactListSearchSchema} from "@/features/ContactList/model/types/contactListSearchSchema";
-import {SelectedUserMessanger} from "@/entities/SelectedUserMessanger";
+import {ChatMessanger} from "@/entities/ChatMessanger";
 
 export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
     search: ContactListSearchSchema;
     registration: RegistrationSchema;
-    selectedUserMessanger: SelectedUserMessanger;
+    chatMessanger: ChatMessanger;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -12,6 +12,7 @@ import {Message} from "./chatMessages.model";
     ],
     exports: [
         MessageService,
+        SequelizeModule.forFeature([Message]),
     ]
 })
 export class ChatMessagesModule {};

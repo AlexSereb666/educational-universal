@@ -7,10 +7,10 @@ const MessengerPage = () => {
     return (
         <div className={cls.container}>
             <div className={cls.menu}>
-                <SidebarMessanger />
+                <SidebarMessanger/>
             </div>
             <div>
-                <ChatBox />
+                <ChatBox/>
             </div>
         </div>
     );
