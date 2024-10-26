@@ -4,7 +4,12 @@ import {Server, Socket} from "socket.io";
 import {MessageService} from "../chatMessages/chatMessages.service";
 import {CreateChatMessageDto} from "../chatMessages/dto/create-chat-messages.dto";
 
-@WebSocketGateway({ namespace: '/chat' })
+@WebSocketGateway({
+    namespace: '/chat',
+    cors: {
+        origin: '*', credentials: true
+    }
+})
 export class ChatGateway implements OnModuleInit {
     @WebSocketServer()
     server: Server;

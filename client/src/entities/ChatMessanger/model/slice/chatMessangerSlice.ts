@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ChatMessanger } from "@/entities/ChatMessanger";
 import { fetchChatByUserIds } from "@/entities/ChatMessanger/model/services/searchChatMessanger/searchChatMessanger";
 import { Chat, Message } from "@/entities/ChatMessanger/model/types/chatMessanger";
+import {io, Socket} from "socket.io-client";
 
 const initialState: ChatMessanger = {
     chat: null,
@@ -9,12 +10,43 @@ const initialState: ChatMessanger = {
     isLoading: false,
 };
 
+export let socket: Socket | null = null;
+
 export const chatMessangerSlice = createSlice({
     name: 'chatMessanger',
     initialState,
     reducers: {
-        setMessages: (state, action: PayloadAction<Message>) => {
+        connectToChat: (state, action: PayloadAction<number>) => {
+            const chatId = action.payload;
+
+            socket = io(`${__API__}/chat`);
+
+            socket.on('connect', () => {
+                console.log('Connected to WebSocket server');
+            });
+
+            socket.emit('joinChat', chatId);
+        },
+        disconnectFromChat: (state) => {
+            if (socket) {
+                socket.disconnect();
+                socket = null;
+                console.log('Disconnected from WebSocket server');
+            }
+        },
+        addMessage: (state, action: PayloadAction<Message>) => {
             state.messages.push(action.payload);
+        },
+        sendMessage: (state, action: PayloadAction<{ chatId: number; text: string; }>) => {
+            if (socket) {
+                const { chatId, text} = action.payload;
+
+                const token = localStorage.getItem('user');
+                const parsedToken = JSON.parse(atob(token.split('.')[1]));
+                const userId = parsedToken.id;
+
+                socket.emit('sendMessage', { chatId, userId, text });
+            }
         },
     },
     extraReducers: (builder) => {

@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alien_message,
+.my_message {
+  max-width: 50%;
+  padding: 20px 15px 10px 15px;
+  word-wrap: break-word;
+  border-radius: 20px;
+  font-size: var(--font-size-m);
+  color: var(--color-white);
+  text-align: left;
+}
+
+.alien_message {
+  background-color: var(--color-alien-message);
+  align-self: flex-start;
+}
+
+.my_message {
+  background-color: var(--color-my-message);
+  align-self: flex-end;
+  margin-left: auto;
+  text-align: left;
+}
+
+.date {
+  font-size: var(--font-size-date-message-m);
+  margin-top: 15px;
+  lign-self: flex-end;
+  text-align: right;
+}
