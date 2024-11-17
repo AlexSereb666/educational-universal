@@ -24,3 +24,13 @@
   height: 24px;
   margin-right: 15px;
 }
+
+.mode {
+  display: block;
+}
+
+@media (max-width: 1300px) {
+  .mode {
+    display: none;
+  }
+}

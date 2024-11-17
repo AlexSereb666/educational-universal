@@ -4,4 +4,9 @@
 body {
   min-height: 100vh;
   background: linear-gradient(to bottom, black, #420042);
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }

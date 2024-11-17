@@ -9,7 +9,7 @@ const MessengerPage = () => {
             <div className={cls.menu}>
                 <SidebarMessanger/>
             </div>
-            <div>
+            <div className={cls.chatBox}>
                 <ChatBox/>
             </div>
         </div>

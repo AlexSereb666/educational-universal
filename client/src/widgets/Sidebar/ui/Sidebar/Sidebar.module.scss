@@ -6,3 +6,9 @@
   border-radius: 20px;
   padding: 15px;
 }
+
+@media (max-width: 1300px) {
+  .container {
+    width: 55px;
+  }
+}

@@ -26,7 +26,7 @@ export const SidebarItem = memo(({ item, isActive, onClick }: SidebarItemProps) 
                 src={item.Icon}
                 alt={item.text}
             />
-            <span className={classNames({ [cls.activeText]: isActive })}>
+            <span className={classNames({ [cls.activeText]: isActive }, cls.mode)}>
                 {item.text}
             </span>
         </Link>

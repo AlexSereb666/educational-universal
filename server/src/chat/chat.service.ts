@@ -33,8 +33,8 @@ export class ChatService {
         return chats;
     }
 
-    async getChatByUserIds(userId1: number, userId2: number) {
-        const chats = await this.chatUserRepository.findAll({
+    private async findPrivateChatBetweenUsers(userId1: number, userId2: number) {
+        return await this.chatUserRepository.findAll({
             where: { userId: userId1 },
             include: [{
                 model: Chat,
@@ -45,6 +45,10 @@ export class ChatService {
                 }]
             }]
         });
+    }
+
+    async getChatByUserIds(userId1: number, userId2: number) {
+        const chats = await this.findPrivateChatBetweenUsers(userId1, userId2);
 
         if (chats.length > 0 && chats[0].chat) {
             const chat = chats[0].chat;
@@ -62,8 +66,11 @@ export class ChatService {
                 { chatId: newChat.id, userId: userId1 },
                 { chatId: newChat.id, userId: userId2 }
             ]);
+
+            const chats = await this.findPrivateChatBetweenUsers(userId1, userId2);
+
             return {
-                chat: newChat,
+                chat: chats[0].chat,
                 messages: []
             };
         }
