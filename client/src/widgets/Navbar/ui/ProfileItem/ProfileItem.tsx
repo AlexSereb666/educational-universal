@@ -20,6 +20,10 @@ export const ProfileItem = () => {
         navigate(RoutePath.login);
     }, [dispatch]);
 
+    const openProfile = useCallback(() => {
+
+    }, [dispatch])
+
     const handleToggle = () => {
         setMenuVisible(!isMenuVisible);
     };
@@ -47,10 +51,14 @@ export const ProfileItem = () => {
                 <img src={imgComboBox as string} alt={'Нет значка'} />
                 {isMenuVisible &&
                     <div className={cls.menu} ref={menuRef} onClick={(event) => event.stopPropagation()}>
+                        <div className={cls.itemMenu} onClick={openProfile}>
+                            Профиль
+                        </div>
                         <div className={cls.itemMenu} onClick={onLogout}>
                             Выйти из аккаунта
                         </div>
-                    </div>}
+                    </div>
+                }
             </div>
         </div>
     );

@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  cursor: pointer;
 }
 
 .avatar img {
@@ -29,6 +28,8 @@
   right: 0;
   border: 1px solid #ccc;
   border-radius: 5px;
+  display: grid;
+  gap: 15px;
 }
 
 .itemMenu {
