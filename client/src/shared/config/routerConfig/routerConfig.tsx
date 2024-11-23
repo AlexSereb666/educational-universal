@@ -5,6 +5,8 @@ import {NotFoundPage} from "@/pages/NotFoundPage";
 import {StoragePage} from "@/pages/StoragePage";
 import {MessengerPage} from "@/pages/MessengerPage";
 import {RegistrationPage} from "@/pages/RegistrationPage";
+import {ArticlesPage} from "@/pages/ArticlesPage";
+import {ArticlesDetailsPage} from "@/pages/ArticlesDetailsPage";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -30,11 +32,15 @@ export const RoutePath: Record<AppRoutes, string> = {
 export enum AppRoutesMain {
     MESSENGER = 'messenger',
     STORAGE = 'storage',
+    ARTICLES = 'articles',
+    ARTICLES_DETAILS = 'articles_details'
 }
 
 export const RoutePathMain: Record<AppRoutesMain, string> = {
     [AppRoutesMain.MESSENGER]: `${RoutePath.main}/messenger`,
     [AppRoutesMain.STORAGE]: `${RoutePath.main}/storage`,
+    [AppRoutesMain.ARTICLES]: `${RoutePath.main}/articles`,
+    [AppRoutesMain.ARTICLES_DETAILS]: `${RoutePath.main}/articles/`,
 }
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -50,6 +56,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
             {
                 path: RoutePathMain[AppRoutesMain.STORAGE],
                 element: <StoragePage />,
+            },
+            {
+                path: RoutePathMain[AppRoutesMain.ARTICLES],
+                element: <ArticlesPage />,
+            },
+            {
+                path: `${RoutePathMain[AppRoutesMain.ARTICLES_DETAILS]}:id`,
+                element: <ArticlesDetailsPage />,
             },
         ]
     },
