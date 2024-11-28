@@ -13,6 +13,9 @@ export class ArticlesBlock extends Model<ArticlesBlock, articlesBlockAttrs> {
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;
 
+    @Column({ type: DataType.INTEGER, allowNull: false })
+    step: number;
+
     @Column({ type: DataType.STRING, allowNull: false })
     content: string;
 

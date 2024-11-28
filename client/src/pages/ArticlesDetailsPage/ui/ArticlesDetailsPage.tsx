@@ -1,8 +1,9 @@
+import {ArticleDetails} from "@/entities/Articles";
 
 const ArticlesDetailsPage = () => {
     return (
         <div>
-            детальные статьи
+            <ArticleDetails />
         </div>
     )
 };
