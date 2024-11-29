@@ -3,5 +3,9 @@ export {
 } from './ui/ArticleDetails/ArticleDetails';
 
 export type {
-    Articles
+    Article
 } from './model/type/articles';
+
+export type {
+    ArticleDetailsSchema
+} from './model/type/articleDetailsSchema';

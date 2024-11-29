@@ -17,7 +17,7 @@ interface ArticlesType {
     name: string;
 }
 
-export interface Articles {
+export interface Article {
     id: number;
     title: string;
     subtitle: string;
