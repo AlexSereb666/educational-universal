@@ -1,9 +1,18 @@
 import {ArticleDetails} from "@/entities/Articles";
+import {useParams} from "react-router-dom";
 
 const ArticlesDetailsPage = () => {
+    const { id } = useParams<{ id: string }>();
+
+    if (!id) {
+        return;
+    }
+
     return (
         <div>
-            <ArticleDetails />
+            <ArticleDetails
+                id={id}
+            />
         </div>
     )
 };
