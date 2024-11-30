@@ -10,6 +10,10 @@ import {ArticlesTypeService} from "./articlesType.service";
     imports: [
         SequelizeModule.forFeature([ArticlesType]),
     ],
+    exports: [
+        ArticlesTypeService,
+        SequelizeModule.forFeature([ArticlesType]),
+    ]
 })
 
 export class ArticlesTypeModule {};

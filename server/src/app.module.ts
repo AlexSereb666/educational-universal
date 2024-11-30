@@ -21,7 +21,7 @@ import {ArticleTypesLink} from "./articlesTypeLinks/articlesTypeLinks.model";
 import {ArticlesTypeLinksModule} from "./articlesTypeLinks/articlesTypeLinks.module";
 import {ArticlesBlock} from "./articlesBlock/articlesBlock.model";
 import {ArticlesTypeBlock} from "./articlesTypeBlock/articlesTypeBlock.model";
-import {ArticlesBlockModule} from "./articlesBlock/articlesBlock.mobule";
+import {ArticlesBlockModule} from "./articlesBlock/articlesBlock.module";
 import {ArticlesTypeBlockModule} from "./articlesTypeBlock/articlesTypeBlock.module";
 
 @Module({

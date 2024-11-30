@@ -6,6 +6,9 @@ import {ArticleTypesLink} from "./articlesTypeLinks.model";
     imports: [
         SequelizeModule.forFeature([ArticleTypesLink]),
     ],
+    exports: [
+        SequelizeModule.forFeature([ArticleTypesLink]),
+    ]
 })
 
 export class ArticlesTypeLinksModule {};

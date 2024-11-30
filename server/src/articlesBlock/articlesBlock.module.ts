@@ -6,6 +6,9 @@ import {ArticlesBlock} from "./articlesBlock.model";
     imports: [
         SequelizeModule.forFeature([ArticlesBlock]),
     ],
+    exports: [
+        SequelizeModule.forFeature([ArticlesBlock]),
+    ]
 })
 
 export class ArticlesBlockModule {};

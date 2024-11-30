@@ -10,6 +10,10 @@ import {ArticlesTypeBlockService} from "./articlesTypeBlock.service";
     imports: [
         SequelizeModule.forFeature([ArticlesTypeBlock]),
     ],
+    exports: [
+        ArticlesTypeBlockService,
+        SequelizeModule.forFeature([ArticlesTypeBlock]),
+    ]
 })
 
 export class ArticlesTypeBlockModule {};
