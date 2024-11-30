@@ -5,6 +5,7 @@ import {ArticlesType} from "../articlesType/articlesType.model";
 import {ArticlesBlock} from "../articlesBlock/articlesBlock.model";
 import {Sequelize} from "sequelize";
 import {CreateArticlesDto} from "./dto/create-articles.dto";
+import {ArticlesTypeBlock} from "../articlesTypeBlock/articlesTypeBlock.model";
 
 @Injectable()
 export class ArticlesService {
@@ -72,7 +73,13 @@ export class ArticlesService {
                 },
                 {
                     model: ArticlesBlock,
-                    attributes: ['id', 'step', 'content', 'title', 'typeBlockId'],
+                    attributes: ['id', 'step', 'content', 'title'],
+                    include: [
+                        {
+                            model: ArticlesTypeBlock,
+                            attributes: ['id', 'name'],
+                        },
+                    ],
                 },
             ],
         });
