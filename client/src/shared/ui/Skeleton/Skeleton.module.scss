@@ -1,0 +1,32 @@
+.skeleton {
+  display: inline-block;
+  background: var(--skeleton-color-light);
+  border-radius: inherit;
+  overflow: hidden;
+  position: relative;
+
+  box-shadow: 0 1px 6px var(--skeleton-shadow-color), /* Низ тени */
+    0 -1px 6px var(--skeleton-shadow-color), /* Верх тени */
+    1px 0 6px var(--skeleton-shadow-color), /* Правая тень */
+    -1px 0 6px var(--skeleton-shadow-color); /* Левая тень */
+
+  // Анимация градиента
+  background: linear-gradient(
+                  90deg,
+                  var(--skeleton-color-light) 25%,
+                  var(--skeleton-color-dark) 50%,
+                  var(--skeleton-color-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer var(--skeleton-gradient-duration) ease-in-out infinite;
+}
+
+// Анимация перелива
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
