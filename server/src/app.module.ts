@@ -1,7 +1,6 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import {GatewayModule} from "./gateway/gateway.module";
+import {Module} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
 import {ConfigModule} from "@nestjs/config";
 import {SequelizeModule} from "@nestjs/sequelize";
 import {User} from "./users/users.model";
@@ -23,12 +22,15 @@ import {ArticlesBlock} from "./articlesBlock/articlesBlock.model";
 import {ArticlesTypeBlock} from "./articlesTypeBlock/articlesTypeBlock.model";
 import {ArticlesBlockModule} from "./articlesBlock/articlesBlock.module";
 import {ArticlesTypeBlockModule} from "./articlesTypeBlock/articlesTypeBlock.module";
+import {UsersTokenModule} from "./usersToken/usersToken.module";
+import {UsersToken} from "./usersToken/usersToken.model";
+import {EmailModule} from "./email/email.module";
 
 @Module({
   imports: [
-      //GatewayModule,
       ConfigModule.forRoot({
-        envFilePath: `.${process.env.NODE_ENV}.env`
+          envFilePath: `.${process.env.NODE_ENV}.env`,
+          isGlobal: true,
       }),
     //ServeStaticModule.forRoot({
     //    rootPath: path.resolve( __dirname, 'static'),
@@ -40,7 +42,7 @@ import {ArticlesTypeBlockModule} from "./articlesTypeBlock/articlesTypeBlock.mod
           username: process.env.POSTGRES_USER,
           password: process.env.POSTGRESS_PASSWORD,
           database: process.env.POSTGRES_DB,
-          models: [User, Chat, ChatUser, Message, Articles, ArticlesType, ArticleTypesLink, ArticlesBlock, ArticlesTypeBlock],
+          models: [User, Chat, ChatUser, Message, Articles, ArticlesType, ArticleTypesLink, ArticlesBlock, ArticlesTypeBlock, UsersToken],
           autoLoadModels: true
       }),
       UsersModule,
@@ -53,6 +55,8 @@ import {ArticlesTypeBlockModule} from "./articlesTypeBlock/articlesTypeBlock.mod
       ArticlesTypeLinksModule,
       ArticlesBlockModule,
       ArticlesTypeBlockModule,
+      UsersTokenModule,
+      EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

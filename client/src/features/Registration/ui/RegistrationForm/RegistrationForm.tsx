@@ -20,6 +20,7 @@ import * as cls from "./RegistrationForm.module.scss";
 import {Input} from "@/shared/ui/Input/Input";
 import {Button} from "@/shared/ui/Button/Button";
 import {getUserAuthData} from "@/entities/User";
+import {getRegistrationEmail} from "@/features/Registration/model/selectors/getRegistrationEmail/getRegistrationEmail";
 
 export interface RegistrationFormProps {
     onSuccess: () => void;
@@ -32,6 +33,7 @@ const initialReducers: ReducersList = {
 export const RegistrationForm = memo(({onSuccess}: RegistrationFormProps) => {
     const dispatch = useAppDispatch();
     const username = useSelector(getRegistrationUsername);
+    const email = useSelector(getRegistrationEmail);
     const password = useSelector(getRegistrationPassword);
     const isLoading = useSelector(getRegistrationIsLoading);
     const error = useSelector(getRegistrationError);
@@ -46,8 +48,12 @@ export const RegistrationForm = memo(({onSuccess}: RegistrationFormProps) => {
         dispatch(registrationActions.setPassword(value));
     }, [dispatch]);
 
+    const onChangeEmail = useCallback((value: string) => {
+        dispatch(registrationActions.setEmail(value));
+    }, [dispatch]);
+
     const onRegistrationClick = useCallback(async () => {
-        const result = await dispatch(registrationByUser({username, password}));
+        const result = await dispatch(registrationByUser({username, password, email}));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
         }
@@ -79,6 +85,13 @@ export const RegistrationForm = memo(({onSuccess}: RegistrationFormProps) => {
             <div className={cls.container}>
                 <h1>Регистрация</h1>
                 {error && <span>Данный логин уже занят</span>}
+                <Input
+                    type={'text'}
+                    label={'Email'}
+                    size={'medium'}
+                    onChange={onChangeEmail}
+                    value={email}
+                />
                 <Input
                     type={'text'}
                     label={'Логин'}

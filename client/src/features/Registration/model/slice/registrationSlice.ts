@@ -5,6 +5,7 @@ import {registrationByUser} from "@/features/Registration/model/services/registr
 const initialState: RegistrationSchema = {
     isLoading: false,
     username: '',
+    email: '',
     password: '',
 };
 
@@ -14,6 +15,9 @@ export const registrationSlice = createSlice({
     reducers: {
         setUsername: (state, action: PayloadAction<string>) => {
             state.username = action.payload;
+        },
+        setEmail: (state, action: PayloadAction<string>) => {
+            state.email = action.payload;
         },
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;

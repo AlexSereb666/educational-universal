@@ -5,6 +5,7 @@ import {USER_LOCALSTORAGE_KEY} from "@/shared/const/localstorage";
 
 interface RegistrationByUserProps {
     username: string;
+    email: string;
     password: string;
 }
 
@@ -19,7 +20,7 @@ export const registrationByUser = createAsyncThunk<
 
         try {
             const response = await extra.api.post<User>('/auth/registration',
-                {login: data.username, password: data.password});
+                {login: data.username, password: data.password, email: data.email});
 
             if (!response.data) {
                 throw new Error();

@@ -10,8 +10,8 @@ export class UsersService {
     constructor(@InjectModel(User) private userRepository: typeof User) {}
 
     async createUser(dto: CreateUserDto) {
-        if (!dto.login || !dto.password) {
-            throw new HttpException('Не указан логин или пароль', HttpStatus.NOT_FOUND);
+        if (!dto.login || !dto.password || !dto.email) {
+            throw new HttpException('Не указан логин, email или пароль', HttpStatus.NOT_FOUND);
         }
 
         const user = await this.userRepository.create(dto);
@@ -29,6 +29,15 @@ export class UsersService {
         }
 
         const user = await this.userRepository.findOne({where: {login}, include: {all: true}});
+        return user;
+    }
+
+    async getUserByEmail(email: string) {
+        if (!email) {
+            throw new HttpException('Email не указан', HttpStatus.NOT_FOUND);
+        }
+
+        const user = await this.userRepository.findOne({where: {email}, include: {all: true}});
         return user;
     }
 
