@@ -23,12 +23,19 @@ export class UsersService {
         return users;
     }
 
+    async getUserById(id: number) {
+        const user = await this.userRepository.findOne({
+            where: {id}
+        } as any);
+        return user;
+    }
+
     async getUserByLogin(login: string) {
         if (!login) {
             throw new HttpException('Логин не указан', HttpStatus.NOT_FOUND);
         }
 
-        const user = await this.userRepository.findOne({where: {login}, include: {all: true}});
+        const user = await this.userRepository.findOne({where: {login}, include: {all: true}} as any);
         return user;
     }
 
@@ -37,7 +44,16 @@ export class UsersService {
             throw new HttpException('Email не указан', HttpStatus.NOT_FOUND);
         }
 
-        const user = await this.userRepository.findOne({where: {email}, include: {all: true}});
+        const user = await this.userRepository.findOne({where: {email}, include: {all: true}} as any);
+        return user;
+    }
+
+    async getUserByActivationLink(activationLink: string) {
+        if (!activationLink) {
+            throw new HttpException('Ссылка не указан', HttpStatus.NOT_FOUND);
+        }
+
+        const user = await this.userRepository.findOne({where: {activationLink}, include: {all: true}} as any);
         return user;
     }
 

@@ -7,7 +7,7 @@ const RegistrationPage = () => {
     const navigate = useNavigate();
 
     const onToggle = () => {
-        navigate(RoutePath.main);
+        //navigate(RoutePath.main);
     }
 
     return (

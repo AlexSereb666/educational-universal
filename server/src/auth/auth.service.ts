@@ -1,14 +1,14 @@
-import {HttpException, HttpStatus, Injectable, UnauthorizedException} from "@nestjs/common";
+import {HttpException, HttpStatus, Injectable} from "@nestjs/common";
 import {UsersService} from "../users/users.service";
 import {JwtService} from "@nestjs/jwt";
 import {CreateUserDto} from "../users/dto/create-user.dto";
 import * as bcrypt from 'bcryptjs';
 import * as uuid from 'uuid';
-import {User} from "../users/users.model";
 import {EmailService} from "../email/email.service";
 import {UsersTokenService} from "../usersToken/usersToken.service";
 import {UserDto} from "./dto/user.dto";
-import { ConfigService } from "@nestjs/config";
+import {ConfigService} from "@nestjs/config";
+import {IsNotEmpty} from "class-validator";
 
 @Injectable()
 export class AuthService {
@@ -41,7 +41,7 @@ export class AuthService {
         });
         await this.emailService.sendActivationMail(
             userDto.email,
-            `${this.configService.get<string>('URL_FRONTEND')}/auth/activate/${activationLink}`
+            `${this.configService.get<string>('API_URL')}:${this.configService.get<string>('PORT')}/auth/activate/${activationLink}`
         );
 
         const userParam = new UserDto(user);
@@ -56,20 +56,68 @@ export class AuthService {
     }
 
     async login(userDto: CreateUserDto) {
-        //const user = await this.validateUser(userDto)
-        //return this.generateToken(user)
+        const user = await this.userService.getUserByLogin(userDto.login);
+        if (!user) {
+            throw new HttpException('Пользователь не найден', HttpStatus.BAD_REQUEST);
+        }
+
+        const passwordEquals = await bcrypt.compare(userDto.password, user.password);
+        if (!passwordEquals) {
+            throw new HttpException('Неправильный пароль', HttpStatus.BAD_REQUEST);
+        }
+
+        if (!user.isActivated) {
+            throw new HttpException('Аккаунт не активирован', HttpStatus.BAD_REQUEST);
+        }
+
+        const userParam = new UserDto(user);
+        const tokens = await this.usersTokenService.generateTokens({...userParam});
+
+        await this.usersTokenService.saveToken({
+            userId: userParam.id,
+            refreshToken: tokens.refreshToken
+        });
+
+        return {...tokens, user: userParam};
     }
 
-    async logout() {
-
+    async logout(refreshToken: string) {
+        const token = await this.usersTokenService.removeToken(refreshToken);
+        return token;
     }
 
-    async activate() {
-
+    async activate(activationLink: string) {
+        const user = await this.userService.getUserByActivationLink(activationLink);
+        if (!user) {
+            throw new HttpException('Некорректная ссылка активации', HttpStatus.BAD_REQUEST);
+        }
+        user.isActivated = true;
+        await user.save();
     }
 
-    async refresh() {
+    async refresh(refreshToken: string) {
+        if (!refreshToken) {
+            throw new HttpException('Пустой токен', HttpStatus.BAD_REQUEST);
+        }
 
+        const userData = this.usersTokenService.validateRefreshToken(refreshToken);
+        const tokenFromDb = await this.usersTokenService.findtToken(refreshToken);
+
+        if (!userData || !tokenFromDb) {
+            throw new HttpException('Пользователь не авторизован', HttpStatus.BAD_REQUEST);
+        }
+
+        const user = await this.userService.getUserById(userData.id);
+
+        const userParam = new UserDto(user);
+        const tokens = await this.usersTokenService.generateTokens({...userParam});
+
+        await this.usersTokenService.saveToken({
+            userId: userParam.id,
+            refreshToken: tokens.refreshToken
+        });
+
+        return {...tokens, user: userParam};
     }
 
     async generateRandomUsers() {
@@ -103,21 +151,5 @@ export class AuthService {
             password += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return password;
-    }
-
-    private async generateToken(user: User) {
-        const payload = {id: user.id, login: user.login}
-        return {
-            token: this.jwtService.sign(payload)
-        }
-    }
-
-    private async validateUser(userDto: CreateUserDto) {
-        const user = await this.userService.getUserByLogin(userDto.login);
-        const passwordEquals = await bcrypt.compare(userDto.password, user.password);
-        if (user && passwordEquals) {
-            return user;
-        }
-        throw new UnauthorizedException({message: 'Некорректный логин или пароль'})
     }
 }

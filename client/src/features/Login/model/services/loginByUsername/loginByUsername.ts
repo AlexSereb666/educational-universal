@@ -1,11 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {User, userActions} from "@/entities/User";
 import {ThunkConfig} from "@/app/providers/StoreProvider";
-import {USER_LOCALSTORAGE_KEY} from "@/shared/const/localstorage";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 interface LoginByUsernameProps {
     username: string;
     password: string;
+}
+
+interface LoginResponse {
+    accessToken: string;
+    user: User;
 }
 
 export const loginByUsername = createAsyncThunk<
@@ -18,19 +23,24 @@ export const loginByUsername = createAsyncThunk<
         const { extra, dispatch, rejectWithValue } = thunkApi;
 
         try {
-            const response = await extra.api.post<User>('/auth/login',
-                {login: authData.username, password: authData.password});
+            const response = await extra.api.post<LoginResponse>('/auth/login', {
+                    login: authData.username,
+                    password: authData.password
+                });
 
             if (!response.data) {
-                throw new Error();
+                throw new Error('Нет данных в ответе');
             }
 
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
-            dispatch(userActions.setAuthData(response.data));
-            return response.data;
+            const { accessToken, user } = response.data;
+
+            localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+            dispatch(userActions.setAuthData(user));
+
+            return user;
         } catch (e) {
-            console.log(e);
-            return rejectWithValue('error');
+            console.error('Ошибка при авторизации:', e);
+            return rejectWithValue('Ошибка авторизации');
         }
     },
 );

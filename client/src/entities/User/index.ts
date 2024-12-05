@@ -11,6 +11,10 @@ export {
     userActions,
 } from './model/slice/userSlice';
 
+export {
+    logout
+} from './model/services/logout/logout';
+
 export type {
     User,
     UserSchema

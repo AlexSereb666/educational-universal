@@ -3,20 +3,21 @@ import * as cls from './ProfileItem.module.scss';
 import defaultAvatar from '@/shared/assets/defaultAvatar.png';
 import imgComboBox from '@/shared/assets/comboBox.png';
 import {useDispatch} from "react-redux";
-import {userActions} from "@/entities/User";
+import {logout, userActions} from "@/entities/User";
 import {useNavigate} from "react-router-dom";
 import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 export const ProfileItem = () => {
     const [isMenuVisible, setMenuVisible] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const checkboxRef = useRef<HTMLDivElement>(null);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const onLogout = useCallback(() => {
-        dispatch(userActions.logout());
+        dispatch(logout());
         navigate(RoutePath.login);
     }, [dispatch]);
 

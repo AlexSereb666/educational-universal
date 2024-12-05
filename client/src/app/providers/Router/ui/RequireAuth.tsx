@@ -6,7 +6,7 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
     const auth = useAuthUser();
     const location = useLocation();
 
-    if (!auth) {
+    if (!auth || !auth.isActivated) {
         return <Navigate to={RoutePath.login} state={{ from: location }} replace />;
     }
 

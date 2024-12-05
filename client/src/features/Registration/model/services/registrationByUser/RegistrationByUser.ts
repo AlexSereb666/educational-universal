@@ -1,12 +1,17 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "@/app/providers/StoreProvider";
 import {User, userActions} from "@/entities/User";
-import {USER_LOCALSTORAGE_KEY} from "@/shared/const/localstorage";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 interface RegistrationByUserProps {
     username: string;
     email: string;
     password: string;
+}
+
+interface RegistrationResponse {
+    accessToken: string;
+    user: User;
 }
 
 export const registrationByUser = createAsyncThunk<
@@ -19,19 +24,22 @@ export const registrationByUser = createAsyncThunk<
         const { extra, dispatch, rejectWithValue } = thunkApi;
 
         try {
-            const response = await extra.api.post<User>('/auth/registration',
+            const response = await extra.api.post<RegistrationResponse>('/auth/registration',
                 {login: data.username, password: data.password, email: data.email});
 
             if (!response.data) {
-                throw new Error();
+                throw new Error('Нет данных в ответе');
             }
 
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
-            dispatch(userActions.setAuthData(response.data));
-            return response.data;
+            const { accessToken, user } = response.data;
+
+            localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+            dispatch(userActions.setAuthData(user));
+
+            return user;
         } catch (e) {
-            console.log(e);
-            return rejectWithValue('error');
+            console.error('Ошибка при регистрации:', e);
+            return rejectWithValue('Ошибка регистрации');
         }
     },
 );

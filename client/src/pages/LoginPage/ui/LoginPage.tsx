@@ -7,13 +7,13 @@ import {getUserAuthData} from "@/entities/User";
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const isAuth = useSelector(getUserAuthData);
+    const authData = useSelector(getUserAuthData);
 
     useEffect(() => {
-        if (isAuth) {
+        if (authData && authData.isActivated) {
             navigate(RoutePath.main)
         }
-    }, [isAuth]);
+    }, [authData]);
 
     const onToggle = () => {
         navigate(RoutePath.main);

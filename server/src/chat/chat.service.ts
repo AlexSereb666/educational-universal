@@ -21,7 +21,7 @@ export class ChatService {
     }
 
     async getChatById(chatId: number) {
-        const chat = await this.chatRepository.findOne({ where: { id: chatId }, include: { all: true } });
+        const chat = await this.chatRepository.findOne({ where: { id: chatId }, include: { all: true }} as any);
         if (!chat) {
             throw new HttpException('Чат не найден', HttpStatus.NOT_FOUND);
         }

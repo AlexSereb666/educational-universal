@@ -3,6 +3,7 @@ import { ChatMessanger } from "@/entities/ChatMessanger";
 import { fetchChatByUserIds } from "@/entities/ChatMessanger/model/services/searchChatMessanger/searchChatMessanger";
 import { Chat, Message } from "@/entities/ChatMessanger/model/types/chatMessanger";
 import {io, Socket} from "socket.io-client";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 const initialState: ChatMessanger = {
     chat: null,
@@ -41,7 +42,7 @@ export const chatMessangerSlice = createSlice({
             if (socket) {
                 const { chatId, text} = action.payload;
 
-                const token = localStorage.getItem('user');
+                const token = localStorage.getItem(ACCESS_TOKEN_KEY);
                 const parsedToken = JSON.parse(atob(token.split('.')[1]));
                 const userId = parsedToken.id;
 

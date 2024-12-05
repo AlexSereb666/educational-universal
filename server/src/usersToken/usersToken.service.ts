@@ -42,4 +42,40 @@ export class UsersTokenService {
         const token = await this.usersTokenRepository.create(dto);
         return token;
     }
+
+    async removeToken(refreshToken: string) {
+        const tokenData = await this.usersTokenRepository.destroy({
+            where: { refreshToken }
+        });
+        return tokenData;
+    }
+
+    async findtToken(refreshToken: string) {
+        const tokenData = await this.usersTokenRepository.findOne({
+            where: {refreshToken}
+        } as any);
+        return tokenData;
+    }
+
+    public validateAccessToken(token: string) {
+        try {
+            const userData = this.jwtService.verify(token, {
+                secret: this.configService.get<string>('JWT_ACCESS_SECRET')
+            });
+            return userData;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    public validateRefreshToken(token: string) {
+        try {
+            const userData = this.jwtService.verify(token, {
+                secret: this.configService.get<string>('JWT_REFRESH_SECRET')
+            });
+            return userData;
+        } catch (e) {
+            return null;
+        }
+    }
 }

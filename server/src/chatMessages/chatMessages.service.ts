@@ -27,4 +27,13 @@ export class MessageService {
         }
         return messages;
     }
+
+    async findMessageAllById(chatId: number) {
+        const messages = await this.messageRepository.findAll({
+            where: { chatId },
+            order: [['createdAt', 'ASC']]
+        });
+
+        return messages;
+    }
 }

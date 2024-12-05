@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {Chat, Message} from "@/entities/ChatMessanger/model/types/chatMessanger";
 import {ThunkConfig} from "@/app/providers/StoreProvider";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 interface FetchChatProps {
     otherUserId: number;
@@ -15,7 +16,7 @@ export const fetchChatByUserIds = createAsyncThunk<
     async ({ otherUserId }, thunkApi) => {
         const { extra, rejectWithValue } = thunkApi;
 
-        const token = localStorage.getItem('user');
+        const token = localStorage.getItem(ACCESS_TOKEN_KEY);
         if (!token) {
             return rejectWithValue('Не найден токен');
         }
