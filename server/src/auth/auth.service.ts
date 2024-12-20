@@ -121,16 +121,27 @@ export class AuthService {
     }
 
     async generateRandomUsers() {
-        /*for (let i = 0; i < 1000; i++) {
-            const randomLogin = this.generateRandomLogin();
-            const randomPassword = this.generateRandomPassword();
+        const usersCount = 1000;
+        for (let i = 0; i < usersCount; i++) {
+            const login = this.generateRandomLogin();
+            const email = `${login}@test.com`;
+            const password = this.generateRandomPassword();
 
-            const candidate = await this.userService.getUserByLogin(randomLogin);
-            if (!candidate) {
-                const hashPassword = await bcrypt.hash(randomPassword, 5);
-                await this.userService.createUser({ login: randomLogin, password: hashPassword });
+            const hashPassword = await bcrypt.hash(password, 5);
+
+            try {
+                await this.userService.createUser({
+                    login,
+                    email,
+                    password: hashPassword,
+                    isActivated: true,
+                });
+            } catch (error) {
+                console.error(`Ошибка при создании пользователя ${login}:`, error.message);
+                i--;
             }
-        }*/
+        }
+        return '1000 пользователей успешно созданы';
     }
 
     private generateRandomLogin(): string {

@@ -70,7 +70,8 @@ export class AuthController {
     }
 
     @Get('/generateRandomUsers')
-    async generateRandomUsers() {
-        return this.authService.generateRandomUsers();
+    async generateRandomUsers(@Res() res: Response) {
+        const message = await this.authService.generateRandomUsers();
+        return res.send({ message });
     }
 }
