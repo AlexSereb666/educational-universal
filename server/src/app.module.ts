@@ -25,6 +25,7 @@ import {ArticlesTypeBlockModule} from "./articlesTypeBlock/articlesTypeBlock.mod
 import {UsersTokenModule} from "./usersToken/usersToken.module";
 import {UsersToken} from "./usersToken/usersToken.model";
 import {EmailModule} from "./email/email.module";
+import {QueryModule} from "./query/query.module";
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import {EmailModule} from "./email/email.module";
       ArticlesTypeBlockModule,
       UsersTokenModule,
       EmailModule,
+      QueryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
