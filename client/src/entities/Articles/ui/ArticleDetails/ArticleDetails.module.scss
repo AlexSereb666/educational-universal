@@ -1,6 +1,5 @@
 .article_details {
   height: 100%;
-
 }
 
 .error {
@@ -17,4 +16,20 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
+}
+
+.article_image {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.article_image_view {
+  width: 25px;
+  height: auto;
+}
+
+.article_image_calendar {
+  width: 20px;
+  height: auto;
 }

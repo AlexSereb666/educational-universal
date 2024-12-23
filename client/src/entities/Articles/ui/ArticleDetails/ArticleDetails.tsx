@@ -12,6 +12,9 @@ import {
 } from "../../model/selectors/articleDetails";
 import * as cls from './ArticleDetails.module.scss';
 import {Skeleton} from "@/shared/ui/Skeleton/Skeleton";
+import defaultImg from '@/shared/assets/defaultAvatar.png';
+import viewImg from '@/shared/assets/eas.png';
+import calendarImg from '@/shared/assets/calendar.png';
 
 interface ArticleDetailsProps {
     id: string;
@@ -28,6 +31,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const article = useSelector(getArticleDeatilsData);
     const isLoading = useSelector(getArticleDeatilsIsLoading);
     const error = useSelector(getArticleDeatilsError);
+
+    useEffect(() => {
+        console.log(article)
+    }, [article]);
 
     useEffect(() => {
         dispatch(fetchArticleById(id));
@@ -51,11 +58,37 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 Произошла ошибка при загрузке статьи
             </div>
         )
-    } else {
+    } else if (article) {
         content = (
-            <div>
-                Статья {id}
-            </div>
+            <>
+                <img
+                    className={cls.article_image}
+                    src={defaultImg as string}
+                    alt={'Нет изображения'}
+                />
+                <div>
+                    {article.title}
+                </div>
+                <div>
+                    {article.subtitle}
+                </div>
+                <div>
+                    <img
+                        className={cls.article_image_view}
+                        src={viewImg as string}
+                        alt={'Нет изображения'}
+                    />
+                    {article.view}
+                </div>
+                <div>
+                    <img
+                        className={cls.article_image_calendar}
+                        src={calendarImg as string}
+                        alt={'Нет изображения'}
+                    />
+                    {article.createdAt}
+                </div>
+            </>
         )
     }
 
