@@ -88,6 +88,10 @@ export class ArticlesService {
             throw new HttpException('Статья не найдена', HttpStatus.NOT_FOUND);
         }
 
+        if (article.blocks) {
+            article.blocks.sort((a, b) => a.step - b.step);
+        }
+
         return article;
     }
 }

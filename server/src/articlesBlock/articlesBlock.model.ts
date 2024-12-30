@@ -16,7 +16,7 @@ export class ArticlesBlock extends Model<ArticlesBlock, articlesBlockAttrs> {
     @Column({ type: DataType.INTEGER, allowNull: false })
     step: number;
 
-    @Column({ type: DataType.STRING, allowNull: false })
+    @Column({ type: DataType.TEXT, allowNull: false })
     content: string;
 
     @Column({ type: DataType.STRING, allowNull: false })

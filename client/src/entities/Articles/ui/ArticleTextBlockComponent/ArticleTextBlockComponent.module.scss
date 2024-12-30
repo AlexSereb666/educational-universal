@@ -1,0 +1,17 @@
+.articleTextBlock {
+  margin: 20px 0;
+}
+
+.articleTitle {
+  font-size: var(--font-size-l);
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--color-white);
+}
+
+.articleContent {
+  font-size: var(--font-size-m);
+  line-height: 1.5;
+  color: var(--color-white);
+  white-space: pre-wrap;
+}

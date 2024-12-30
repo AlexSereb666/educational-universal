@@ -1,10 +1,16 @@
 
-interface ArticlesTypeBlock {
-    id: number;
-    name: string;
+export enum ArticleTypeBlockList {
+    TEXT = 'TEXT',
+    CODE = 'CODE',
+    IMAGE = 'IMAGE',
 }
 
-interface ArticlesBlock {
+interface ArticlesTypeBlock {
+    id: number;
+    name: ArticleTypeBlockList;
+}
+
+export interface ArticlesBlock {
     id: number;
     step: number;
     content: string;
