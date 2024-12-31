@@ -3,8 +3,12 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, black, #420042);
+  height: 100vh;
   overflow-x: hidden;
+  background: linear-gradient(to bottom, black, #420042) fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
 }
 
 * {

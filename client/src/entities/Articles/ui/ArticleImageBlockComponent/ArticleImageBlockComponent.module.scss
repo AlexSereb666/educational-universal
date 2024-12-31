@@ -1,0 +1,26 @@
+.articleImageBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.articleImageTitle {
+  font-size: var(--font-size-m);
+  color: var(--color-white);
+  text-align: center;
+  padding: 10px 0;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

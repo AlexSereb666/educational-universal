@@ -40,11 +40,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const renderBlock = useCallback((block: ArticlesBlock) => {
         switch (block.typeBlock.name) {
             case ArticleTypeBlockList.CODE:
-                return <ArticleCodeBlockComponent />;
+                return <ArticleCodeBlockComponent block={block} />;
             case ArticleTypeBlockList.TEXT:
                 return <ArticleTextBlockComponent block={block} />;
             case ArticleTypeBlockList.IMAGE:
-                return <ArticleImageBlockComponent />;
+                return <ArticleImageBlockComponent block={block} />;
             default:
                 return null;
         }

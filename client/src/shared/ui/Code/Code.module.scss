@@ -1,0 +1,20 @@
+.codeContainer {
+  position: relative;
+}
+
+.code {
+  color: var(--color-code-text);
+  font-size: var(--font-size-m);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+  font-family: "Fira Code", monospace;
+}
+
+.copyBtn {
+  width: 20px;
+  height: auto;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
