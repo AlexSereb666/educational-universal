@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import * as cls from './Button.module.scss';
 
-interface ButtonProps {
+export interface ButtonProps {
     size?: 'small' | 'medium' | 'large';
     defaultColor?: string;
     hoverColor?: string;
