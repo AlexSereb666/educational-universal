@@ -51,10 +51,6 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     }, []);
 
     useEffect(() => {
-        console.log(article)
-    }, [article]);
-
-    useEffect(() => {
         dispatch(fetchArticleById(id));
     }, [dispatch, id]);
 

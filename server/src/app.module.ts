@@ -26,6 +26,8 @@ import {UsersTokenModule} from "./usersToken/usersToken.module";
 import {UsersToken} from "./usersToken/usersToken.model";
 import {EmailModule} from "./email/email.module";
 import {QueryModule} from "./query/query.module";
+import {ArticlesCommentModule} from "./articlesComment/articlesComment.module";
+import {ArticleComment} from "./articlesComment/articlesComment.model";
 
 @Module({
   imports: [
@@ -43,7 +45,19 @@ import {QueryModule} from "./query/query.module";
           username: process.env.POSTGRES_USER,
           password: process.env.POSTGRESS_PASSWORD,
           database: process.env.POSTGRES_DB,
-          models: [User, Chat, ChatUser, Message, Articles, ArticlesType, ArticleTypesLink, ArticlesBlock, ArticlesTypeBlock, UsersToken],
+          models: [
+              User,
+              Chat,
+              ChatUser,
+              Message,
+              Articles,
+              ArticlesType,
+              ArticleTypesLink,
+              ArticlesBlock,
+              ArticlesTypeBlock,
+              UsersToken,
+              ArticleComment
+          ],
           autoLoadModels: true
       }),
       UsersModule,
@@ -59,6 +73,7 @@ import {QueryModule} from "./query/query.module";
       UsersTokenModule,
       EmailModule,
       QueryModule,
+      ArticlesCommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
