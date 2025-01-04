@@ -10,6 +10,7 @@ import {RegistrationSchema} from "@/features/Registration/model/types/registrati
 import {ContactListSearchSchema} from "@/features/ContactList/model/types/contactListSearchSchema";
 import {ChatMessanger} from "@/entities/ChatMessanger";
 import {ArticleDetailsSchema} from "@/entities/Articles";
+import {ArticleDetailsCommentSchema} from "@/pages/ArticlesDetailsPage";
 
 export interface StateSchema {
     user: UserSchema;
@@ -18,7 +19,8 @@ export interface StateSchema {
 
     search?: ContactListSearchSchema;
     chatMessanger?: ChatMessanger;
-    articleDetails?: ArticleDetailsSchema
+    articleDetails?: ArticleDetailsSchema;
+    articleDetailsComments?: ArticleDetailsCommentSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
