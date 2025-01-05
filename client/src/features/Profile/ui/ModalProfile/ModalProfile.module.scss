@@ -1,0 +1,39 @@
+.container {
+  width: 700px;
+  max-width: 70%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: var(--font-size-l);
+}
+
+.body_profile {
+  margin-top: 40px;
+  font-size: var(--font-size-l);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  wrap-option: wrap;
+}
+
+.avatar {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.data_user {
+  margin-left: 10px;
+  color: var(--color-code-text);
+}
+
+.data_user_active {
+  font-weight: bold;
+}
+
+.isLoading {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}

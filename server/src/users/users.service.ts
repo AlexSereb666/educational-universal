@@ -14,20 +14,18 @@ export class UsersService {
             throw new HttpException('Не указан логин, email или пароль', HttpStatus.NOT_FOUND);
         }
 
-        const user = await this.userRepository.create(dto);
-        return user;
+        return await this.userRepository.create(dto);
     }
 
     async getAllUsers() {
-        const users = await this.userRepository.findAll({include: {all: true}});
-        return users;
+        return await this.userRepository.findAll({include: {all: true}});
     }
 
     async getUserById(id: number) {
-        const user = await this.userRepository.findOne({
-            where: {id}
+        return await this.userRepository.findOne({
+            where: {id},
+            attributes: ['id', 'login', 'email', 'isActivated']
         } as any);
-        return user;
     }
 
     async getUserByLogin(login: string) {
@@ -35,8 +33,7 @@ export class UsersService {
             throw new HttpException('Логин не указан', HttpStatus.NOT_FOUND);
         }
 
-        const user = await this.userRepository.findOne({where: {login}, include: {all: true}} as any);
-        return user;
+        return await this.userRepository.findOne({where: {login}, include: {all: true}} as any);
     }
 
     async getUserByEmail(email: string) {
@@ -44,8 +41,7 @@ export class UsersService {
             throw new HttpException('Email не указан', HttpStatus.NOT_FOUND);
         }
 
-        const user = await this.userRepository.findOne({where: {email}, include: {all: true}} as any);
-        return user;
+        return await this.userRepository.findOne({where: {email}, include: {all: true}} as any);
     }
 
     async getUserByActivationLink(activationLink: string) {
@@ -53,8 +49,7 @@ export class UsersService {
             throw new HttpException('Ссылка не указан', HttpStatus.NOT_FOUND);
         }
 
-        const user = await this.userRepository.findOne({where: {activationLink}, include: {all: true}} as any);
-        return user;
+        return await this.userRepository.findOne({where: {activationLink}, include: {all: true}} as any);
     }
 
     async getUsersWithPagination(limit: number, offset: number, search: string) {
@@ -72,7 +67,6 @@ export class UsersService {
             };
         }
 
-        const users = await this.userRepository.findAndCountAll(options);
-        return users;
+        return await this.userRepository.findAndCountAll(options);
     }
 }

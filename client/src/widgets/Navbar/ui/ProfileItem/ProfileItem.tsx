@@ -2,11 +2,13 @@ import React, {useState, useEffect, useRef, useCallback} from 'react';
 import * as cls from './ProfileItem.module.scss';
 import defaultAvatar from '@/shared/assets/defaultAvatar.png';
 import imgComboBox from '@/shared/assets/comboBox.png';
-import {useDispatch} from "react-redux";
-import {logout, userActions} from "@/entities/User";
+import {logout} from "@/entities/User";
 import {useNavigate} from "react-router-dom";
 import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
 import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
+import {Modal} from "@/shared/ui/Modal/Modal";
+import {ModalProfile} from "@/features/Profile";
 
 export const ProfileItem = () => {
     const [isMenuVisible, setMenuVisible] = useState(false);
@@ -16,14 +18,22 @@ export const ProfileItem = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
+    const user = useAuthUser();
+    const [isModalProfileOpen, setIsModalProfileOpen] = useState(false);
+
     const onLogout = useCallback(() => {
         dispatch(logout());
         navigate(RoutePath.login);
     }, [dispatch]);
 
-    const openProfile = useCallback(() => {
+    const openModalProfile = useCallback(() => {
+        setMenuVisible(false);
+        setIsModalProfileOpen(true);
+    }, [dispatch]);
 
-    }, [dispatch])
+    const closeModalProfile = useCallback(() => {
+        setIsModalProfileOpen(false);
+    }, [dispatch]);
 
     const handleToggle = () => {
         setMenuVisible(!isMenuVisible);
@@ -41,26 +51,37 @@ export const ProfileItem = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, [dispatch]);
 
     return (
-        <div className={cls.container} onClick={handleToggle}>
-            <div className={cls.avatar}>
-                <img src={defaultAvatar as string} alt={'Нет аватарки'} />
-            </div>
-            <div className={cls.checkbox} ref={checkboxRef}>
-                <img src={imgComboBox as string} alt={'Нет значка'} />
-                {isMenuVisible &&
-                    <div className={cls.menu} ref={menuRef} onClick={(event) => event.stopPropagation()}>
-                        <div className={cls.itemMenu} onClick={openProfile}>
-                            Профиль
+        <>
+            <div className={cls.container} onClick={handleToggle}>
+                <div className={cls.avatar}>
+                    <img src={defaultAvatar as string} alt={'Нет аватарки'}/>
+                </div>
+                <div className={cls.checkbox} ref={checkboxRef}>
+                    <img src={imgComboBox as string} alt={'Нет значка'}/>
+                    {isMenuVisible &&
+                        <div className={cls.menu} ref={menuRef} onClick={(event) => event.stopPropagation()}>
+                            <div className={cls.itemMenu} onClick={openModalProfile}>
+                                Профиль
+                            </div>
+                            <div className={cls.itemMenu} onClick={onLogout}>
+                                Выйти из аккаунта
+                            </div>
                         </div>
-                        <div className={cls.itemMenu} onClick={onLogout}>
-                            Выйти из аккаунта
-                        </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
-        </div>
+            <Modal
+                isOpen={isModalProfileOpen}
+                onClose={closeModalProfile}
+                lazy={true}
+            >
+                <ModalProfile
+                    id={user.id}
+                />
+            </Modal>
+        </>
     );
 };

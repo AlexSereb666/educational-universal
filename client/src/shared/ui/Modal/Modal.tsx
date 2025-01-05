@@ -1,5 +1,5 @@
 import React, {MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState} from "react";
-import cls from './Modal.module.scss';
+import * as cls from './Modal.module.scss';
 import {Portal} from "@/shared/ui/Portal/Portal";
 import {Mods} from "@/shared/lib/classNames/classNames";
 
@@ -61,18 +61,13 @@ export const Modal = (props: ModalProps) => {
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Mods = {
-        [cls.opened]: isOpen,
-        [cls.isClosing]: isClosing,
-    };
-
     if (lazy && !isMounted) {
         return null;
     }
 
     return (
         <Portal>
-            <div className={cls.Modal}>
+            <div className={`${cls.Modal} ${isOpen ? cls.opened : ''} ${isClosing ? cls.isClosing : ''}`}>
                 <div className={cls.overlay} onClick={closeHandler}>
                     <div
                         className={cls.content}

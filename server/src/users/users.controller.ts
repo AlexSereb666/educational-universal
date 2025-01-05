@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Query, UseGuards} from "@nestjs/common";
+import {Body, Controller, Get, Param, Post, Query, UseGuards} from "@nestjs/common";
 import {UsersService} from "./users.service";
 import {CreateUserDto} from "./dto/create-user.dto";
 import {AuthGuard} from "../auth/auth.guard";
@@ -26,5 +26,11 @@ export class UsersController {
         @Query('search') search: string,
     ) {
         return this.usersService.getUsersWithPagination(limit, offset, search);
+    }
+
+    @Get('/:id')
+    @UseGuards(AuthGuard)
+    getUserById(@Param('id') id: number) {
+        return this.usersService.getUserById(id);
     }
 }

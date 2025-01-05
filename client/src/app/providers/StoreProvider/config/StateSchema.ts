@@ -11,6 +11,8 @@ import {ContactListSearchSchema} from "@/features/ContactList/model/types/contac
 import {ChatMessanger} from "@/entities/ChatMessanger";
 import {ArticleDetailsSchema} from "@/entities/Articles";
 import {ArticleDetailsCommentSchema} from "@/pages/ArticlesDetailsPage";
+import {ProfileSchema} from "@/features/Profile";
+import {AddCommentFormSchema} from "@/features/AddCommentForm";
 
 export interface StateSchema {
     user: UserSchema;
@@ -21,6 +23,8 @@ export interface StateSchema {
     chatMessanger?: ChatMessanger;
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticleDetailsCommentSchema;
+    profile?: ProfileSchema;
+    addCommentForm?: AddCommentFormSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
