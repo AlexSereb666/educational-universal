@@ -25,7 +25,8 @@ export class ArticlesCommentService {
             include: [{
                 model: User,
                 attributes: ['id', 'login', 'email', 'isActivated']
-            }]
+            }],
+            order: [['date', 'DESC']]
         });
     }
 }
