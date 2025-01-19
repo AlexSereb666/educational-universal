@@ -94,4 +94,34 @@ export class ArticlesService {
 
         return article;
     }
+
+    async getAllArticles() {
+        const articles = await this.articlesRepository.findAll({
+            include: [
+                {
+                    model: ArticlesType,
+                    attributes: ['id', 'name'],
+                    through: { attributes: [] },
+                },
+                {
+                    model: ArticlesBlock,
+                    attributes: ['id', 'step', 'content', 'title'],
+                    include: [
+                        {
+                            model: ArticlesTypeBlock,
+                            attributes: ['id', 'name'],
+                        },
+                    ],
+                },
+            ],
+        });
+
+        articles.forEach(article => {
+            if (article.blocks) {
+                article.blocks.sort((a, b) => a.step - b.step);
+            }
+        });
+
+        return articles;
+    }
 }

@@ -15,4 +15,9 @@ export class ArticlesController {
     async getArticleById(@Param('id') id: number) {
         return this.articlesService.getArticleById(id);
     }
+
+    @Get()
+    async getAllArticles() {
+        return this.articlesService.getAllArticles();
+    }
 }

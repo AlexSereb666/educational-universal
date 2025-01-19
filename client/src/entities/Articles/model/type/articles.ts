@@ -23,6 +23,11 @@ interface ArticlesType {
     name: string;
 }
 
+export enum ArticleView {
+    BIG = 'BIG',
+    SMALL = 'SMALL',
+}
+
 export interface Article {
     id: number;
     title: string;

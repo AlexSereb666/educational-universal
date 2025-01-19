@@ -1,0 +1,23 @@
+.articles_list {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+
+  height: 100%;
+  max-height: 82vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.articles_list::-webkit-scrollbar {
+  width: 0;
+}
+
+.articles_list::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.articles_list::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.btn.selected {
+  opacity: 0.6;
+}
