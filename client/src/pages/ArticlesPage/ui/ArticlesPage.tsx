@@ -10,6 +10,11 @@ import {
     getArticlesPageView
 } from "@/pages/ArticlesPage";
 import {useSelector} from "react-redux";
+import {
+    getArticlesPageHasMore,
+    getArticlesPagePageNum
+} from "@/pages/ArticlesPage/model/selectors/articlesPageSelectors";
+import {fetchNextArticlesPage} from "@/pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 
 const reducers: ReducersList = {
     articlesPage: articlePageReducer,
@@ -21,15 +26,23 @@ const ArticlesPage = () => {
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
+    const page = useSelector(getArticlesPagePageNum);
+    const hasMore = useSelector(getArticlesPageHasMore);
 
     useEffect(() => {
-        dispatch(fetchArticlesList());
         dispatch(articlePageActions.initState());
+        dispatch(fetchArticlesList({
+            page: 1,
+        }));
     }, [dispatch]);
 
     const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlePageActions.setView(view));
     }, []);
+
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -40,6 +53,7 @@ const ArticlesPage = () => {
                     isLoading={isLoading}
                     view={view}
                     articles={articles}
+                    onScrollToEnd={onLoadNextPart}
                 />
             </div>
         </DynamicModuleLoader>

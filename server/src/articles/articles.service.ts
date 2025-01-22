@@ -95,7 +95,9 @@ export class ArticlesService {
         return article;
     }
 
-    async getAllArticles() {
+    async getAllArticles(page: number, limit: number) {
+        const offset = (page - 1) * limit;
+
         const articles = await this.articlesRepository.findAll({
             include: [
                 {
@@ -114,6 +116,8 @@ export class ArticlesService {
                     ],
                 },
             ],
+            limit,
+            offset,
         });
 
         articles.forEach(article => {
@@ -123,5 +127,53 @@ export class ArticlesService {
         });
 
         return articles;
+    }
+
+    async createTestArticle() {
+        const transaction = await this.sequelize.transaction();
+
+        try {
+            const article: any = await this.articlesRepository.create(
+                {
+                    title: 'Тестовая статья',
+                    subtitle: 'Это подзаголовок тестовой статьи',
+                    img: 'test_image.jpg',
+                    view: 0,
+                },
+                { transaction } as any
+            );
+
+            const testTypes = [
+                { name: 'Тип 1' },
+                { name: 'Тип 2' },
+            ];
+            const createdTypes = await this.articlesTypeRepository.bulkCreate(testTypes, { transaction });
+
+            const typeLinks = createdTypes.map((type) => ({
+                articleId: article.id,
+                typeId: type.id,
+            }));
+            await this.sequelize.models.ArticleTypesLink.bulkCreate(typeLinks, { transaction });
+
+            const testBlocks = [
+                { step: 1, title: 'Блок 1', content: 'Контент блока 1', articleId: article.id, typeBlockId: 1 },
+                { step: 2, title: 'Блок 2', content: 'Контент блока 2', articleId: article.id, typeBlockId: 1 },
+            ];
+            await this.articlesBlockRepository.bulkCreate(testBlocks, { transaction });
+
+            await transaction.commit();
+            return article;
+        } catch (error) {
+            await transaction.rollback();
+            throw new HttpException(
+                {
+                    statusCode: HttpStatus.BAD_REQUEST,
+                    message: 'Ошибка создания тестовой статьи',
+                    error: error.message,
+                    details: error.errors || null,
+                },
+                HttpStatus.BAD_REQUEST
+            );
+        }
     }
 }

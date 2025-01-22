@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post} from "@nestjs/common";
+import {Body, Controller, Get, Param, Post, Query} from "@nestjs/common";
 import {ArticlesService} from "./articles.service";
 import {CreateArticlesDto} from "./dto/create-articles.dto";
 
@@ -17,7 +17,15 @@ export class ArticlesController {
     }
 
     @Get()
-    async getAllArticles() {
-        return this.articlesService.getAllArticles();
+    async getAllArticles(
+        @Query('page') page: number = 1,
+        @Query('limit') limit: number = 20
+    ) {
+        return this.articlesService.getAllArticles(page, limit);
+    }
+
+    @Post('test')
+    async createTestArticle() {
+        return this.articlesService.createTestArticle();
     }
 }
