@@ -14,11 +14,13 @@ import {ArticleDetailsCommentSchema} from "@/pages/ArticlesDetailsPage";
 import {ProfileSchema} from "@/features/Profile";
 import {AddCommentFormSchema} from "@/features/AddCommentForm";
 import {ArticlesPageSchema} from "@/pages/ArticlesPage";
+import {ScrollSaveSchema} from "@/features/ScrollSave";
 
 export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
     registration: RegistrationSchema
+    scrollSave: ScrollSaveSchema;
 
     search?: ContactListSearchSchema;
     chatMessanger?: ChatMessanger;
