@@ -6,6 +6,7 @@ import {ArticlesBlock} from "../articlesBlock/articlesBlock.model";
 import {Sequelize} from "sequelize";
 import {CreateArticlesDto} from "./dto/create-articles.dto";
 import {ArticlesTypeBlock} from "../articlesTypeBlock/articlesTypeBlock.model";
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ArticlesService {
@@ -95,10 +96,13 @@ export class ArticlesService {
         return article;
     }
 
-    async getAllArticles(page: number, limit: number) {
+    async getAllArticles(page: number, limit: number, sort: string, order: string, search: string) {
         const offset = (page - 1) * limit;
 
+        const whereCondition = search ? { title: { [Op.like]: `%${search}%` } } : {};
+
         const articles = await this.articlesRepository.findAll({
+            where: whereCondition,
             include: [
                 {
                     model: ArticlesType,
@@ -118,6 +122,7 @@ export class ArticlesService {
             ],
             limit,
             offset,
+            order: [[sort, order]],
         });
 
         articles.forEach(article => {

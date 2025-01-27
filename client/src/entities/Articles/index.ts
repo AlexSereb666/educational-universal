@@ -14,6 +14,10 @@ export type {
     ArticleDetailsSchema
 } from './model/type/articleDetailsSchema';
 
+export type {
+    ArticleSortField
+} from './model/type/articles';
+
 export {
     ArticleList
 } from './ui/ArticleList/ArticleList';
@@ -21,3 +25,7 @@ export {
 export {
     ArticleViewSelector
 } from './ui/ArticleViewSelector/ArticleViewSelector';
+
+export {
+    ArticleSortSelector
+} from './ui/ArticleSortSelector/ArticleSortSelector';

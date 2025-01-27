@@ -1,4 +1,4 @@
-export { ArticlesPageAsync as ArticlesPage } from './ui/ArticlesPage.async';
+export { ArticlesPageAsync as ArticlesPage } from './ui/ArticlesPage/ArticlesPage.async';
 
 export type {
     ArticlesPageSchema
@@ -11,5 +11,8 @@ export {
 export {
     getArticlesPageIsLoading,
     getArticlesPageError,
-    getArticlesPageView
+    getArticlesPageView,
+    getArticlesPageSearch,
+    getArticlesPageSort,
+    getArticlesPageOrder,
 } from './model/selectors/articlesPageSelectors';

@@ -19,9 +19,12 @@ export class ArticlesController {
     @Get()
     async getAllArticles(
         @Query('page') page: number = 1,
-        @Query('limit') limit: number = 20
+        @Query('limit') limit: number = 20,
+        @Query('sort') sort: string = 'id',
+        @Query('order') order: string = 'asc',
+        @Query('search') search: string = ''
     ) {
-        return this.articlesService.getAllArticles(page, limit);
+        return this.articlesService.getAllArticles(page, limit, sort, order, search);
     }
 
     @Post('test')
