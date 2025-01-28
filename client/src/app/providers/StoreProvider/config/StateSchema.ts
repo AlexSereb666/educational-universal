@@ -9,7 +9,7 @@ import {To} from "history";
 import {RegistrationSchema} from "@/features/Registration/model/types/registrationSchema";
 import {ContactListSearchSchema} from "@/features/ContactList/model/types/contactListSearchSchema";
 import {ChatMessanger} from "@/entities/ChatMessanger";
-import {ArticleDetailsSchema} from "@/entities/Articles";
+import {ArticleDetailsSchema, TypesArticleSchema} from "@/entities/Articles";
 import {ArticleDetailsCommentSchema} from "@/pages/ArticlesDetailsPage";
 import {ProfileSchema} from "@/features/Profile";
 import {AddCommentFormSchema} from "@/features/AddCommentForm";
@@ -25,6 +25,7 @@ export interface StateSchema {
     search?: ContactListSearchSchema;
     chatMessanger?: ChatMessanger;
     articleDetails?: ArticleDetailsSchema;
+    typesArticle?: TypesArticleSchema;
     articleDetailsComments?: ArticleDetailsCommentSchema;
     profile?: ProfileSchema;
     addCommentForm?: AddCommentFormSchema;

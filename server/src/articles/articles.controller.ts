@@ -22,9 +22,10 @@ export class ArticlesController {
         @Query('limit') limit: number = 20,
         @Query('sort') sort: string = 'id',
         @Query('order') order: string = 'asc',
-        @Query('search') search: string = ''
+        @Query('search') search: string = '',
+        @Query('type') type: string = '0'
     ) {
-        return this.articlesService.getAllArticles(page, limit, sort, order, search);
+        return this.articlesService.getAllArticles(page, limit, sort, order, search, type);
     }
 
     @Post('test')

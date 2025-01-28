@@ -4,8 +4,9 @@ import {ThunkConfig} from "@/app/providers/StoreProvider";
 import {
     getArticlesPageLimit,
     getArticlesPageOrder, getArticlesPageSearch,
-    getArticlesPageSort
+    getArticlesPageSort, getArticlesPageType
 } from "@/pages/ArticlesPage/model/selectors/articlesPageSelectors";
+import {addQueryParams} from "@/shared/lib/url/addQueryParams/addQueryParams";
 
 interface FetchArticlesListProps {
     page?: number;
@@ -25,11 +26,15 @@ export const fetchArticlesList = createAsyncThunk<
         const sort = getArticlesPageSort(getState());
         const order = getArticlesPageOrder(getState());
         const search = getArticlesPageSearch(getState());
+        const type = getArticlesPageType(getState()) as string;
 
         try {
+            addQueryParams({
+               sort, order, search, type
+            });
             const response = await extra.api.get<Article[]>(
                 `/articles`,
-                { params: { page, limit, sort, order, search }, }
+                { params: { page, limit, sort, order, search, type }, }
             );
 
             if (!response.data) {

@@ -29,3 +29,20 @@ export {
 export {
     ArticleSortSelector
 } from './ui/ArticleSortSelector/ArticleSortSelector';
+
+export type {
+    TypesArticleSchema
+} from './model/type/typesArticleSchema';
+
+export {
+    fetchTypesArticle
+} from './model/services/fetchTypesArticle/fetchTypesArticle';
+
+export {
+    typesArticleActions,
+    typesArticleReducer,
+} from './model/slice/typesArticleSlice';
+
+export {
+    getTypesArticleData
+} from './model/selectors/typesArticle';

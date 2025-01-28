@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tab {
+  padding: 10px 16px;
+  cursor: pointer;
+  color: var(--color-white);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 2px solid var(--color-code-border);
+  border-radius: 10px;
+
+  &.small {
+    font-size: var(--font-size-m);
+  }
+
+  &.medium {
+    font-size: var(--font-size-l);
+  }
+
+  &.large {
+    font-size: var(--font-size-xl);
+  }
+
+  &:hover {
+    background-color: var(--color-hover);
+  }
+
+  &.active {
+    background-color: var(--selected);
+  }
+}

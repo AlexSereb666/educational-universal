@@ -2,6 +2,8 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ArticleDetailsSchema} from "../type/articleDetailsSchema";
 import {fetchArticleById} from "../services/fetchArticleById/fetchArticleById";
 import {Article} from "@/entities/Articles";
+import {fetchTypesArticle} from "@/entities/Articles/model/services/fetchTypesArticle/fetchTypesArticle";
+import {ArticlesType} from "@/entities/Articles/model/type/articles";
 
 const initialState: ArticleDetailsSchema = {
     isLoading: false,
@@ -12,9 +14,7 @@ const initialState: ArticleDetailsSchema = {
 export const articleDetailsSlice = createSlice({
     name: 'articleDetails',
     initialState,
-    reducers: {
-        test: () => {}
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchArticleById.pending, (state: ArticleDetailsSchema) => {

@@ -28,6 +28,7 @@ const articlePageSlice = createSlice({
         search: '',
         sort: ArticleSortField.CREATED,
         order: 'asc',
+        type: 0,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
@@ -45,6 +46,9 @@ const articlePageSlice = createSlice({
         },
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
+        },
+        setType: (state, action: PayloadAction<string | number>) => {
+            state.type = action.payload;
         },
         initState: (state) => {
             const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView;
@@ -68,7 +72,7 @@ const articlePageSlice = createSlice({
                 action,
             ) => {
                 state.isLoading = false;
-                state.hasMore = action.payload.length > 0;
+                state.hasMore = action.payload.length >= state.limit;
 
                 if (action.meta.arg.replace) {
                     articlesAdapter.setAll(state, action.payload);

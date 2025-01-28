@@ -96,19 +96,28 @@ export class ArticlesService {
         return article;
     }
 
-    async getAllArticles(page: number, limit: number, sort: string, order: string, search: string) {
+    async getAllArticles(page: number, limit: number, sort: string, order: string, search: string, type: string) {
         const offset = (page - 1) * limit;
 
         const whereCondition = search ? { title: { [Op.like]: `%${search}%` } } : {};
 
+        const includeCondition = type && type !== '0'
+            ? [{
+                model: ArticlesType,
+                where: { id: Number(type) },
+                attributes: ['id', 'name'],
+                through: { attributes: [] },
+            }]
+            : [{
+                model: ArticlesType,
+                attributes: ['id', 'name'],
+                through: { attributes: [] },
+            }];
+
         const articles = await this.articlesRepository.findAll({
             where: whereCondition,
             include: [
-                {
-                    model: ArticlesType,
-                    attributes: ['id', 'name'],
-                    through: { attributes: [] },
-                },
+                ...includeCondition,
                 {
                     model: ArticlesBlock,
                     attributes: ['id', 'step', 'content', 'title'],

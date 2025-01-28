@@ -24,7 +24,7 @@ export interface ArticlesBlock {
     typeBlock: ArticlesTypeBlock;
 }
 
-interface ArticlesType {
+export interface ArticlesType {
     id: number;
     name: string;
 }

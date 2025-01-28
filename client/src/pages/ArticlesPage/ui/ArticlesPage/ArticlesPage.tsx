@@ -1,4 +1,4 @@
-import {ArticleList} from "@/entities/Articles";
+import {ArticleList, fetchTypesArticle, typesArticleReducer} from "@/entities/Articles";
 import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {articlePageReducer, getArticles} from "@/pages/ArticlesPage/model/slices/ArticlePageSlice";
 import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -12,9 +12,11 @@ import {useSelector} from "react-redux";
 import {fetchNextArticlesPage} from "@/pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import {initArticlesPage} from "@/pages/ArticlesPage/model/services/initArticlesPage/initArticlesPage";
 import {ArticlesPageFilters} from "@/pages/ArticlesPage/ui/ArticlesPageFilters/ArticlesPageFilters";
+import {useSearchParams} from "react-router-dom";
 
 const reducers: ReducersList = {
     articlesPage: articlePageReducer,
+    typesArticle: typesArticleReducer,
 };
 
 const ArticlesPage = () => {
@@ -23,9 +25,14 @@ const ArticlesPage = () => {
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        dispatch(initArticlesPage());
+        dispatch(initArticlesPage(searchParams));
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(fetchTypesArticle());
     }, [dispatch]);
 
     const onLoadNextPart = useCallback(() => {
