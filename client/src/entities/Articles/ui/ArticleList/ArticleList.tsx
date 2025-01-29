@@ -49,8 +49,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }, 500);
 
     const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
-        saveScroll(e);
-        handleScroll(e);
+        if (onScrollToEnd) {
+            saveScroll(e);
+            handleScroll(e);
+        }
     }
 
     const renderArticle = (article: Article) => {

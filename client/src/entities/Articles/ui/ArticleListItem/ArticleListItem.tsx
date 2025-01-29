@@ -7,6 +7,7 @@ import viewIcon from '@/shared/assets/eas.png';
 import {useNavigate} from "react-router-dom";
 import {RoutePathMain} from "@/shared/config/routerConfig/routerConfig";
 import {Button} from "@/shared/ui/Button/Button";
+import {Card} from "@/shared/ui/Card/Card";
 
 interface ArticleListItemProps {
     article: Article;
@@ -56,22 +57,14 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
         if (view === ArticleView.SMALL) {
             return (
-                <div className={cls.container} onClick={onClick}>
-                <img className={cls.image} src={imageDefault} alt={'Изображение'}/>
-                    <div className={cls.date}>
-                        {formatDate(article.createdAt)}
-                    </div>
-                    <div className={cls.title}>
-                        {article.title}
-                    </div>
-                    <div className={cls.view}>
-                        <img className={cls.viewImage} src={viewIcon} alt={'Изображение'}/>
-                        {article.view}
-                    </div>
-                    <div className={cls.types}>
-                        {article.types.map(item => item.name).join(', ')}
-                    </div>
-                </div>
+                <Card
+                    image={imageDefault}
+                    title={article.title}
+                    date={formatDate(article.createdAt)}
+                    views={article.view}
+                    types={article.types.map(item => item.name).join(', ')}
+                    onClick={onClick}
+                />
             )
         }
 

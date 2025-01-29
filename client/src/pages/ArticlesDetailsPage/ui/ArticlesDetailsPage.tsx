@@ -1,4 +1,4 @@
-import {ArticleDetails} from "@/entities/Articles";
+import {ArticleDetails, ArticleList} from "@/entities/Articles";
 import {useParams} from "react-router-dom";
 import * as cls from './ArticlesDetailsPage.module.scss';
 import {CommentList} from "@/entities/Comment";
@@ -18,9 +18,22 @@ import {AddCommentForm} from "@/features/AddCommentForm";
 import {
     addCommentForArticle
 } from "@/pages/ArticlesDetailsPage/model/services/addCommentForArticle/addCommentForArticle";
+import {
+    articleDetailsPageRecommendationsReducer, getArticleRecommendations
+} from "@/pages/ArticlesDetailsPage/model/slice/articleDetailsPageRecommendationsSlice";
+import {
+    getArticleRecommendationsError,
+    getArticleRecommendationsIsLoading
+} from "@/pages/ArticlesDetailsPage/model/selectors/recommendations";
+import {
+    fetchArticleRecommendations
+} from "@/pages/ArticlesDetailsPage/model/services/fetchArticleRecommendations/fetchArticleRecommendations";
+import {articleDetailsPageReducer} from "@/pages/ArticlesDetailsPage/model/slice";
 
 const reducerList: ReducersList = {
-    articleDetailsComments: articleDetailsCommentsSliceReducer
+    //articleDetailsComments: articleDetailsCommentsSliceReducer,
+    //articleDetailsRecommendations: articleDetailsPageRecommendationsReducer
+    articleDetailsPage: articleDetailsPageReducer,
 }
 
 const ArticlesDetailsPage = () => {
@@ -29,6 +42,9 @@ const ArticlesDetailsPage = () => {
     const comments = useSelector(getArticleComments.selectAll);
     const isLoading = useSelector(getArticleCommentsIsLoading);
     const error = useSelector(getArticleCommentsError);
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
+    const recommendationsError = useSelector(getArticleRecommendationsError);
 
     if (!id) {
         return;
@@ -40,6 +56,7 @@ const ArticlesDetailsPage = () => {
 
     useEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchArticleRecommendations());
     }, [dispatch])
 
     return (
@@ -47,6 +64,13 @@ const ArticlesDetailsPage = () => {
             <div className={cls.articles_details_page}>
                 <ArticleDetails
                     id={id}
+                />
+                <div className={cls.title_comment}>
+                    Рекомендуем
+                </div>
+                <ArticleList
+                    articles={recommendations}
+                    isLoading={recommendationsIsLoading}
                 />
                 <div className={cls.title_comment}>
                     Комментарии

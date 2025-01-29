@@ -1,0 +1,54 @@
+.container {
+  width: 220px;
+  padding: 10px;
+  background-color: var(--color-code-background-modal);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.image {
+  width: 200px;
+  height: 250px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.date {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: var(--font-size-m);
+  color: var(--color-code-text);
+}
+
+.title {
+  font-size: var(--font-size-m);
+  color: var(--color-code-text);
+}
+
+.view {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--font-size-m);
+  color: var(--color-code-text);
+}
+
+.viewImage {
+  width: 24px;
+  height: auto;
+}
+
+.types {
+  font-size: var(--font-size-m);
+  color: var(--color-code-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

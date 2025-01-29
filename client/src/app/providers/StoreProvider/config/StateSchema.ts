@@ -4,17 +4,19 @@ import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject
 } from '@reduxjs/toolkit';
 import {AxiosInstance} from "axios";
-import {NavigateOptions} from "react-router-dom";
-import {To} from "history";
 import {RegistrationSchema} from "@/features/Registration/model/types/registrationSchema";
 import {ContactListSearchSchema} from "@/features/ContactList/model/types/contactListSearchSchema";
 import {ChatMessanger} from "@/entities/ChatMessanger";
 import {ArticleDetailsSchema, TypesArticleSchema} from "@/entities/Articles";
-import {ArticleDetailsCommentSchema} from "@/pages/ArticlesDetailsPage";
+import {
+    ArticleDetailsCommentSchema,
+    ArticleDetailsPageRecommendationsSchema,
+} from "@/pages/ArticlesDetailsPage";
 import {ProfileSchema} from "@/features/Profile";
 import {AddCommentFormSchema} from "@/features/AddCommentForm";
 import {ArticlesPageSchema} from "@/pages/ArticlesPage";
 import {ScrollSaveSchema} from "@/features/ScrollSave";
+import {ArticleDetailsPageSchema} from "@/pages/ArticlesDetailsPage/model/types";
 
 export interface StateSchema {
     user: UserSchema;
@@ -26,10 +28,12 @@ export interface StateSchema {
     chatMessanger?: ChatMessanger;
     articleDetails?: ArticleDetailsSchema;
     typesArticle?: TypesArticleSchema;
-    articleDetailsComments?: ArticleDetailsCommentSchema;
+    //articleDetailsComments?: ArticleDetailsCommentSchema;
+    //articleDetailsRecommendations?: ArticleDetailsPageRecommendationsSchema;
     profile?: ProfileSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
