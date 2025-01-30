@@ -1,13 +1,16 @@
-import {BelongsToMany, Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
+import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table} from "sequelize-typescript";
 import {ArticlesType} from "../articlesType/articlesType.model";
 import {ArticleTypesLink} from "../articlesTypeLinks/articlesTypeLinks.model";
 import {ArticlesBlock} from "../articlesBlock/articlesBlock.model";
+import {ArticlesTypeBlock} from "../articlesTypeBlock/articlesTypeBlock.model";
+import {User} from "../users/users.model";
 
 interface CreateArticlesAttrs {
     title: string;
     subtitle: string;
     img: string;
     view: number;
+    userId: number;
 }
 
 interface ArticlesModelAttrs extends CreateArticlesAttrs {
@@ -44,4 +47,11 @@ export class Articles extends Model<Articles, CreateArticlesAttrs> {
 
     @HasMany(() => ArticlesBlock)
     blocks: ArticlesBlock[];
+
+    @ForeignKey(() => User)
+    @Column({type: DataType.INTEGER})
+    userId: number;
+
+    @BelongsTo(() => User)
+    user: User;
 }

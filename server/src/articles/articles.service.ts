@@ -7,6 +7,7 @@ import {Sequelize} from "sequelize";
 import {CreateArticlesDto} from "./dto/create-articles.dto";
 import {ArticlesTypeBlock} from "../articlesTypeBlock/articlesTypeBlock.model";
 import { Op } from 'sequelize';
+import {User} from "../users/users.model";
 
 @Injectable()
 export class ArticlesService {
@@ -82,6 +83,10 @@ export class ArticlesService {
                         },
                     ],
                 },
+                {
+                    model: User,
+                    attributes: ['id', 'login', 'email'],
+                },
             ],
         });
 
@@ -153,15 +158,16 @@ export class ArticlesService {
                     subtitle: 'Это подзаголовок тестовой статьи',
                     img: 'test_image.jpg',
                     view: 0,
+                    userId: 1,
                 },
                 { transaction } as any
             );
 
-            const testTypes = [
-                { name: 'Тип 1' },
-                { name: 'Тип 2' },
+            const createdTypes = [
+                { id: 1 },
+                { id: 2 },
+                { id: 3 },
             ];
-            const createdTypes = await this.articlesTypeRepository.bulkCreate(testTypes, { transaction });
 
             const typeLinks = createdTypes.map((type) => ({
                 articleId: article.id,

@@ -4,7 +4,7 @@ import defaultAvatar from '@/shared/assets/defaultAvatar.png';
 import imgComboBox from '@/shared/assets/comboBox.png';
 import {logout} from "@/entities/User";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {RoutePath, RoutePathMain} from "@/shared/config/routerConfig/routerConfig";
 import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
 import {Modal} from "@/shared/ui/Modal/Modal";
@@ -53,6 +53,10 @@ export const ProfileItem = () => {
         };
     }, [dispatch]);
 
+    const onCreateArticle = useCallback(() => {
+        navigate(RoutePathMain.articles_create);
+    }, [navigate]);
+
     return (
         <>
             <div className={cls.container} onClick={handleToggle}>
@@ -65,6 +69,9 @@ export const ProfileItem = () => {
                         <div className={cls.menu} ref={menuRef} onClick={(event) => event.stopPropagation()}>
                             <div className={cls.itemMenu} onClick={openModalProfile}>
                                 Профиль
+                            </div>
+                            <div className={cls.itemMenu} onClick={onCreateArticle}>
+                                Создать статью
                             </div>
                             <div className={cls.itemMenu} onClick={onLogout}>
                                 Выйти из аккаунта

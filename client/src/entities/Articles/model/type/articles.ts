@@ -1,3 +1,4 @@
+import {User} from "@/entities/User";
 
 export enum ArticleSortField {
     VIEWS = 'view',
@@ -44,4 +45,5 @@ export interface Article {
     updatedAt: string;
     types: ArticlesType[];
     blocks: ArticlesBlock[];
+    user: User;
 }

@@ -1,6 +1,6 @@
 export {
     ArticlesDetailsPageAsync as ArticlesDetailsPage
-} from './ui/ArticlesDetailsPage.async';
+} from './ui/ArticleDetailsPage/ArticlesDetailsPage.async';
 
 export type {
     ArticleDetailsCommentSchema
@@ -10,6 +10,6 @@ export type {
     ArticleDetailsPageRecommendationsSchema
 } from './model/types/ArticleDetailsPageRecommendationsSchema';
 
-/*export type {
+export type {
     ArticleDetailsPageSchema
-} from './model/types';*/
+} from './model/types';

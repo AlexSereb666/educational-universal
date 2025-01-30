@@ -7,6 +7,8 @@ import {MessengerPage} from "@/pages/MessengerPage";
 import {RegistrationPage} from "@/pages/RegistrationPage";
 import {ArticlesPage} from "@/pages/ArticlesPage";
 import {ArticlesDetailsPage} from "@/pages/ArticlesDetailsPage";
+import {ArticleEditPage} from "@/pages/ArticleEditPage";
+import {ArticleCreatePage} from "@/pages/ArticleCreatePage";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -33,7 +35,9 @@ export enum AppRoutesMain {
     MESSENGER = 'messenger',
     STORAGE = 'storage',
     ARTICLES = 'articles',
-    ARTICLES_DETAILS = 'articles_details'
+    ARTICLES_DETAILS = 'articles_details',
+    ARTICLES_CREATE = 'articles_create',
+    ARTICLES_EDIT = 'articles_edit',
 }
 
 export const RoutePathMain: Record<AppRoutesMain, string> = {
@@ -41,6 +45,8 @@ export const RoutePathMain: Record<AppRoutesMain, string> = {
     [AppRoutesMain.STORAGE]: `${RoutePath.main}/storage`,
     [AppRoutesMain.ARTICLES]: `${RoutePath.main}/articles`,
     [AppRoutesMain.ARTICLES_DETAILS]: `${RoutePath.main}/articles/`,
+    [AppRoutesMain.ARTICLES_CREATE]: `${RoutePath.main}/articles/new`,
+    [AppRoutesMain.ARTICLES_EDIT]: `${RoutePath.main}/articles/:id/edit`,
 }
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -65,6 +71,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
                 path: `${RoutePathMain[AppRoutesMain.ARTICLES_DETAILS]}:id`,
                 element: <ArticlesDetailsPage />,
             },
+            {
+                path: RoutePathMain[AppRoutesMain.ARTICLES_EDIT],
+                element: <ArticleEditPage />
+            },
+            {
+                path: RoutePathMain[AppRoutesMain.ARTICLES_CREATE],
+                element: <ArticleCreatePage />
+            }
         ]
     },
     [AppRoutes.LOGIN]: {

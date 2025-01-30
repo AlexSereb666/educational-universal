@@ -3,12 +3,12 @@ import {useParams} from "react-router-dom";
 import * as cls from './ArticlesDetailsPage.module.scss';
 import {CommentList} from "@/entities/Comment";
 import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {articleDetailsCommentsSliceReducer, getArticleComments} from "../model/slice/ArticleDetailsCommentsSlice";
+import {articleDetailsCommentsSliceReducer, getArticleComments} from "../../model/slice/ArticleDetailsCommentsSlice";
 import {useSelector} from "react-redux";
 import {
     getArticleCommentsError,
     getArticleCommentsIsLoading
-} from "../../ArticlesDetailsPage/model/selectors/comments";
+} from "../../model/selectors/comments";
 import {useCallback, useEffect} from "react";
 import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
@@ -29,6 +29,9 @@ import {
     fetchArticleRecommendations
 } from "@/pages/ArticlesDetailsPage/model/services/fetchArticleRecommendations/fetchArticleRecommendations";
 import {articleDetailsPageReducer} from "@/pages/ArticlesDetailsPage/model/slice";
+import {
+    ArticleDetailsPageHeader
+} from "@/pages/ArticlesDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader";
 
 const reducerList: ReducersList = {
     //articleDetailsComments: articleDetailsCommentsSliceReducer,
@@ -62,6 +65,7 @@ const ArticlesDetailsPage = () => {
     return (
         <DynamicModuleLoader reducers={reducerList} removeAfterUnmount>
             <div className={cls.articles_details_page}>
+                <ArticleDetailsPageHeader />
                 <ArticleDetails
                     id={id}
                 />
@@ -71,6 +75,7 @@ const ArticlesDetailsPage = () => {
                 <ArticleList
                     articles={recommendations}
                     isLoading={recommendationsIsLoading}
+
                 />
                 <div className={cls.title_comment}>
                     Комментарии
