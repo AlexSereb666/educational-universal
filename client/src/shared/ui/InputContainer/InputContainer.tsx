@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo, useState} from "react";
+import React, {ChangeEvent, memo} from "react";
 import * as cls from "./InputContainer.module.scss";
 import classNames from "classnames";
 

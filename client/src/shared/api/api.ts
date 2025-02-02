@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
-import {config} from "fork-ts-checker-webpack-plugin/lib/typescript/worker/lib/worker-config";
+import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
 
 export const $api = axios.create({
     withCredentials: true,

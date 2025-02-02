@@ -1,15 +1,15 @@
 import React, {memo, useEffect, useRef} from "react";
 import {Article, ArticleView} from "../../model/type/articles";
-import {ArticleListItem} from "@/entities/Articles/ui/ArticleListItem/ArticleListItem";
+import {ArticleListItem} from "../ArticleListItem/ArticleListItem";
 import * as cls from './ArticleList.module.scss';
-import {ArticleListItemSkeleton} from "@/entities/Articles/ui/ArticleListItemSkeleton/ArticleListItemSkeleton";
-import {useScrollToEnd} from "@/shared/lib/hooks/useScrollToEnd/useScrollToEnd";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {getScrollSave, getScrollSavePath, scrollSaveSliceActions} from "@/features/ScrollSave";
+import {ArticleListItemSkeleton} from "../ArticleListItemSkeleton/ArticleListItemSkeleton";
+import {useScrollToEnd} from "shared/lib/hooks/useScrollToEnd/useScrollToEnd";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {getScrollSavePath, scrollSaveSliceActions} from "features/ScrollSave";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {StateSchema} from "@/app/providers/StoreProvider";
-import {useThrottle} from "@/shared/lib/hooks/useThrottle/useThrottle";
+import {StateSchema} from "app/providers/StoreProvider";
+import {useThrottle} from "shared/lib/hooks/useThrottle/useThrottle";
 
 interface ArticleListProps {
     articles: Article[];

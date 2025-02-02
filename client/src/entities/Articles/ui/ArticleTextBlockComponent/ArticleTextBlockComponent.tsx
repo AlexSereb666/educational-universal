@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { ArticlesBlock } from "@/entities/Articles/model/type/articles";
+import { ArticlesBlock } from "../../model/type/articles";
 import * as cls from './ArticleTextBlockComponent.module.scss';
 
 interface ArticleTextBlockComponentProps {

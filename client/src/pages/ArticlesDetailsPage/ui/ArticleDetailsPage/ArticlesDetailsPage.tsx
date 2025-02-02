@@ -1,41 +1,39 @@
-import {ArticleDetails, ArticleList} from "@/entities/Articles";
+import {ArticleDetails, ArticleList} from "entities/Articles";
 import {useParams} from "react-router-dom";
 import * as cls from './ArticlesDetailsPage.module.scss';
-import {CommentList} from "@/entities/Comment";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {articleDetailsCommentsSliceReducer, getArticleComments} from "../../model/slice/ArticleDetailsCommentsSlice";
+import {CommentList} from "entities/Comment";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {getArticleComments} from "../../model/slice/ArticleDetailsCommentsSlice";
 import {useSelector} from "react-redux";
 import {
     getArticleCommentsError,
     getArticleCommentsIsLoading
 } from "../../model/selectors/comments";
 import {useCallback, useEffect} from "react";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
     fetchCommentsByArticleId
-} from "@/pages/ArticlesDetailsPage/model/services/featchCommentsByArticleId/featchCommentsByArticleId";
-import {AddCommentForm} from "@/features/AddCommentForm";
+} from "../../model/services/featchCommentsByArticleId/featchCommentsByArticleId";
+import {AddCommentForm} from "features/AddCommentForm";
 import {
     addCommentForArticle
-} from "@/pages/ArticlesDetailsPage/model/services/addCommentForArticle/addCommentForArticle";
+} from "../../model/services/addCommentForArticle/addCommentForArticle";
 import {
-    articleDetailsPageRecommendationsReducer, getArticleRecommendations
-} from "@/pages/ArticlesDetailsPage/model/slice/articleDetailsPageRecommendationsSlice";
+    getArticleRecommendations
+} from "../../model/slice/articleDetailsPageRecommendationsSlice";
 import {
     getArticleRecommendationsError,
     getArticleRecommendationsIsLoading
-} from "@/pages/ArticlesDetailsPage/model/selectors/recommendations";
+} from "../../model/selectors/recommendations";
 import {
     fetchArticleRecommendations
-} from "@/pages/ArticlesDetailsPage/model/services/fetchArticleRecommendations/fetchArticleRecommendations";
-import {articleDetailsPageReducer} from "@/pages/ArticlesDetailsPage/model/slice";
+} from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
+import {articleDetailsPageReducer} from "../../model/slice";
 import {
     ArticleDetailsPageHeader
-} from "@/pages/ArticlesDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader";
+} from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
 
 const reducerList: ReducersList = {
-    //articleDetailsComments: articleDetailsCommentsSliceReducer,
-    //articleDetailsRecommendations: articleDetailsPageRecommendationsReducer
     articleDetailsPage: articleDetailsPageReducer,
 }
 

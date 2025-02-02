@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 import * as cls from './SidebarItem.module.scss';
-import { SidebarItemType } from "@/widgets/Sidebar/model/items";
+import { SidebarItemType } from "../../model/items";
 import { useSelector } from "react-redux";
-import { getUserAuthData } from "@/entities/User";
+import { getUserAuthData } from "entities/User";
 import classNames from 'classnames';
 import { Link } from "react-router-dom";
 

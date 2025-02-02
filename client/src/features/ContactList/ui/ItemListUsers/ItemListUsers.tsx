@@ -1,5 +1,5 @@
 import {memo} from "react";
-import defaultAvatar from '@/shared/assets/defaultAvatar.png';
+import defaultAvatar from 'shared/assets/defaultAvatar.png';
 import * as cls from './ItemListUsers.module.scss';
 
 export interface ItemListUsersProps {

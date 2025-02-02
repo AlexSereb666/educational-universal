@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {LoginForm} from "@/features/Login";
+import {LoginForm} from "features/Login";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {RoutePath} from "shared/config/routerConfig/routerConfig";
 import {useSelector} from "react-redux";
-import {getUserAuthData} from "@/entities/User";
+import {getUserAuthData} from "entities/User";
 
 const LoginPage = () => {
     const navigate = useNavigate();

@@ -6,26 +6,24 @@ import {
     ArticleView,
     ArticleViewSelector,
     getTypesArticleData
-} from "@/entities/Articles";
-import {articlePageActions} from "@/pages/ArticlesPage/model/slices/ArticlePageSlice";
+} from "entities/Articles";
+import {articlePageActions} from "../../model/slices/ArticlePageSlice";
 import {useSelector} from "react-redux";
 import {
-    fetchArticlesList,
     getArticlesPageOrder,
     getArticlesPageSearch,
     getArticlesPageSort,
     getArticlesPageView
-} from "@/pages/ArticlesPage";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {Input} from "@/shared/ui/Input/Input";
-import {SortOrder} from "@/shared/types/order";
-import {useDebounce} from "@/shared/lib/hooks/useDebounce/useDebounce";
-import {TabItem, Tabs} from "@/shared/ui/Tabs/Tabs";
-import {getArticlesPageType} from "@/pages/ArticlesPage/model/selectors/articlesPageSelectors";
+} from "../../model/selectors/articlesPageSelectors";
+import {fetchArticlesList} from '../../model/services/fetchArticlesList/fetchArticlesList';
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {Input} from "shared/ui/Input/Input";
+import {SortOrder} from "shared/types/order";
+import {useDebounce} from "shared/lib/hooks/useDebounce/useDebounce";
+import {TabItem, Tabs} from "shared/ui/Tabs/Tabs";
+import {getArticlesPageType} from "../../model/selectors/articlesPageSelectors";
 
-interface ArticlesPageFiltersProps {}
-
-export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
+export const ArticlesPageFilters = memo(() => {
     const dispatch = useAppDispatch();
     const view = useSelector(getArticlesPageView);
     const sort = useSelector(getArticlesPageSort);

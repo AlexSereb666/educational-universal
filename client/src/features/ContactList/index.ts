@@ -1,1 +1,1 @@
-export {ContactListForm} from '@/features/ContactList/ui/ContactListForm/ContactListForm';
+export {ContactListForm} from 'features/ContactList/ui/ContactListForm/ContactListForm';

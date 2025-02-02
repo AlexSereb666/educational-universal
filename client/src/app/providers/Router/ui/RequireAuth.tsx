@@ -1,6 +1,6 @@
-import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
+import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Navigate, useLocation} from "react-router-dom";
-import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {RoutePath} from "shared/config/routerConfig/routerConfig";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
     const auth = useAuthUser();

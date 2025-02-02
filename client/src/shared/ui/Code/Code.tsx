@@ -1,7 +1,7 @@
 import {memo, ReactNode, useState} from "react";
 import * as cls from './Code.module.scss';
-import copyIcon from '@/shared/assets/copy.png';
-import copySuccesIcon from '@/shared/assets/copySucces.png';
+import copyIcon from 'shared/assets/copy.png';
+import copySuccesIcon from 'shared/assets/copySucces.png';
 
 interface CodeProps {
     children: ReactNode;

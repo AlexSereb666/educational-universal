@@ -2,5 +2,6 @@ client/build
 client/node_modules
 .idea
 server/node_modules
+eslint-plugin-alexsereb666/node_modules
 
 *storybook.log

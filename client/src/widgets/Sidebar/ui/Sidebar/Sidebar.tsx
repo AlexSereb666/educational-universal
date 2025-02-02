@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import * as cls from './Sidebar.module.scss';
-import {SidebarItemsList} from "@/widgets/Sidebar/model/items";
-import {SidebarItem} from "@/widgets/Sidebar/ui/SidebarItem/SidebarItem";
+import {SidebarItemsList} from "../../model/items";
+import {SidebarItem} from "../SidebarItem/SidebarItem";
 
 export const Sidebar = () => {
     const [indexActiveItem, setIndexActiveItem] = useState(null);

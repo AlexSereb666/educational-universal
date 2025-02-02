@@ -1,9 +1,9 @@
 import './ArticleDetails.module.scss';
 import {memo, useCallback, useEffect} from "react";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {articleDetailsReducer} from "../../model/slice/articleDetailsSlice";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchArticleById} from "@/entities/Articles/model/services/fetchArticleById/fetchArticleById";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchArticleById} from "../../model/services/fetchArticleById/fetchArticleById";
 import {useSelector} from "react-redux";
 import {
     getArticleDeatilsData,
@@ -11,15 +11,15 @@ import {
     getArticleDeatilsIsLoading
 } from "../../model/selectors/articleDetails";
 import * as cls from './ArticleDetails.module.scss';
-import {Skeleton} from "@/shared/ui/Skeleton/Skeleton";
-import defaultImg from '@/shared/assets/defaultAvatar.png';
-import viewImg from '@/shared/assets/eas.png';
-import calendarImg from '@/shared/assets/calendar.png';
-import {formatDate} from "@/shared/lib/date/formatDate";
+import {Skeleton} from "shared/ui/Skeleton/Skeleton";
+import defaultImg from 'shared/assets/defaultAvatar.png';
+import viewImg from 'shared/assets/eas.png';
+import calendarImg from 'shared/assets/calendar.png';
+import {formatDate} from "shared/lib/date/formatDate";
 import {ArticlesBlock, ArticleTypeBlockList} from "../../../Articles/model/type/articles";
-import {ArticleCodeBlockComponent} from "@/entities/Articles/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent";
-import {ArticleTextBlockComponent} from "@/entities/Articles/ui/ArticleTextBlockComponent/ArticleTextBlockComponent";
-import {ArticleImageBlockComponent} from "@/entities/Articles/ui/ArticleImageBlockComponent/ArticleImageBlockComponent";
+import {ArticleCodeBlockComponent} from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
+import {ArticleTextBlockComponent} from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
+import {ArticleImageBlockComponent} from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
 
 interface ArticleDetailsProps {
     id: string;
@@ -104,7 +104,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                         </div>
                     </div>
                 </div>
-                {article.blocks.map((block) => (
+                {article.blocks.map((block: ArticlesBlock) => (
                     <div key={block.id}>
                         {renderBlock(block)}
                     </div>

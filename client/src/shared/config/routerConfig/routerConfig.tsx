@@ -1,14 +1,14 @@
 import {RouteProps} from "react-router-dom";
-import {MainPage} from "@/pages/MainPage";
-import {LoginPage} from "@/pages/LoginPage";
-import {NotFoundPage} from "@/pages/NotFoundPage";
-import {StoragePage} from "@/pages/StoragePage";
-import {MessengerPage} from "@/pages/MessengerPage";
-import {RegistrationPage} from "@/pages/RegistrationPage";
-import {ArticlesPage} from "@/pages/ArticlesPage";
-import {ArticlesDetailsPage} from "@/pages/ArticlesDetailsPage";
-import {ArticleEditPage} from "@/pages/ArticleEditPage";
-import {ArticleCreatePage} from "@/pages/ArticleCreatePage";
+import {MainPage} from "pages/MainPage";
+import {LoginPage} from "pages/LoginPage";
+import {NotFoundPage} from "pages/NotFoundPage";
+import {StoragePage} from "pages/StoragePage";
+import {MessengerPage} from "pages/MessengerPage";
+import {RegistrationPage} from "pages/RegistrationPage";
+import {ArticlesPage} from "pages/ArticlesPage";
+import {ArticlesDetailsPage} from "pages/ArticlesDetailsPage";
+import {ArticleEditPage} from "pages/ArticleEditPage";
+import {ArticleCreatePage} from "pages/ArticleCreatePage";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;

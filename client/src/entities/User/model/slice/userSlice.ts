@@ -1,8 +1,8 @@
 import {User, UserSchema} from "../types/user";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
+import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
 import {logout} from "../services/logout/logout";
-import {initAuth} from "@/entities/User/model/services/initAuth/initAuth";
+import {initAuth} from "../../model/services/initAuth/initAuth";
 
 const initialState: UserSchema = {
     _inited: false,

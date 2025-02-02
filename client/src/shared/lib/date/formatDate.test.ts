@@ -1,4 +1,4 @@
-import {formatDate} from "@/shared/lib/date/formatDate";
+import {formatDate} from "./formatDate";
 
 describe('formatDate', () => {
     test('должен корректно форматировать дату с полной информацией (UTC)', () => {

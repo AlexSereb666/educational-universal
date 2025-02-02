@@ -1,6 +1,5 @@
 import React from "react";
-import {RegistrationForm} from "@/features/Registration";
-import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {RegistrationForm} from "features/Registration";
 import {useNavigate} from "react-router-dom";
 
 const RegistrationPage = () => {

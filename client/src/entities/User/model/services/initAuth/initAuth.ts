@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "@/app/providers/StoreProvider";
-import {User} from "@/entities/User";
+import {ThunkConfig} from "app/providers/StoreProvider";
+import {User} from "../../types/user";
 
 export interface InitAuthResponse {
     accessToken: string;

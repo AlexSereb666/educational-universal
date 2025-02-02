@@ -1,21 +1,21 @@
 import {memo, useCallback, useEffect, useRef} from "react";
-import {InputContainer} from "@/shared/ui/InputContainer/InputContainer";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {InputContainer} from "shared/ui/InputContainer/InputContainer";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
-import {getSearchString} from "@/features/ContactList/model/selectors/getSearchString/getSearchString";
-import {searchActions, searchReducer} from "@/features/ContactList/model/slice/searchSlice";
-import {getSearchListUsers} from "@/features/ContactList/model/selectors/getSearchListUsers/getSearchListUsers";
-import {getSearchIsLoading} from "@/features/ContactList/model/selectors/getSearchIsLoading/getSearchIsLoading";
-import {getSearchError} from "@/features/ContactList/model/selectors/getSearchError/getSearchError";
-import {searchUsersByUsername} from "@/features/ContactList/model/services/searchUsersByUsername/searchUsersByUsername";
+import {getSearchString} from "../../model/selectors/getSearchString/getSearchString";
+import {searchActions, searchReducer} from "../../model/slice/searchSlice";
+import {getSearchListUsers} from "../../model/selectors/getSearchListUsers/getSearchListUsers";
+import {getSearchIsLoading} from "../../model/selectors/getSearchIsLoading/getSearchIsLoading";
+import {getSearchError} from "../../model/selectors/getSearchError/getSearchError";
+import {searchUsersByUsername} from "../../model/services/searchUsersByUsername/searchUsersByUsername";
 import * as cls from './ContactListForm.module.scss';
-import {ItemListUsers} from "@/features/ContactList/ui/ItemListUsers/ItemListUsers";
-import {getSearchOffset} from "@/features/ContactList/model/selectors/getSearchOffset/getSearchOffset";
-import {getSearchLimit} from "@/features/ContactList/model/selectors/getSearchLimit/getSearchLimit";
-import {Loader} from "@/shared/ui/Loader/Loader";
-import {fetchChatByUserIds} from "@/entities/ChatMessanger/model/services/searchChatMessanger/searchChatMessanger";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {chatMessangerReducer} from "@/entities/ChatMessanger/model/slice/chatMessangerSlice";
+import {ItemListUsers} from "../ItemListUsers/ItemListUsers";
+import {getSearchOffset} from "../../model/selectors/getSearchOffset/getSearchOffset";
+import {getSearchLimit} from "../../model/selectors/getSearchLimit/getSearchLimit";
+import {Loader} from "shared/ui/Loader/Loader";
+import {fetchChatByUserIds} from "entities/ChatMessanger/model/services/searchChatMessanger/searchChatMessanger";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {chatMessangerReducer} from "entities/ChatMessanger/model/slice/chatMessangerSlice";
 
 const initialReducers: ReducersList = {
     search: searchReducer,

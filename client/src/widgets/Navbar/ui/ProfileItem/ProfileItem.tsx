@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import * as cls from './ProfileItem.module.scss';
-import defaultAvatar from '@/shared/assets/defaultAvatar.png';
-import imgComboBox from '@/shared/assets/comboBox.png';
-import {logout} from "@/entities/User";
+import defaultAvatar from 'shared/assets/defaultAvatar.png';
+import imgComboBox from 'shared/assets/comboBox.png';
+import {logout} from "entities/User";
 import {useNavigate} from "react-router-dom";
-import {RoutePath, RoutePathMain} from "@/shared/config/routerConfig/routerConfig";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
-import {Modal} from "@/shared/ui/Modal/Modal";
-import {ModalProfile} from "@/features/Profile";
+import {RoutePath, RoutePathMain} from "shared/config/routerConfig/routerConfig";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
+import {Modal} from "shared/ui/Modal/Modal";
+import {ModalProfile} from "features/Profile";
 
 export const ProfileItem = () => {
     const [isMenuVisible, setMenuVisible] = useState(false);

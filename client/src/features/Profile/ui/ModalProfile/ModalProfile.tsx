@@ -1,13 +1,13 @@
 import {memo, useEffect} from "react";
 import * as cls from './ModalProfile.module.scss';
-import avatarDefault from '@/shared/assets/defaultAvatar.png';
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {profileReducer} from "@/features/Profile/model/slice/ProfileSlice";
+import avatarDefault from 'shared/assets/defaultAvatar.png';
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {profileReducer} from "../../model/slice/ProfileSlice";
 import {useSelector} from "react-redux";
-import {getProfileData, getProfileError, getProfileIsLoading} from "@/features/Profile";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchUserById} from "@/features/Profile";
-import {Skeleton} from "@/shared/ui/Skeleton/Skeleton";
+import {getProfileData, getProfileError, getProfileIsLoading} from "../../model/selectors/profile";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchUserById} from "../../model/service/fetchUserById/fetchUserById";
+import {Skeleton} from "shared/ui/Skeleton/Skeleton";
 
 const reducerList: ReducersList = {
     profile: profileReducer,

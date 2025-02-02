@@ -1,6 +1,6 @@
-import {ContactListSearchSchema} from "@/features/ContactList/model/types/contactListSearchSchema";
+import {ContactListSearchSchema} from "../../model/types/contactListSearchSchema";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {searchUsersByUsername} from "@/features/ContactList/model/services/searchUsersByUsername/searchUsersByUsername";
+import {searchUsersByUsername} from "../../model/services/searchUsersByUsername/searchUsersByUsername";
 
 const initialState: ContactListSearchSchema = {
     isLoading: false,

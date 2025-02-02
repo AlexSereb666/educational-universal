@@ -1,11 +1,9 @@
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 import {configureStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
-import {To} from "history";
-import {NavigateOptions} from "react-router-dom";
-import {userReducer} from "@/entities/User";
-import {$api} from "@/shared/api/api";
-import {scrollSaveSliceReducer} from "@/features/ScrollSave";
+import {userReducer} from "entities/User";
+import {$api} from "shared/api/api";
+import {scrollSaveSliceReducer} from "features/ScrollSave";
 
 export function createReduxStore(
     initialState?: StateSchema,

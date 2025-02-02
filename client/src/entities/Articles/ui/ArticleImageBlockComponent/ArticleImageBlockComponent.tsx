@@ -1,6 +1,6 @@
 import {memo} from "react";
-import {ArticlesBlock} from "@/entities/Articles/model/type/articles";
-import test from '@/shared/assets/defaultAvatar.png';
+import {ArticlesBlock} from "../../model/type/articles";
+import test from 'shared/assets/defaultAvatar.png';
 import * as cls from './ArticleImageBlockComponent.module.scss';
 
 interface ArticleImageBlockComponentProps {

@@ -1,8 +1,8 @@
 import {memo, useMemo} from "react";
-import {Select, SelectOption} from "@/shared/ui/Select/Select";
+import {Select, SelectOption} from "shared/ui/Select/Select";
 import * as cls from './ArticleSortSelector.module.scss';
-import {ArticleSortField} from "@/entities/Articles/model/type/articles";
-import {SortOrder} from "@/shared/types/order";
+import {ArticleSortField} from "../../model/type/articles";
+import {SortOrder} from "shared/types/order";
 
 interface ArticleSortSelectorProps {
     sort: ArticleSortField;

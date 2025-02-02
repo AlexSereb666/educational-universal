@@ -1,18 +1,18 @@
 import React, {memo, useCallback, useEffect} from 'react';
 import * as cls from './LoginForm.module.scss';
-import {Input} from "@/shared/ui/Input/Input";
-import {Button} from "@/shared/ui/Button/Button";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {Input} from "shared/ui/Input/Input";
+import {Button} from "shared/ui/Button/Button";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {loginActions, loginReducer} from "../../model/slice/loginSlice";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
-import {getLoginUsername} from "@/features/Login/model/selectors/getLoginUsername/getLoginUsername";
-import {getLoginPassword} from "@/features/Login/model/selectors/getLoginPassword/getLoginPassword";
-import {getLoginIsLoading} from "@/features/Login/model/selectors/getLoginIsLoading/getLoginIsLoading";
-import {getLoginError} from "@/features/Login/model/selectors/getLoginError/getLoginError";
-import {loginByUsername} from "@/features/Login/model/services/loginByUsername/loginByUsername";
+import {getLoginUsername} from "../../model/selectors/getLoginUsername/getLoginUsername";
+import {getLoginPassword} from "../../model/selectors/getLoginPassword/getLoginPassword";
+import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
+import {getLoginError} from "../../model/selectors/getLoginError/getLoginError";
+import {loginByUsername} from "../../model/services/loginByUsername/loginByUsername";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {RoutePath} from "shared/config/routerConfig/routerConfig";
 
 export interface LoginFormProps {
     onSuccess: () => void;

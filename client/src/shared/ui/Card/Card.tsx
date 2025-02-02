@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import classNames from 'classnames';
 import * as cls from './Card.module.scss';
-import viewIcon from '@/shared/assets/eas.png';
+import viewIcon from 'shared/assets/eas.png';
 
 interface CardProps {
     image: string;

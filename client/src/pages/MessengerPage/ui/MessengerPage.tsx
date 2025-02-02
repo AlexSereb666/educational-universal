@@ -1,7 +1,7 @@
 import React from 'react';
 import * as cls from './MessengerPage.module.scss';
-import {SidebarMessanger} from "@/widgets/SidebarMessanger";
-import {ChatBox} from "@/widgets/ChatBox";
+import {SidebarMessanger} from "widgets/SidebarMessanger";
+import {ChatBox} from "widgets/ChatBox";
 
 const MessengerPage = () => {
     return (

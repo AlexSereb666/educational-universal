@@ -1,6 +1,6 @@
 import React from 'react';
 import * as cls from './Navbar.module.scss';
-import logo from '@/shared/assets/logo.png';
+import logo from 'shared/assets/logo.png';
 import {ProfileItem} from "../ProfileItem/ProfileItem";
 
 export const Navbar = () => {

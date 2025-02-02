@@ -1,6 +1,6 @@
 import { memo, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { getChatMessangerChat, getChatMessangerMessages } from "@/entities/ChatMessanger";
+import { getChatMessangerChat, getChatMessangerMessages } from "entities/ChatMessanger";
 import * as cls from './MessageListChat.module.scss';
 
 export const MessageListChat = memo(() => {

@@ -1,7 +1,7 @@
 import {memo} from "react";
 import { Comment } from '../../model/types/comment';
-import avatarDeafult from '@/shared/assets/defaultAvatar.png';
-import {formatDate} from "@/shared/lib/date/formatDate";
+import avatarDeafult from 'shared/assets/defaultAvatar.png';
+import {formatDate} from "shared/lib/date/formatDate";
 import * as cls from './CommentCard.module.scss';
 
 interface CommentCardProps {

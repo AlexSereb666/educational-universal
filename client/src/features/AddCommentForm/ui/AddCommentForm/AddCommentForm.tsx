@@ -1,12 +1,12 @@
 import {memo, useCallback} from "react";
 import * as cls from './AddCommentForm.module.scss';
-import {TextArea} from "@/shared/ui/TextArea/TextArea";
-import {Button} from "@/shared/ui/Button/Button";
+import {TextArea} from "shared/ui/TextArea/TextArea";
+import {Button} from "shared/ui/Button/Button";
 import {useSelector} from "react-redux";
 import {getAddCommentFormError, getAddCommentFormText} from "../../model/selectors/addCommentFormSelectors";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {addCommentFormActions, addCommentFormReducer} from "../../model/slice/AddCommentFormSlice";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 
 const reducers: ReducersList = {
     addCommentForm: addCommentFormReducer,

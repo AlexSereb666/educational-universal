@@ -1,26 +1,25 @@
 import React, {memo, useCallback, useEffect} from "react";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {registrationActions, registrationReducer} from "@/features/Registration/model/slice/registrationSlice";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {registrationActions, registrationReducer} from "../../model/slice/registrationSlice";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
 import {
     getRegistrationUsername
-} from "@/features/Registration/model/selectors/getRegistrationUsername/getRegistrationUsername";
+} from "../../model/selectors/getRegistrationUsername/getRegistrationUsername";
 import {
     getRegistrationPassword
-} from "@/features/Registration/model/selectors/getRegistrationPassword/getRegistrationPassword";
+} from "../../model/selectors/getRegistrationPassword/getRegistrationPassword";
 import {
     getRegistrationIsLoading
-} from "@/features/Registration/model/selectors/getRegistrationIsLoading/getRegistrationIsLoading";
-import {getRegistrationError} from "@/features/Registration/model/selectors/getRegistrationError/getRegistrationError";
+} from "../../model/selectors/getRegistrationIsLoading/getRegistrationIsLoading";
+import {getRegistrationError} from "../../model/selectors/getRegistrationError/getRegistrationError";
 import {useNavigate} from "react-router-dom";
-import {registrationByUser} from "@/features/Registration/model/services/registrationByUser/RegistrationByUser";
-import {RoutePath} from "@/shared/config/routerConfig/routerConfig";
+import {registrationByUser} from "../../model/services/registrationByUser/RegistrationByUser";
+import {RoutePath} from "shared/config/routerConfig/routerConfig";
 import * as cls from "./RegistrationForm.module.scss";
-import {Input} from "@/shared/ui/Input/Input";
-import {Button} from "@/shared/ui/Button/Button";
-import {getUserAuthData} from "@/entities/User";
-import {getRegistrationEmail} from "@/features/Registration/model/selectors/getRegistrationEmail/getRegistrationEmail";
+import {Input} from "shared/ui/Input/Input";
+import {Button} from "shared/ui/Button/Button";
+import {getRegistrationEmail} from "../../model/selectors/getRegistrationEmail/getRegistrationEmail";
 
 export interface RegistrationFormProps {
     onSuccess: () => void;

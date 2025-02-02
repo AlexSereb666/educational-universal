@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {Chat, Message} from "@/entities/ChatMessanger/model/types/chatMessanger";
-import {ThunkConfig} from "@/app/providers/StoreProvider";
-import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
+import {Chat, Message} from "../../types/chatMessanger";
+import {ThunkConfig} from "app/providers/StoreProvider";
+import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
 
 interface FetchChatProps {
     otherUserId: number;

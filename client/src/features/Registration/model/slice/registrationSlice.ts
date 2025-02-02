@@ -1,6 +1,6 @@
-import {RegistrationSchema} from "@/features/Registration/model/types/registrationSchema";
+import {RegistrationSchema} from "../../model/types/registrationSchema";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {registrationByUser} from "@/features/Registration/model/services/registrationByUser/RegistrationByUser";
+import {registrationByUser} from "../../model/services/registrationByUser/RegistrationByUser";
 
 const initialState: RegistrationSchema = {
     isLoading: false,

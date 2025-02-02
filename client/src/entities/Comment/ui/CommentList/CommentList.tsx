@@ -1,7 +1,7 @@
 import {memo} from "react";
 import { Comment } from '../../model/types/comment';
 import * as cls from "./CommentList.module.scss";
-import {CommentCard} from "@/entities/Comment/ui/CommentCard/CommentCard";
+import {CommentCard} from "../CommentCard/CommentCard";
 
 interface CommentListProps {
     comments?: Comment[];
