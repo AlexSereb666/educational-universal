@@ -70,6 +70,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@types/react-tooltip": "^3.11.0",
     "@types/react-virtualized": "^9.22.0",
