@@ -1,0 +1,39 @@
+.Dropdown {
+  position: relative;
+}
+
+.btn {
+  background: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.menu {
+  background: var(--dropdown-background-color);
+  position: absolute;
+  z-index: 10000;
+  border-radius: 8px;
+  border: 1px solid var(--dropdown-border-color);
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  right: 0;
+}
+
+.item {
+  padding: 10px 25px;
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.active {
+  background: var(--dropdown-active-color);
+  border-radius: 8px;
+}

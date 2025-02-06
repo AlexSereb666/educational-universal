@@ -2,6 +2,7 @@ client/build
 client/node_modules
 .idea
 server/node_modules
+server/uploads
 eslint-plugin-alexsereb666/node_modules
 node_modules
 

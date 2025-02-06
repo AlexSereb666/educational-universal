@@ -179,7 +179,7 @@ const config: Config = {
   // A map from regular expressions to paths to transformers
   // transform: undefined,
 
-  // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
+  // An array of regexp pattern strings that are matched against all source files paths, matched files will skip transformation
   // transformIgnorePatterns: [
   //   "\\\\node_modules\\\\",
   //   "\\.pnp\\.[^\\\\]+$"
@@ -191,10 +191,10 @@ const config: Config = {
   // Indicates whether each individual test should be reported during the run
   // verbose: undefined,
 
-  // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
+  // An array of regexp patterns that are matched against all source files paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
 
-  // Whether to use watchman for file crawling
+  // Whether to use watchman for files crawling
   // watchman: true,
 };
 

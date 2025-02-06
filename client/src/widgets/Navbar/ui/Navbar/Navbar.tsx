@@ -1,7 +1,7 @@
 import React from 'react';
 import * as cls from './Navbar.module.scss';
 import logo from 'shared/assets/logo.png';
-import {ProfileItem} from "../ProfileItem/ProfileItem";
+import {ProfileMenu} from "../ProfileMenu/ProfileMenu";
 
 export const Navbar = () => {
     return (
@@ -11,7 +11,7 @@ export const Navbar = () => {
                     <img src={logo as string} alt={'Нет логотипа'} />
                 </div>
                 <div>
-                    <ProfileItem />
+                    <ProfileMenu />
                 </div>
             </div>
         </div>

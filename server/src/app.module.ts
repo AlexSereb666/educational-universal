@@ -28,6 +28,9 @@ import {EmailModule} from "./email/email.module";
 import {QueryModule} from "./query/query.module";
 import {ArticlesCommentModule} from "./articlesComment/articlesComment.module";
 import {ArticleComment} from "./articlesComment/articlesComment.model";
+import {FilesModule} from "./files/files.module";
+import * as path from 'path';
+import {ServeStaticModule} from "@nestjs/serve-static";
 
 @Module({
   imports: [
@@ -35,9 +38,10 @@ import {ArticleComment} from "./articlesComment/articlesComment.model";
           envFilePath: `.${process.env.NODE_ENV}.env`,
           isGlobal: true,
       }),
-    //ServeStaticModule.forRoot({
-    //    rootPath: path.resolve( __dirname, 'static'),
-    //}),
+      ServeStaticModule.forRoot({
+          rootPath: path.resolve(__dirname, '..', 'uploads'),
+          serveRoot: '/uploads',
+      }),
       SequelizeModule.forRoot({
           dialect: 'postgres',
           host: process.env.POSTGRES_HOST,
@@ -74,6 +78,7 @@ import {ArticleComment} from "./articlesComment/articlesComment.model";
       EmailModule,
       QueryModule,
       ArticlesCommentModule,
+      FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
