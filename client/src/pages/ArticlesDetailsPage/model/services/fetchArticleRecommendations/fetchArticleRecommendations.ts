@@ -11,7 +11,6 @@ export const fetchArticleRecommendations = createAsyncThunk<
     async (props, thunkApi) => {
         const { extra, rejectWithValue, getState } = thunkApi;
 
-
         try {
             const response = await extra.api.get<Article[]>(
                 `/articles`,

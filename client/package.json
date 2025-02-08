@@ -9,7 +9,8 @@
     "typecheck": "tsc",
     "unit": "jest --config ./config/jest/jest.config.ts",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "build-storybook": "storybook build -c ./config/storybook"
+    "build-storybook": "storybook build -c ./config/storybook",
+    "generate:slice": "node ./scripts/createSlice/index.js"
   },
   "keywords": [],
   "author": "",

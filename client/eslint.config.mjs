@@ -6,7 +6,7 @@ import example from "eslint-plugin-alexsereb666-plugin";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
+  {files: ["**/*.{mjs,cjs,ts,jsx,tsx}"]},
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
@@ -25,6 +25,8 @@ export default [
       "@typescript-eslint/no-empty-interface": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-require-imports": "off",
+      "no-undef": "off",
     }
   }
 ];

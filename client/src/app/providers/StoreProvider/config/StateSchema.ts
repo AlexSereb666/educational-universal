@@ -13,19 +13,19 @@ import {AddCommentFormSchema} from "features/AddCommentForm";
 import {ArticlesPageSchema} from "pages/ArticlesPage";
 import {ScrollSaveSchema} from "features/ScrollSave";
 import {ArticleDetailsPageSchema} from "pages/ArticlesDetailsPage/model/types";
+import {rtkApi} from "../../../../shared/api/rtkApi";
 
 export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
     registration: RegistrationSchema
     scrollSave: ScrollSaveSchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     search?: ContactListSearchSchema;
     chatMessanger?: ChatMessanger;
     articleDetails?: ArticleDetailsSchema;
     typesArticle?: TypesArticleSchema;
-    //articleDetailsComments?: ArticleDetailsCommentSchema;
-    //articleDetailsRecommendations?: ArticleDetailsPageRecommendationsSchema;
     profile?: ProfileSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
