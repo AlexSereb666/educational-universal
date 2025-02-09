@@ -53,6 +53,15 @@ const config: Config = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  reporters: [
+      'default',
+      ['jest-html-reporters', {
+        publicPath: '<rootDir>/reports/unit',
+        filename: 'report.html',
+        openReporter: true,
+        inlineSource: true,
+      }],
+  ],
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
