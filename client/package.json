@@ -64,7 +64,7 @@
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "typescript-eslint": "^8.22.0",
     "webpack": "^5.92.1",
     "webpack-bundle-analyzer": "^4.10.2",
@@ -87,6 +87,7 @@
     "react-tooltip": "^5.28.0",
     "react-virtualized": "^9.22.6",
     "react-virtualized-auto-sizer": "^1.0.25",
+    "react-virtuoso": "^4.12.5",
     "react-window": "^1.8.11",
     "redux": "^5.0.1",
     "socket.io-client": "^4.8.1"

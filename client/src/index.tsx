@@ -18,4 +18,6 @@ if (container) {
             </StoreProvider>
         </HashRouter>
     );
+} else {
+    throw new Error('Контейнер root не найден. Не удалось вмонтировать React приложение')
 }

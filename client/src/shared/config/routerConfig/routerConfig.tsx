@@ -9,9 +9,12 @@ import {ArticlesPage} from "pages/ArticlesPage";
 import {ArticlesDetailsPage} from "pages/ArticlesDetailsPage";
 import {ArticleEditPage} from "pages/ArticleEditPage";
 import {ArticleCreatePage} from "pages/ArticleCreatePage";
+import {AdminPanelPage} from "../../../pages/AdminPanelPage";
+import {UserRoles} from "../../../entities/User/model/types/user";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
+    roles?: UserRoles[];
     listChildren?: AppRoutesProps[];
 }
 
@@ -38,6 +41,7 @@ export enum AppRoutesMain {
     ARTICLES_DETAILS = 'articles_details',
     ARTICLES_CREATE = 'articles_create',
     ARTICLES_EDIT = 'articles_edit',
+    ADMIN_PANEL = 'admin_panel',
 }
 
 export const RoutePathMain: Record<AppRoutesMain, string> = {
@@ -47,6 +51,7 @@ export const RoutePathMain: Record<AppRoutesMain, string> = {
     [AppRoutesMain.ARTICLES_DETAILS]: `${RoutePath.main}/articles/`,
     [AppRoutesMain.ARTICLES_CREATE]: `${RoutePath.main}/articles/new`,
     [AppRoutesMain.ARTICLES_EDIT]: `${RoutePath.main}/articles/:id/edit`,
+    [AppRoutesMain.ADMIN_PANEL]: `${RoutePath.main}/admin`,
 }
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -78,6 +83,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
             {
                 path: RoutePathMain[AppRoutesMain.ARTICLES_CREATE],
                 element: <ArticleCreatePage />
+            },
+            {
+                path: RoutePathMain[AppRoutesMain.ADMIN_PANEL],
+                element: <AdminPanelPage />,
+                roles: [UserRoles.ADMIN]
             }
         ]
     },

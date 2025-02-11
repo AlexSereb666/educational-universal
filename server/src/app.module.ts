@@ -31,6 +31,14 @@ import {ArticleComment} from "./articlesComment/articlesComment.model";
 import {FilesModule} from "./files/files.module";
 import * as path from 'path';
 import {ServeStaticModule} from "@nestjs/serve-static";
+import {Role} from "./roles/roles.model";
+import {RolePermissions} from "./rolePermissions/rolePermissions.model";
+import {Permissions} from "./permissions/permissions.model";
+import {RoleModule} from "./roles/roles.module";
+import {PermissionsModule} from "./permissions/permissions.module";
+import {UserRolesModule} from "./userRoles/userRoles.module";
+import {RolePermissionsModule} from "./rolePermissions/rolePermissions.module";
+import {UserRoles} from "./userRoles/userRoles.model";
 
 @Module({
   imports: [
@@ -60,7 +68,11 @@ import {ServeStaticModule} from "@nestjs/serve-static";
               ArticlesBlock,
               ArticlesTypeBlock,
               UsersToken,
-              ArticleComment
+              ArticleComment,
+              Role,
+              Permissions,
+              RolePermissions,
+              UserRoles,
           ],
           autoLoadModels: true
       }),
@@ -79,6 +91,10 @@ import {ServeStaticModule} from "@nestjs/serve-static";
       QueryModule,
       ArticlesCommentModule,
       FilesModule,
+      RoleModule,
+      PermissionsModule,
+      UserRolesModule,
+      RolePermissionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

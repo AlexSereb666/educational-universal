@@ -10,7 +10,14 @@ const AppRouter = () => {
             <Route
                 key={route.path}
                 path={route.path}
-                element={route.authOnly ? <RequireAuth>{route.element}</RequireAuth> : route.element}
+                element={
+                    <RequireAuth
+                        roles={route.roles}
+                        authOnly={route.authOnly}
+                    >
+                        {route.element}
+                    </RequireAuth>
+                }
             >
                 {route.listChildren && renderWithWrapper(route.listChildren)}
             </Route>

@@ -9,6 +9,7 @@ import {UsersTokenService} from "../usersToken/usersToken.service";
 import {UserDto} from "./dto/user.dto";
 import {ConfigService} from "@nestjs/config";
 import {IsNotEmpty} from "class-validator";
+import {UserForRolesDto} from "./dto/userForRoles.dto";
 
 @Injectable()
 export class AuthService {
@@ -78,7 +79,7 @@ export class AuthService {
             refreshToken: tokens.refreshToken
         });
 
-        return {...tokens, user: userParam};
+        return {...tokens, user: new UserForRolesDto(user)};
     }
 
     async logout(refreshToken: string) {
@@ -117,7 +118,7 @@ export class AuthService {
             refreshToken: tokens.refreshToken
         });
 
-        return {...tokens, user: userParam};
+        return {...tokens, user: new UserForRolesDto(user)};
     }
 
     async generateRandomUsers() {

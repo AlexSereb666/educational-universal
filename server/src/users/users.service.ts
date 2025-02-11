@@ -3,6 +3,8 @@ import {InjectModel} from "@nestjs/sequelize";
 import {User} from "./users.model";
 import {CreateUserDto} from "./dto/create-user.dto";
 import {Op} from "sequelize";
+import {Role} from "../roles/roles.model";
+import {Permissions} from "../permissions/permissions.model";
 
 @Injectable()
 export class UsersService {
@@ -24,8 +26,13 @@ export class UsersService {
     async getUserById(id: number) {
         return await this.userRepository.findOne({
             where: {id},
-            attributes: ['id', 'login', 'email', 'isActivated']
-        } as any);
+            include: [
+                {
+                    model: Role,
+                    include: [Permissions],
+                },
+            ],
+        });
     }
 
     async getUserByLogin(login: string) {
@@ -33,7 +40,15 @@ export class UsersService {
             throw new HttpException('Логин не указан', HttpStatus.NOT_FOUND);
         }
 
-        return await this.userRepository.findOne({where: {login}, include: {all: true}} as any);
+        return await this.userRepository.findOne({
+            where: { login },
+            include: [
+                {
+                    model: Role,
+                    include: [Permissions],
+                },
+            ],
+        });
     }
 
     async getUserByEmail(email: string) {

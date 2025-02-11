@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef, useCallback} from 'react';
 import * as cls from './ProfileMenu.module.scss';
 import defaultAvatar from 'shared/assets/defaultAvatar.png';
 import imgComboBox from 'shared/assets/comboBox.png';
-import {logout} from "entities/User";
+import {isUserAdmin, logout} from "entities/User";
 import {useNavigate} from "react-router-dom";
 import {RoutePath, RoutePathMain} from "shared/config/routerConfig/routerConfig";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -10,12 +10,15 @@ import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Modal} from "shared/ui/Modal/Modal";
 import {ModalProfile} from "features/Profile";
 import {Dropdown, DropdownItem} from "../../../../shared/ui/Dropdown/Dropdown";
+import {useSelector} from "react-redux";
 
 export const ProfileMenu = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const user = useAuthUser();
+    const isAdmin = useSelector(isUserAdmin);
+
     const [isModalProfileOpen, setIsModalProfileOpen] = useState(false);
 
     const onLogout = useCallback(() => {
@@ -35,6 +38,10 @@ export const ProfileMenu = () => {
         navigate(RoutePathMain.articles_create);
     }, [navigate]);
 
+    const onOpenAdminPanel = useCallback(() => {
+        navigate(RoutePathMain.admin_panel);
+    }, [navigate]);
+
     const items: DropdownItem[] = [
         {
             content: 'Профиль',
@@ -44,6 +51,10 @@ export const ProfileMenu = () => {
             content: 'Создать статью',
             onClick: onCreateArticle,
         },
+        ...(isAdmin ? [{
+            content: 'Админ панель',
+            onClick: onOpenAdminPanel,
+        }]: []),
         {
             content: 'Выйти из аккаунта',
             onClick: onLogout,

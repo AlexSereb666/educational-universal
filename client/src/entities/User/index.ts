@@ -19,3 +19,9 @@ export type {
     User,
     UserSchema
 } from './model/types/user';
+
+export {
+    getUserRoles,
+    isUserAdmin,
+    isUserModerator,
+} from './model/selectors/roleSelectors';

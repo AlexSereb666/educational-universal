@@ -1,13 +1,41 @@
 import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Navigate, useLocation} from "react-router-dom";
 import {RoutePath} from "shared/config/routerConfig/routerConfig";
+import {UserRoles} from "../../../../entities/User/model/types/user";
+import {useSelector} from "react-redux";
+import {getUserRoles} from "../../../../entities/User";
 
-function RequireAuth({ children }: { children: React.ReactNode }) {
+interface RequireAuthProps {
+    children: React.ReactNode;
+    roles?: UserRoles[];
+    authOnly?: boolean;
+}
+
+function RequireAuth(props: RequireAuthProps) {
+    const {
+        children,
+        roles,
+        authOnly
+    } = props;
+
     const auth = useAuthUser();
     const location = useLocation();
+    const userRoles = useSelector(getUserRoles);
 
-    if (!auth || !auth.isActivated) {
+    const hasRequiredRole = roles
+        ? roles.some((role) => userRoles?.some((userRole) => userRole.slug === role))
+        : true;
+
+    const hasRequiredAuth = authOnly
+        ? auth && auth.isActivated
+        : true;
+
+    if (!hasRequiredAuth) {
         return <Navigate to={RoutePath.login} state={{ from: location }} replace />;
+    }
+
+    if (!hasRequiredRole) {
+        return <Navigate to={RoutePath.main} replace />;
     }
 
     return children;
