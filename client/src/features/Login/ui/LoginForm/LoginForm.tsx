@@ -12,7 +12,7 @@ import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading/getLogi
 import {getLoginError} from "../../model/selectors/getLoginError/getLoginError";
 import {loginByUsername} from "../../model/services/loginByUsername/loginByUsername";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "shared/config/routerConfig/routerConfig";
+import {RoutePath} from "shared/config/routerConfig";
 
 export interface LoginFormProps {
     onSuccess: () => void;

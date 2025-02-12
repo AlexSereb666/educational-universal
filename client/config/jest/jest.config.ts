@@ -86,7 +86,7 @@ const config: Config = {
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
 
-  // A path to a custom dependency extractor
+  // A paths to a custom dependency extractor
   // dependencyExtractor: undefined,
 
   // Make calling deprecated APIs throw helpful error messages
@@ -100,10 +100,10 @@ const config: Config = {
   // Force coverage collection from ignored files using an array of glob patterns
   // forceCoverageMatch: [],
 
-  // A path to a module which exports an async function that is triggered once before all test suites
+  // A paths to a module which exports an async function that is triggered once before all test suites
   // globalSetup: undefined,
 
-  // A path to a module which exports an async function that is triggered once after all test suites
+  // A paths to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
@@ -139,7 +139,7 @@ const config: Config = {
   // Reset the module registry before running each individual test
   // resetModules: false,
 
-  // A path to a custom resolver
+  // A paths to a custom resolver
   // resolver: undefined,
 
   // Automatically restore mock state and implementation before every test

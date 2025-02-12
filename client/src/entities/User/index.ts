@@ -25,3 +25,8 @@ export {
     isUserAdmin,
     isUserModerator,
 } from './model/selectors/roleSelectors';
+
+export {
+    UserRoles,
+    RolePermissions,
+} from './model/const/user';

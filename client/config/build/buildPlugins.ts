@@ -1,12 +1,21 @@
+// @ts-ignore
 import webpack, { Configuration } from 'webpack';
+// @ts-ignore
 import HtmlWebpackPlugin from "html-webpack-plugin";
+// @ts-ignore
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+// @ts-ignore
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+// @ts-ignore
 import path from "path";
+// @ts-ignore
 import CopyPlugin from "copy-webpack-plugin";
+// @ts-ignore
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+// @ts-ignore
+import CircularDependencyPlugin from 'circular-dependency-plugin';
 
 export function buildPlugins({mode, paths, analyzer, apiUrl}: BuildOptions): Configuration['plugins'] {
     const isDev = mode === 'development';
@@ -21,6 +30,19 @@ export function buildPlugins({mode, paths, analyzer, apiUrl}: BuildOptions): Con
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
         }),
+        new CircularDependencyPlugin({
+            exclude: /node_modules/,
+            failOnError: true,
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true,
+                },
+                mode: 'write-references',
+            }
+        })
     ];
 
     if (isDev) {

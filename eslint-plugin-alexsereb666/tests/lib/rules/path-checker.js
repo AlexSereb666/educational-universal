@@ -1,5 +1,5 @@
 /**
- * @fileoverview feature sliced relative path checker
+ * @fileoverview feature sliced relative paths checker
  * @author alexsereb666
  */
 "use strict";
@@ -17,7 +17,7 @@ const rule = require("../../../lib/rules/path-checker"),
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
-ruleTester.run("path-checker", rule, {
+ruleTester.run("paths-checker", rule, {
   valid: [
     // give me some code that won't trigger a warning
   ],

@@ -1,13 +1,14 @@
 import React, {memo} from "react";
-import {Article, ArticleView} from "../../model/type/articles";
+import {Article} from "../../model/type/articles";
 import * as cls from './ArticleListItem.module.scss';
 import imageDefault from 'shared/assets/defaultAvatar.png';
 import {formatDate} from "shared/lib/date/formatDate";
 import viewIcon from 'shared/assets/eas.png';
 import {useNavigate} from "react-router-dom";
-import {RoutePathMain} from "shared/config/routerConfig/routerConfig";
+import {RoutePathMain} from "shared/config/routerConfig";
 import {Button} from "shared/ui/Button/Button";
 import {Card} from "shared/ui/Card/Card";
+import {ArticleView} from "../../model/const/articles";
 
 interface ArticleListItemProps {
     article: Article;
@@ -15,7 +16,10 @@ interface ArticleListItemProps {
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const { article, view } = props;
+    const {
+        article,
+        view
+    } = props;
     const navigate = useNavigate();
 
     const onClick = () => {

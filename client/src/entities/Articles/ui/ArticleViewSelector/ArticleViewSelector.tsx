@@ -1,8 +1,8 @@
-import {memo, useEffect} from "react";
-import {ArticleView} from "../../model/type/articles";
+import {memo} from "react";
 import listIcon from 'shared/assets/list.png';
 import tileIcon from 'shared/assets/tile.png';
 import * as cls from './ArticleViewSelector.module.scss';
+import {ArticleView} from "../../model/const/articles";
 
 interface ArticleViewSelectorProps {
     view: ArticleView;

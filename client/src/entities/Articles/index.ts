@@ -6,17 +6,9 @@ export type {
     Article,
 } from './model/type/articles';
 
-export {
-    ArticleView
-} from './model/type/articles';
-
 export type {
     ArticleDetailsSchema
 } from './model/type/articleDetailsSchema';
-
-export type {
-    ArticleSortField
-} from './model/type/articles';
 
 export {
     ArticleList
@@ -46,3 +38,9 @@ export {
 export {
     getTypesArticleData
 } from './model/selectors/typesArticle';
+
+export {
+    ArticleView,
+    ArticleSortField,
+    ArticleTypeBlockList
+} from './model/const/articles';

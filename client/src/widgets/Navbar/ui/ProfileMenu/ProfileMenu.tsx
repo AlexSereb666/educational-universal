@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import * as cls from './ProfileMenu.module.scss';
 import defaultAvatar from 'shared/assets/defaultAvatar.png';
-import imgComboBox from 'shared/assets/comboBox.png';
 import {isUserAdmin, logout} from "entities/User";
 import {useNavigate} from "react-router-dom";
-import {RoutePath, RoutePathMain} from "shared/config/routerConfig/routerConfig";
+import {RoutePath, RoutePathMain} from "shared/config/routerConfig";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Modal} from "shared/ui/Modal/Modal";

@@ -1,11 +1,24 @@
 import {BuildOptions} from "../types/types";
 import {removeDataTestIdBabelPlugin} from "./removeDataTestIdBabelPlugin";
+import babelRemovePropsPlugin from "./babelRemovePropsPlugin";
 
-export function buildBabelLoader({mode}: BuildOptions) {
+interface BuildBabelLoaderProps extends BuildOptions {
+    isTsx?: boolean;
+}
+
+export function buildBabelLoader({mode, isTsx}: BuildBabelLoaderProps) {
     const isDev = mode === 'development';
-    const isProd = mode = 'production';
+    const isProd = mode === 'production';
 
-    const plugins = [];
+    const plugins = [
+        [
+            '@babel/plugin-transform-typescript',
+            {
+                isTsx,
+            }
+        ],
+        '@babel/plugin-transform-runtime',
+    ];
 
     if (isProd) {
         plugins.push([
@@ -13,11 +26,20 @@ export function buildBabelLoader({mode}: BuildOptions) {
             {
                 props: ['data-testId']
             }
-        ])
+        ] as any);
+
+        if (isTsx) {
+            plugins.push([
+                babelRemovePropsPlugin,
+                {
+                    props: ['data-testId'],
+                }
+            ] as any);
+        }
     }
 
     return {
-        test: /\.tsx?$/,
+        test: isTsx ? /\.(jsx|tsx)?$/ : /\.(js|ts)?$/,
         exclude: /node_modules/,
         use: {
             loader: "babel-loader",

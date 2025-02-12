@@ -1,5 +1,5 @@
 import React, {memo, useEffect, useRef} from "react";
-import {Article, ArticleView} from "../../model/type/articles";
+import {Article} from "../../model/type/articles";
 import {ArticleListItem} from "../ArticleListItem/ArticleListItem";
 import * as cls from './ArticleList.module.scss';
 import {ArticleListItemSkeleton} from "../ArticleListItemSkeleton/ArticleListItemSkeleton";
@@ -10,6 +10,7 @@ import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {StateSchema} from "app/providers/StoreProvider";
 import {useThrottle} from "shared/lib/hooks/useThrottle/useThrottle";
+import {ArticleView} from "../../model/const/articles";
 
 interface ArticleListProps {
     articles: Article[];

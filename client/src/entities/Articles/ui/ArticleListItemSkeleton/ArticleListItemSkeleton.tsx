@@ -1,7 +1,7 @@
 import {memo} from "react";
-import {ArticleView} from "../../model/type/articles";
 import * as cls from "./ArticleListItemSkeleton.module.scss";
 import {Skeleton} from "shared/ui/Skeleton/Skeleton";
+import {ArticleView} from "../../model/const/articles";
 
 interface ArticleListItemSkeletonProps {
     view: ArticleView;

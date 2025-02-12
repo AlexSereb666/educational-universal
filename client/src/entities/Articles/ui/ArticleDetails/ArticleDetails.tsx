@@ -16,10 +16,11 @@ import defaultImg from 'shared/assets/defaultAvatar.png';
 import viewImg from 'shared/assets/eas.png';
 import calendarImg from 'shared/assets/calendar.png';
 import {formatDate} from "shared/lib/date/formatDate";
-import {ArticlesBlock, ArticleTypeBlockList} from "../../../Articles/model/type/articles";
+import {ArticlesBlock} from "../../../Articles/model/type/articles";
 import {ArticleCodeBlockComponent} from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
 import {ArticleTextBlockComponent} from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import {ArticleImageBlockComponent} from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
+import {ArticleTypeBlockList} from "../../model/const/articles";
 
 interface ArticleDetailsProps {
     id: string;

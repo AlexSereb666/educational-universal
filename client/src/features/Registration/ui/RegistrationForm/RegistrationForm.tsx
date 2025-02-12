@@ -15,7 +15,7 @@ import {
 import {getRegistrationError} from "../../model/selectors/getRegistrationError/getRegistrationError";
 import {useNavigate} from "react-router-dom";
 import {registrationByUser} from "../../model/services/registrationByUser/RegistrationByUser";
-import {RoutePath} from "shared/config/routerConfig/routerConfig";
+import {RoutePath} from "shared/config/routerConfig";
 import * as cls from "./RegistrationForm.module.scss";
 import {Input} from "shared/ui/Input/Input";
 import {Button} from "shared/ui/Button/Button";

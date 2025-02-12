@@ -1,11 +1,11 @@
 "use strict";
 
-const path = require("path");
+const path = require("paths");
 module.exports = {
   meta: {
     type: null,
     docs: {
-      description: "feature sliced relative path checker",
+      description: "feature sliced relative paths checker",
       recommended: false,
       url: null,
     },

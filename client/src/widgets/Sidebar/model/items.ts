@@ -1,8 +1,8 @@
-import {RoutePathMain} from "shared/config/routerConfig/routerConfig";
 import iconChats from 'shared/assets/iconMessages.png';
 import iconStorage from 'shared/assets/storage.png';
 import iconArticles from 'shared/assets/articles.png';
 import iconBank from 'shared/assets/bank.png';
+import {RoutePathMain} from "shared/config/routerConfig";
 
 export interface SidebarItemType {
     path: string;

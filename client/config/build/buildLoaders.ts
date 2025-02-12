@@ -37,7 +37,7 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
         loader: "css-loader",
         options: {
             modules: {
-                localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
+                localIdentName: isDev ? '[paths][name]__[local]' : '[hash:base64:8]'
             },
         },
     }
@@ -76,14 +76,17 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
         exclude: /node_modules/,
     };
 
-    const babelLoader = buildBabelLoader(options);
+    const codeBabelLoader = buildBabelLoader({...options, isTsx: false});
+    const tsxCodeBabelLoader = buildBabelLoader({...options, isTsx: true});
 
     return [
         assetLoader,
         scssLoader,
         // tsLoader,
-        babelLoader,
+        //babelLoader,
         svgLoader,
-        typescriptLoader
+        // typescriptLoader,
+        codeBabelLoader,
+        tsxCodeBabelLoader,
     ]
 }

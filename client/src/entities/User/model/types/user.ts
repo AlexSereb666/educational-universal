@@ -1,12 +1,4 @@
-export enum UserRoles {
-    ADMIN = 'ADMIN',
-    USER = 'USER',
-    MODERATOR = 'MODERATOR',
-}
-
-export enum RolePermissions {
-    edit_articles = 'edit_articles'
-}
+import {RolePermissions, UserRoles} from "../const/user";
 
 export interface Permission {
     id: number;
