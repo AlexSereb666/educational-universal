@@ -1,0 +1,20 @@
+.popover {
+  position: relative;
+  z-index: 10000;
+}
+
+.trigger {
+  background-color: transparent;
+  border: none;
+}
+
+.panel {
+  max-width: 500px;
+  position: absolute;
+  right: 0;
+  background: var(--dropdown-background-color);
+  border: 1px solid var(--dropdown-border-color);
+  padding: 10px 25px;
+  border-radius: 8px;
+  color: var(--color-white);
+}

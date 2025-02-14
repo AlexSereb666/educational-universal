@@ -1,6 +1,8 @@
 import {BelongsToMany, Column, DataType, Model, Table} from "sequelize-typescript";
 import {Role} from "../roles/roles.model";
 import {UserRoles} from "../userRoles/userRoles.model";
+import {Notifications} from "../notifications/notifications.model";
+import {UserNotifications} from "../userNotifications/userNotifications.model";
 
 interface UserCreationAttrs {
     login: string;
@@ -32,4 +34,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @BelongsToMany(() => Role, () => UserRoles)
     roles: Role[];
+
+    @BelongsToMany(() => Notifications, () => UserNotifications)
+    notifications: Notifications[];
 }

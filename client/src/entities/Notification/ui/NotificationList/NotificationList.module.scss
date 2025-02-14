@@ -1,0 +1,21 @@
+.notFound {
+  text-align: center;
+  width: 200px;
+}
+
+.NotificationList {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.NotificationList::-webkit-scrollbar {
+  width: 0;
+}
+
+.NotificationList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.NotificationList::-webkit-scrollbar-track {
+  background: transparent;
+}

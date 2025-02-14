@@ -39,6 +39,10 @@ import {PermissionsModule} from "./permissions/permissions.module";
 import {UserRolesModule} from "./userRoles/userRoles.module";
 import {RolePermissionsModule} from "./rolePermissions/rolePermissions.module";
 import {UserRoles} from "./userRoles/userRoles.model";
+import {UserNotifications} from "./userNotifications/userNotifications.model";
+import {UserNotificationsModule} from "./userNotifications/userNotifications.module";
+import {NotificationsModule} from "./notifications/notifications.module";
+import {Notifications} from "./notifications/notifications.model";
 
 @Module({
   imports: [
@@ -73,6 +77,8 @@ import {UserRoles} from "./userRoles/userRoles.model";
               Permissions,
               RolePermissions,
               UserRoles,
+              UserNotifications,
+              Notifications,
           ],
           autoLoadModels: true
       }),
@@ -95,6 +101,8 @@ import {UserRoles} from "./userRoles/userRoles.model";
       PermissionsModule,
       UserRolesModule,
       RolePermissionsModule,
+      UserNotificationsModule,
+      NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,10 @@
+.notificationIcon {
+  width: auto;
+  height: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.notificationIcon:hover {
+  transform: scale(1.1);
+}

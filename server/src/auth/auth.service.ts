@@ -8,7 +8,6 @@ import {EmailService} from "../email/email.service";
 import {UsersTokenService} from "../usersToken/usersToken.service";
 import {UserDto} from "./dto/user.dto";
 import {ConfigService} from "@nestjs/config";
-import {IsNotEmpty} from "class-validator";
 import {UserForRolesDto} from "./dto/userForRoles.dto";
 
 @Injectable()

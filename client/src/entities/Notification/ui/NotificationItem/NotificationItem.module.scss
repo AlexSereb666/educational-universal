@@ -1,0 +1,27 @@
+.NotificationItem {
+  width: 400px;
+  padding: 5px;
+  border: 1px solid var(--selected);
+  border-radius: 5px;
+}
+
+.NotificationItemTitle {
+  font-size: var(--font-size-l);
+  margin-bottom: 5px;
+}
+
+.NotificationItemDescription {
+  font-size: var(--font-size-m);
+  height: 50px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.NotificationItemLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-white);
+}
