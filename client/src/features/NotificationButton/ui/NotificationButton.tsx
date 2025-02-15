@@ -5,17 +5,19 @@ import {Popover} from "shared/ui/Popover/Popover";
 import notificationIcon from 'shared/assets/notification.png';
 
 export const NotificationButton = memo(() => {
+    const trigger = (
+        <img
+            className={cls.notificationIcon}
+            src={notificationIcon}
+            alt={'Нет иконки'}
+        />
+    );
+
     return (
         <Popover
-            trigger={
-                <img
-                    className={cls.notificationIcon}
-                    src={notificationIcon}
-                    alt={'Нет иконки'}
-                />
-            }
+            trigger={trigger}
         >
             <NotificationList />
         </Popover>
     )
-})
+});
