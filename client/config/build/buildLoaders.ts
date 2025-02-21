@@ -12,7 +12,7 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
         type: 'asset/resource',
     }
 
-    const svgLoader = {
+    /*const svgLoader = {
         test: /\.svg$/,
         issuer: /\.[jt]sx?$/,
         use: [
@@ -31,7 +31,12 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
                 }
             }
         ],
-    }
+    }*/
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    };
 
     const cssLoaderWithModules = {
         loader: "css-loader",

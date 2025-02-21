@@ -43,6 +43,8 @@ import {UserNotifications} from "./userNotifications/userNotifications.model";
 import {UserNotificationsModule} from "./userNotifications/userNotifications.module";
 import {NotificationsModule} from "./notifications/notifications.module";
 import {Notifications} from "./notifications/notifications.model";
+import {ArticleRatings} from "./articleRatings/articleRatings.model";
+import {ArticleRatingsModule} from "./articleRatings/articleRatings.module";
 
 @Module({
   imports: [
@@ -79,6 +81,7 @@ import {Notifications} from "./notifications/notifications.model";
               UserRoles,
               UserNotifications,
               Notifications,
+              ArticleRatings,
           ],
           autoLoadModels: true
       }),
@@ -103,6 +106,7 @@ import {Notifications} from "./notifications/notifications.model";
       RolePermissionsModule,
       UserNotificationsModule,
       NotificationsModule,
+      ArticleRatingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

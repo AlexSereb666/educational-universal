@@ -8,6 +8,7 @@ import {
 } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
 import {ArticleRecommendationsList} from "../../../../features/articleRecommendationsList";
 import {ArticleDetailsComments} from "../ArticleDetailsComments/ArticleDetailsComments";
+import {ArticleRating} from "@/features/articleRating";
 
 const reducerList: ReducersList = {
     articleDetailsPage: articleDetailsPageReducer,
@@ -25,6 +26,7 @@ const ArticlesDetailsPage = () => {
             <div className={cls.articles_details_page}>
                 <ArticleDetailsPageHeader />
                 <ArticleDetails id={id} />
+                <ArticleRating articleId={id} />
                 <ArticleRecommendationsList />
                 <ArticleDetailsComments id={id} />
             </div>

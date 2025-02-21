@@ -1,11 +1,11 @@
-import {IsNotEmpty} from "class-validator";
+import {IsNotEmpty, IsNumber} from "class-validator";
 
 export class CreateUserRolesDto {
     @IsNotEmpty()
-    @IsNotEmpty()
+    @IsNumber()
     readonly roleId: number;
 
     @IsNotEmpty()
-    @IsNotEmpty()
+    @IsNumber()
     readonly userId: number;
 }

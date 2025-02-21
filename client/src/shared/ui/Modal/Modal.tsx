@@ -1,8 +1,10 @@
 import React, {MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState} from "react";
 import * as cls from './Modal.module.scss';
+import classNames from "classnames";
 import {Portal} from "../Portal/Portal";
 
 interface ModalProps {
+    className?: string;
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
@@ -13,6 +15,7 @@ const ANIMATION_DELAY = 300;
 
 export const Modal = (props: ModalProps) => {
     const {
+        className,
         children,
         isOpen,
         onClose,
@@ -66,10 +69,13 @@ export const Modal = (props: ModalProps) => {
 
     return (
         <Portal>
-            <div className={`${cls.Modal} ${isOpen ? cls.opened : ''} ${isClosing ? cls.isClosing : ''}`}>
+            <div className={classNames(
+                cls.Modal,
+                {[cls.opened]: isOpen, [cls.isClosing]: isClosing}
+            )}>
                 <div className={cls.overlay} onClick={closeHandler}>
                     <div
-                        className={cls.content}
+                        className={classNames(cls.content, {}, [className])}
                         onClick={onContentClick}
                     >
                         {children}
