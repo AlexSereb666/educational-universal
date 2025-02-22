@@ -4,7 +4,7 @@ import * as cls from "./ChatInput.module.scss";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
 import {getChatMessangerChat} from "entities/ChatMessanger";
-import {chatMessangerActions} from "entities/ChatMessanger/model/slice/chatMessangerSlice";
+import {chatMessangerActions} from "entities/ChatMessanger";
 
 export const ChatInput = memo(() => {
     const dispatch = useAppDispatch();

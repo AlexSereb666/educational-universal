@@ -16,7 +16,8 @@ export default [
       'alexsereb666-plugin': example,
     },
     rules: {
-      'alexsereb666-plugin/path-checker': 'error',
+      'alexsereb666-plugin/path-checker': ['error', {alias: '@'}],
+      'alexsereb666-plugin/public-api-imports': ['error', {alias: '@'}],
       'no-unused-vars': 'off',
       "react/display-name": "off",
       "react/react-in-jsx-scope": "off",

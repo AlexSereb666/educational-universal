@@ -44,3 +44,7 @@ export {
     ArticleSortField,
     ArticleTypeBlockList
 } from './model/const/articles';
+
+export {
+    getArticleDeatilsData
+} from './model/selectors/articleDetails';

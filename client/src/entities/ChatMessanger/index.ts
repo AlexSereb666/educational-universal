@@ -15,9 +15,16 @@ export {
 } from './model/selectors/getChatMessangerChat/getChatMessangerChat';
 
 export {
-    chatMessangerSlice
+    chatMessangerSlice,
+    chatMessangerActions,
+    chatMessangerReducer,
+    socket,
 } from './model/slice/chatMessangerSlice';
 
 export type {
     ChatMessanger
 } from './model/types/chatMessanger';
+
+export {
+    fetchChatByUserIds
+} from './model/services/searchChatMessanger/searchChatMessanger';

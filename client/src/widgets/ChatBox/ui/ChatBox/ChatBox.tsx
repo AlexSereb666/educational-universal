@@ -6,7 +6,7 @@ import {Loader} from "shared/ui/Loader/Loader";
 import {MessageListChat} from "features/MessageListChat";
 import {ChatInput} from "features/ChatInput";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {chatMessangerActions, socket} from "entities/ChatMessanger/model/slice/chatMessangerSlice";
+import {chatMessangerActions, socket} from "entities/ChatMessanger";
 
 export const ChatBox = memo(() => {
     const dispatch = useAppDispatch();

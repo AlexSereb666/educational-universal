@@ -30,3 +30,7 @@ export {
     UserRoles,
     RolePermissions,
 } from './model/const/user';
+
+export {
+    initAuth
+} from './model/services/initAuth/initAuth';

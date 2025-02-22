@@ -1,36 +1,54 @@
+/**
+ * @fileoverview empty
+ * @author alexsereb666
+ */
+
 "use strict";
 
-const path = require("paths");
+const path = require('path');
+const {isPathRelative} = require('../helpers');
+
 module.exports = {
   meta: {
     type: null,
     docs: {
-      description: "feature sliced relative paths checker",
+      description: "feature sliced relative path checker",
+      category: "Fill me in",
       recommended: false,
       url: null,
     },
     fixable: null,
-    schema: [],
-    messages: {},
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          alias: {
+            type: 'string'
+          }
+        }
+      }
+    ],
   },
 
   create(context) {
+    const alias = context.options[0]?.alias || '';
+
     return {
       ImportDeclaration(node) {
-        const importTo = node.source.value;
+        // example app/entities/Article
+        const value = node.source.value
+        const importTo = alias ? value.replace(`${alias}/`, '') : value;
+
+        // example C:\Users\tim\Desktop\javascript\production_project\src\entities\Article
         const fromFilename = context.getFilename();
 
-        if (shouldBeRelative(fromFilename, importTo)) {
-          context.report(node, 'В рамках одного модуля все пути должны быть относительными');
+        if(shouldBeRelative(fromFilename, importTo)) {
+          context.report(node, 'В рамках одного слайса все пути должны быть относительными');
         }
       }
     };
   },
 };
-
-function isPathRelative(path) {
-  return path === '.' || path.startsWith('./') || path.startsWith('../');
-}
 
 const layers = {
   'entities': 'entities',
@@ -41,26 +59,27 @@ const layers = {
 }
 
 function shouldBeRelative(from, to) {
-  if (isPathRelative(to)) {
+  if(isPathRelative(to)) {
     return false;
   }
 
-  const toArray = to.split('/');
-  const toLayer = toArray[0];
-  const toSlice = toArray[1];
+  // example entities/Article
+  const toArray = to.split('/')
+  const toLayer = toArray[0]; // entities
+  const toSlice = toArray[1]; // Article
 
-  if (!toLayer || !toSlice || !layers[toLayer]) {
+  if(!toLayer || !toSlice || !layers[toLayer]) {
     return false;
   }
 
   const normalizedPath = path.toNamespacedPath(from);
   const projectFrom = normalizedPath.split('src')[1];
-  const fromArray = projectFrom.split('\\');
+  const fromArray = projectFrom.split('\\')
 
   const fromLayer = fromArray[1];
   const fromSlice = fromArray[2];
 
-  if (!fromLayer || !fromSlice || !layers[fromLayer]) {
+  if(!fromLayer || !fromSlice || !layers[fromLayer]) {
     return false;
   }
 

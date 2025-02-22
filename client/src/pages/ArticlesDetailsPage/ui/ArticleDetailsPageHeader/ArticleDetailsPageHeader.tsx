@@ -4,7 +4,7 @@ import {RoutePathMain} from "shared/config/routerConfig";
 import {Button} from "shared/ui/Button/Button";
 import * as cls from './ArticleDetailsPageHeader.module.scss';
 import {useSelector} from "react-redux";
-import {getArticleDeatilsData} from "entities/Articles/model/selectors/articleDetails";
+import {getArticleDeatilsData} from "entities/Articles";
 import {getCanEditArticle} from "../../model/selectors/article";
 
 export const ArticleDetailsPageHeader = memo(() => {
