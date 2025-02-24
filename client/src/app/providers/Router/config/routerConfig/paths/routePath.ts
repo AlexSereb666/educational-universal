@@ -1,4 +1,4 @@
-import {AppRoutes, AppRoutesMain} from "../const/Routes";
+import {AppRoutes, AppRoutesMain} from "@/shared/const/router";
 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.LOGIN]: '/',

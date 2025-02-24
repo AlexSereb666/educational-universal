@@ -2,7 +2,8 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-import example from "eslint-plugin-alexsereb666-plugin";
+import alexsereb666 from "eslint-plugin-alexsereb666-plugin";
+import unusedImports from 'eslint-plugin-unused-imports';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -13,11 +14,26 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     plugins: {
-      'alexsereb666-plugin': example,
+      'alexsereb666-plugin': alexsereb666,
+      'unused-imports': unusedImports,
     },
     rules: {
+      'unused-imports/no-unused-imports': 'error',
       'alexsereb666-plugin/path-checker': ['error', {alias: '@'}],
-      'alexsereb666-plugin/public-api-imports': ['error', {alias: '@'}],
+      'alexsereb666-plugin/layer-imports': [
+        'error',
+        {
+          alias: '@',
+          ignoreImportPatterns: ['**/StoreProvider', '**/routerConfig'],
+        }
+      ],
+      'alexsereb666-plugin/public-api-imports': [
+          'error',
+          {
+            alias: '@',
+            testFiles: ['**/*.test.*', '**/*.story.*']
+          }
+      ],
       'no-unused-vars': 'off',
       "react/display-name": "off",
       "react/react-in-jsx-scope": "off",

@@ -11,7 +11,7 @@ import {
     getArticleDeatilsIsLoading
 } from "../../model/selectors/articleDetails";
 import * as cls from './ArticleDetails.module.scss';
-import {Skeleton} from "shared/ui/Skeleton/Skeleton";
+import {Skeleton} from "@/shared/ui/Skeleton";
 import defaultImg from 'shared/assets/defaultAvatar.png';
 import viewImg from 'shared/assets/eas.png';
 import calendarImg from 'shared/assets/calendar.png';

@@ -1,7 +1,7 @@
 import {memo} from "react";
 import * as cls from "./NotificationButton.module.scss";
 import {NotificationList} from "entities/Notification";
-import {Popover} from "shared/ui/Popover/Popover";
+import {Popover} from "@/shared/ui/Popover";
 import notificationIcon from 'shared/assets/notification.png';
 
 export const NotificationButton = memo(() => {

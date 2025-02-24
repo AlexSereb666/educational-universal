@@ -15,10 +15,10 @@ import {
 import {getRegistrationError} from "../../model/selectors/getRegistrationError/getRegistrationError";
 import {useNavigate} from "react-router-dom";
 import {registrationByUser} from "../../model/services/registrationByUser/RegistrationByUser";
-import {RoutePath} from "shared/config/routerConfig";
+import {RoutePath} from "@/app/providers/Router/config/routerConfig";
 import * as cls from "./RegistrationForm.module.scss";
-import {Input} from "shared/ui/Input/Input";
-import {Button} from "shared/ui/Button/Button";
+import {Input} from "@/shared/ui/Input";
+import {Button} from "@/shared/ui/Button";
 import {getRegistrationEmail} from "../../model/selectors/getRegistrationEmail/getRegistrationEmail";
 
 export interface RegistrationFormProps {

@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {getProfileData, getProfileError, getProfileIsLoading} from "../../model/selectors/profile";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchUserById} from "../../model/service/fetchUserById/fetchUserById";
-import {Skeleton} from "shared/ui/Skeleton/Skeleton";
+import {Skeleton} from "@/shared/ui/Skeleton";
 
 const reducerList: ReducersList = {
     profile: profileReducer,

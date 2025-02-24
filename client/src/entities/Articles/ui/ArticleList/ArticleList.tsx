@@ -5,6 +5,7 @@ import * as cls from './ArticleList.module.scss';
 import {ArticleListItemSkeleton} from "../ArticleListItemSkeleton/ArticleListItemSkeleton";
 import {useScrollToEnd} from "shared/lib/hooks/useScrollToEnd/useScrollToEnd";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+// eslint-disable-next-line alexsereb666-plugin/layer-imports
 import {getScrollSavePath, scrollSaveSliceActions} from "features/ScrollSave";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";

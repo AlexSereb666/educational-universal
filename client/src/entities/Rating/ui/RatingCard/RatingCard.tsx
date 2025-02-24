@@ -2,11 +2,11 @@ import {memo, useCallback, useState} from "react";
 import classNames from "classnames";
 import * as cls from './RatingCard.module.scss';
 import {VStack} from "@/shared/ui/Stack";
-import {StarRating} from "@/shared/ui/StarRating/StarRating";
-import {Modal} from "@/shared/ui/Modal/Modal";
-import {Text} from "@/shared/ui/Text/Text";
-import {TextArea} from "@/shared/ui/TextArea/TextArea";
-import {Button} from "@/shared/ui/Button/Button";
+import {StarRating} from "@/shared/ui/StarRating";
+import {Modal} from "@/shared/ui/Modal";
+import {Text} from "@/shared/ui/Text";
+import {TextArea} from "@/shared/ui/TextArea";
+import {Button} from "@/shared/ui/Button";
 
 interface RatingCardProps {
     className?: string;

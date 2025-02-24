@@ -1,6 +1,6 @@
 import {memo} from "react";
 import {ArticlesBlock} from "../../model/type/articles";
-import {Code} from "shared/ui/Code/Code";
+import {Code} from "@/shared/ui/Code";
 import * as cls from './ArticleCodeBlockComponent.module.scss';
 
 interface ArticleCodeBlockComponentProps {

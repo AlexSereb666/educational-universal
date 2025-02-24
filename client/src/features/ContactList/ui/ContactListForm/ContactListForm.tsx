@@ -1,5 +1,5 @@
 import {memo, useCallback, useEffect, useRef} from "react";
-import {InputContainer} from "shared/ui/InputContainer/InputContainer";
+import {InputContainer} from "@/shared/ui/InputContainer";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
 import {getSearchString} from "../../model/selectors/getSearchString/getSearchString";
@@ -12,7 +12,7 @@ import * as cls from './ContactListForm.module.scss';
 import {ItemListUsers} from "../ItemListUsers/ItemListUsers";
 import {getSearchOffset} from "../../model/selectors/getSearchOffset/getSearchOffset";
 import {getSearchLimit} from "../../model/selectors/getSearchLimit/getSearchLimit";
-import {Loader} from "shared/ui/Loader/Loader";
+import {Loader} from "@/shared/ui/Loader";
 import {fetchChatByUserIds} from "entities/ChatMessanger";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {chatMessangerReducer} from "entities/ChatMessanger";

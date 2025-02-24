@@ -5,9 +5,9 @@ import imageDefault from 'shared/assets/defaultAvatar.png';
 import {formatDate} from "shared/lib/date/formatDate";
 import viewIcon from 'shared/assets/eas.png';
 import {useNavigate} from "react-router-dom";
-import {RoutePathMain} from "shared/config/routerConfig";
-import {Button} from "shared/ui/Button/Button";
-import {Card} from "shared/ui/Card/Card";
+import {RoutePathMain} from "@/app/providers/Router/config/routerConfig";
+import {Button} from "@/shared/ui/Button";
+import {Card} from "@/shared/ui/Card";
 import {ArticleView} from "../../model/const/articles";
 
 interface ArticleListItemProps {

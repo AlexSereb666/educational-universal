@@ -1,6 +1,6 @@
 import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Navigate, useLocation} from "react-router-dom";
-import {RoutePath} from "shared/config/routerConfig";
+import {RoutePath} from "../config/routerConfig";
 import {useSelector} from "react-redux";
 import {getUserRoles, UserRoles} from "../../../../entities/User";
 

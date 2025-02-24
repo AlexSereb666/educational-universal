@@ -1,5 +1,5 @@
 import {memo, useMemo} from "react";
-import {Select, SelectOption} from "shared/ui/Select/Select";
+import {Select, SelectOption} from "@/shared/ui/Select";
 import * as cls from './ArticleSortSelector.module.scss';
 import {SortOrder} from "shared/types/order";
 import {ArticleSortField} from "../../model/const/articles";

@@ -1,7 +1,7 @@
 import React, {memo, useCallback, useEffect} from 'react';
 import * as cls from './LoginForm.module.scss';
-import {Input} from "shared/ui/Input/Input";
-import {Button} from "shared/ui/Button/Button";
+import {Input} from "@/shared/ui/Input";
+import {Button} from "@/shared/ui/Button";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {loginActions, loginReducer} from "../../model/slice/loginSlice";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -12,7 +12,7 @@ import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading/getLogi
 import {getLoginError} from "../../model/selectors/getLoginError/getLoginError";
 import {loginByUsername} from "../../model/services/loginByUsername/loginByUsername";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "shared/config/routerConfig";
+import {RoutePath} from "@/app/providers/Router/config/routerConfig";
 
 export interface LoginFormProps {
     onSuccess: () => void;

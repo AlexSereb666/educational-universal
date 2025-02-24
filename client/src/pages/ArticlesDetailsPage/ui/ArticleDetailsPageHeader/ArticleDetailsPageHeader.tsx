@@ -1,7 +1,7 @@
 import {memo, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
-import {RoutePathMain} from "shared/config/routerConfig";
-import {Button} from "shared/ui/Button/Button";
+import {RoutePathMain} from "@/app/providers/Router/config/routerConfig";
+import {Button} from "@/shared/ui/Button";
 import * as cls from './ArticleDetailsPageHeader.module.scss';
 import {useSelector} from "react-redux";
 import {getArticleDeatilsData} from "entities/Articles";

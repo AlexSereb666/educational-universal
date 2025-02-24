@@ -2,7 +2,7 @@ import {memo, useCallback} from "react";
 import {RatingCard} from "@/entities/Rating";
 import {useGetArticleRatings, useRateArticle} from "../../api/articleRatingsApi";
 import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
-import {Skeleton} from "@/shared/ui/Skeleton/Skeleton";
+import {Skeleton} from "@/shared/ui/Skeleton";
 
 export interface ArticleRatingProps {
     className?: string;

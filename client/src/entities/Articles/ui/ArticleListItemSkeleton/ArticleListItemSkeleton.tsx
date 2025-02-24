@@ -1,6 +1,6 @@
 import {memo} from "react";
 import * as cls from "./ArticleListItemSkeleton.module.scss";
-import {Skeleton} from "shared/ui/Skeleton/Skeleton";
+import {Skeleton} from "@/shared/ui/Skeleton";
 import {ArticleView} from "../../model/const/articles";
 
 interface ArticleListItemSkeletonProps {

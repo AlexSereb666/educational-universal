@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import * as cls from './SidebarItem.module.scss';
-import { SidebarItemType } from "../../model/items";
+import { SidebarItemType } from "../Sidebar/Sidebar";
 import { useSelector } from "react-redux";
 import { getUserAuthData } from "entities/User";
 import classNames from 'classnames';

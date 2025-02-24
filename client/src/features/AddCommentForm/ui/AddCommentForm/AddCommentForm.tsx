@@ -1,7 +1,7 @@
 import {memo, useCallback} from "react";
 import * as cls from './AddCommentForm.module.scss';
-import {TextArea} from "shared/ui/TextArea/TextArea";
-import {Button} from "shared/ui/Button/Button";
+import {TextArea} from "@/shared/ui/TextArea";
+import {Button} from "@/shared/ui/Button";
 import {useSelector} from "react-redux";
 import {getAddCommentFormError, getAddCommentFormText} from "../../model/selectors/addCommentFormSelectors";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
