@@ -6,12 +6,14 @@ export enum AppRoutes {
     NOT_FOUND = 'not_found',
 }
 
-export enum AppRoutesMain {
-    MESSENGER = 'messenger',
-    STORAGE = 'storage',
-    ARTICLES = 'articles',
-    ARTICLES_DETAILS = 'articles_details',
-    ARTICLES_CREATE = 'articles_create',
-    ARTICLES_EDIT = 'articles_edit',
-    ADMIN_PANEL = 'admin_panel',
-}
+export const getRouteLogin = () => `/`;
+export const getRouteRegistration = () => `/registration`;
+export const getRouteMain = () => `/main`;
+
+export const getRouteMessenger = () => `${getRouteMain()}/messenger`;
+export const getRouteStorage = () => `${getRouteMain()}/storage`;
+export const getRouteArticles = () => `${getRouteMain()}/articles`;
+export const getRouteArticleDetails = (id: string) => `${getRouteMain()}/articles/${id}`;
+export const getRouteArticleCreate = () => `${getRouteMain()}/articles/new`;
+export const getRouteArticleEdit = (id: string) => `${getRouteMain()}/articles/${id}/edit`;
+export const getRouteAdminPanel = () => `${getRouteMain()}/admin`;

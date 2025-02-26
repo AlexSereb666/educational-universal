@@ -2,7 +2,7 @@ import {memo} from "react";
 import listIcon from 'shared/assets/list.png';
 import tileIcon from 'shared/assets/tile.png';
 import * as cls from './ArticleViewSelector.module.scss';
-import {ArticleView} from "../../model/const/articles";
+import {ArticleView} from "@/entities/Articles";
 
 interface ArticleViewSelectorProps {
     view: ArticleView;

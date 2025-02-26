@@ -1,11 +1,11 @@
 import React, {useMemo, useState} from 'react';
 import * as cls from './Sidebar.module.scss';
 import {SidebarItem} from "../SidebarItem/SidebarItem";
-import {RoutePathMain} from "@/app/providers/Router/config/routerConfig";
 import iconChats from "@/shared/assets/iconMessages.png";
 import iconBank from "@/shared/assets/bank.png";
 import iconArticles from "@/shared/assets/articles.png";
 import iconStorage from "@/shared/assets/storage.png";
+import {getRouteArticles, getRouteMessenger, getRouteStorage} from "@/shared/const/router";
 
 interface SidebarItemType {
     path: string;
@@ -18,19 +18,19 @@ export type {SidebarItemType};
 
 export const SidebarItemsList: SidebarItemType[] = [
     {
-        path: RoutePathMain.messenger,
+        path: getRouteMessenger(),
         Icon: iconChats as string,
         text: 'Мессенджер',
         authOnly: true,
     },
     {
-        path: RoutePathMain.storage,
+        path: getRouteStorage(),
         Icon: iconBank as string,
         text: 'Хранилище',
         authOnly: true,
     },
     {
-        path: RoutePathMain.articles,
+        path: getRouteArticles(),
         Icon: iconArticles as string,
         text: 'Статьи',
         authOnly: true,

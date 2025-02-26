@@ -9,58 +9,69 @@ import {ArticlesDetailsPage} from "@/pages/ArticlesDetailsPage";
 import {ArticleEditPage} from "@/pages/ArticleEditPage";
 import {ArticleCreatePage} from "@/pages/ArticleCreatePage";
 import {AdminPanelPage} from "@/pages/AdminPanelPage";
-import {AppRoutes, AppRoutesMain} from '@/shared/const/router';
+import {
+    AppRoutes,
+    getRouteAdminPanel,
+    getRouteArticleCreate,
+    getRouteArticleDetails,
+    getRouteArticleEdit,
+    getRouteArticles,
+    getRouteLogin,
+    getRouteMain,
+    getRouteMessenger,
+    getRouteRegistration,
+    getRouteStorage,
+} from '@/shared/const/router';
 import {UserRoles} from "@/entities/User";
 import {AppRoutesProps} from "../types/router";
-import {RoutePath, RoutePathMain} from "../paths/routePath";
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
-        path: RoutePath.main,
+        path: getRouteMain(),
         element: <MainPage />,
         authOnly: true,
         listChildren: [
             {
-                path: RoutePathMain[AppRoutesMain.MESSENGER],
+                path: getRouteMessenger(),
                 element: <MessengerPage />,
             },
             {
-                path: RoutePathMain[AppRoutesMain.STORAGE],
+                path: getRouteStorage(),
                 element: <StoragePage />,
             },
             {
-                path: RoutePathMain[AppRoutesMain.ARTICLES],
+                path: getRouteArticles(),
                 element: <ArticlesPage />,
             },
             {
-                path: `${RoutePathMain[AppRoutesMain.ARTICLES_DETAILS]}:id`,
+                path: getRouteArticleDetails(':id'),
                 element: <ArticlesDetailsPage />,
             },
             {
-                path: RoutePathMain[AppRoutesMain.ARTICLES_EDIT],
+                path: getRouteArticleEdit(':id'),
                 element: <ArticleEditPage />
             },
             {
-                path: RoutePathMain[AppRoutesMain.ARTICLES_CREATE],
+                path: getRouteArticleCreate(),
                 element: <ArticleCreatePage />
             },
             {
-                path: RoutePathMain[AppRoutesMain.ADMIN_PANEL],
+                path: getRouteAdminPanel(),
                 element: <AdminPanelPage />,
                 roles: [UserRoles.ADMIN]
-            }
+            },
         ]
     },
     [AppRoutes.LOGIN]: {
-        path: RoutePath.login,
+        path: getRouteLogin(),
         element: <LoginPage />
     },
     [AppRoutes.REGISTRATION]: {
-        path: RoutePath.registration,
+        path: getRouteRegistration(),
         element: <RegistrationPage />
     },
     [AppRoutes.NOT_FOUND]: {
-        path: RoutePath.not_found,
+        path: '*',
         element: <NotFoundPage />
     }
 }

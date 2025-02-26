@@ -1,8 +1,8 @@
 import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Navigate, useLocation} from "react-router-dom";
-import {RoutePath} from "../config/routerConfig";
 import {useSelector} from "react-redux";
 import {getUserRoles, UserRoles} from "../../../../entities/User";
+import {getRouteLogin} from "@/shared/const/router";
 
 interface RequireAuthProps {
     children: React.ReactNode;
@@ -30,11 +30,11 @@ function RequireAuth(props: RequireAuthProps) {
         : true;
 
     if (!hasRequiredAuth) {
-        return <Navigate to={RoutePath.login} state={{ from: location }} replace />;
+        return <Navigate to={getRouteLogin()} state={{ from: location }} replace />;
     }
 
     if (!hasRequiredRole) {
-        return <Navigate to={RoutePath.main} replace />;
+        return <Navigate to={getRouteLogin()} replace />;
     }
 
     return children;

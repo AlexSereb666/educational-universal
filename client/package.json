@@ -12,7 +12,8 @@
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "build-storybook": "storybook build -c ./config/storybook",
     "generate:slice": "node ./scripts/createSlice/index.js",
-    "lint:ts": "eslint \"**/*.{ts,tsx}\""
+    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix"
   },
   "keywords": [],
   "author": "",
@@ -68,6 +69,7 @@
     "sass": "^1.77.6",
     "sass-loader": "^14.2.1",
     "storybook": "^8.4.7",
+    "storybook-addon-themes": "^6.1.0",
     "style-loader": "^4.0.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",

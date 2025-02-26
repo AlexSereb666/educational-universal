@@ -15,11 +15,11 @@ import {
 import {getRegistrationError} from "../../model/selectors/getRegistrationError/getRegistrationError";
 import {useNavigate} from "react-router-dom";
 import {registrationByUser} from "../../model/services/registrationByUser/RegistrationByUser";
-import {RoutePath} from "@/app/providers/Router/config/routerConfig";
 import * as cls from "./RegistrationForm.module.scss";
 import {Input} from "@/shared/ui/Input";
 import {Button} from "@/shared/ui/Button";
 import {getRegistrationEmail} from "../../model/selectors/getRegistrationEmail/getRegistrationEmail";
+import {getRouteLogin} from "@/shared/const/router";
 
 export interface RegistrationFormProps {
     onSuccess: () => void;
@@ -73,7 +73,7 @@ export const RegistrationForm = memo(({onSuccess}: RegistrationFormProps) => {
     }, []);
 
     const goToLogin = () => {
-        navigate(RoutePath.login);
+        navigate(getRouteLogin());
     }
 
     return (

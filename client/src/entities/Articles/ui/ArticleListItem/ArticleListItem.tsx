@@ -5,10 +5,10 @@ import imageDefault from 'shared/assets/defaultAvatar.png';
 import {formatDate} from "shared/lib/date/formatDate";
 import viewIcon from 'shared/assets/eas.png';
 import {useNavigate} from "react-router-dom";
-import {RoutePathMain} from "@/app/providers/Router/config/routerConfig";
 import {Button} from "@/shared/ui/Button";
 import {Card} from "@/shared/ui/Card";
 import {ArticleView} from "../../model/const/articles";
+import {getRouteArticleDetails} from "@/shared/const/router";
 
 interface ArticleListItemProps {
     article: Article;
@@ -23,7 +23,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const navigate = useNavigate();
 
     const onClick = () => {
-        navigate(RoutePathMain.articles_details + article.id);
+        navigate(getRouteArticleDetails(String(article.id)));
     }
 
     const renderArticleItem = () => {

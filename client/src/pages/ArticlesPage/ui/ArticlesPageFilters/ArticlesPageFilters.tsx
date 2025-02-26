@@ -2,9 +2,7 @@ import {memo, useCallback, useMemo} from "react";
 import * as cls from './ArticlesPageFilters.module.scss';
 import {
     ArticleSortField,
-    ArticleSortSelector,
     ArticleView,
-    ArticleViewSelector,
     getTypesArticleData
 } from "entities/Articles";
 import {articlePageActions} from "../../model/slices/ArticlePageSlice";
@@ -22,6 +20,8 @@ import {SortOrder} from "shared/types/order";
 import {useDebounce} from "shared/lib/hooks/useDebounce/useDebounce";
 import {TabItem, Tabs} from "@/shared/ui/Tabs";
 import {getArticlesPageType} from "../../model/selectors/articlesPageSelectors";
+import {ArticleSortSelector} from '@/features/ArticleSortSelector';
+import {ArticleViewSelector} from '@/features/ArticleViewSelector';
 
 export const ArticlesPageFilters = memo(() => {
     const dispatch = useAppDispatch();

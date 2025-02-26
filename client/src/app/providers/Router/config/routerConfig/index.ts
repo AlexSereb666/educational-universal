@@ -1,9 +1,4 @@
 export {
-    RoutePath,
-    RoutePathMain,
-} from './paths/routePath';
-
-export {
     routeConfig,
 } from './config/routerConfig';
 

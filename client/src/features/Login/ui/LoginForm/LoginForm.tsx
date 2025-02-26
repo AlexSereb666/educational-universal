@@ -12,7 +12,7 @@ import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading/getLogi
 import {getLoginError} from "../../model/selectors/getLoginError/getLoginError";
 import {loginByUsername} from "../../model/services/loginByUsername/loginByUsername";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "@/app/providers/Router/config/routerConfig";
+import {getRouteRegistration} from "@/shared/const/router";
 
 export interface LoginFormProps {
     onSuccess: () => void;
@@ -62,7 +62,7 @@ export const LoginForm = memo(({onSuccess}: LoginFormProps) => {
     }, []);
 
     const goToRegistration = () => {
-        navigate(RoutePath.registration);
+        navigate(getRouteRegistration());
     }
 
     return (

@@ -1,11 +1,11 @@
 import {memo, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
-import {RoutePathMain} from "@/app/providers/Router/config/routerConfig";
 import {Button} from "@/shared/ui/Button";
 import * as cls from './ArticleDetailsPageHeader.module.scss';
 import {useSelector} from "react-redux";
 import {getArticleDeatilsData} from "entities/Articles";
 import {getCanEditArticle} from "../../model/selectors/article";
+import {getRouteArticleEdit, getRouteArticles} from "@/shared/const/router";
 
 export const ArticleDetailsPageHeader = memo(() => {
     const navigate = useNavigate();
@@ -13,11 +13,11 @@ export const ArticleDetailsPageHeader = memo(() => {
     const article = useSelector(getArticleDeatilsData);
 
     const onBackToList = useCallback(() => {
-        navigate(RoutePathMain.articles);
+        navigate(getRouteArticles());
     }, [navigate]);
 
     const onEditArticle = useCallback(() => {
-        navigate(`${RoutePathMain.articles}/${article?.id}/edit`)
+        navigate(getRouteArticleEdit(String(article?.id)));
     }, [article, navigate]);
 
     return (

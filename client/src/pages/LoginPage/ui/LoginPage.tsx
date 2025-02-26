@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {LoginForm} from "features/Login";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "@/app/providers/Router/config/routerConfig";
 import {useSelector} from "react-redux";
 import {getUserAuthData} from "entities/User";
+import {getRouteMain} from "@/shared/const/router";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -11,12 +11,12 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (authData && authData.isActivated) {
-            navigate(RoutePath.main)
+            navigate(getRouteMain())
         }
     }, [authData]);
 
     const onToggle = () => {
-        navigate(RoutePath.main);
+        navigate(getRouteMain());
     }
 
     return (

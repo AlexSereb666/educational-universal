@@ -3,13 +3,13 @@ import * as cls from './ProfileMenu.module.scss';
 import defaultAvatar from 'shared/assets/defaultAvatar.png';
 import {isUserAdmin, logout} from "entities/User";
 import {useNavigate} from "react-router-dom";
-import {RoutePath, RoutePathMain} from "@/app/providers/Router/config/routerConfig";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
 import {Modal} from "@/shared/ui/Modal";
 import {ModalProfile} from "features/Profile";
 import {Dropdown, DropdownItem} from "@/shared/ui/Dropdown";
 import {useSelector} from "react-redux";
+import {getRouteAdminPanel, getRouteArticleCreate, getRouteLogin} from "@/shared/const/router";
 
 export const ProfileMenu = () => {
     const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ export const ProfileMenu = () => {
 
     const onLogout = useCallback(() => {
         dispatch(logout());
-        navigate(RoutePath.login);
+        navigate(getRouteLogin());
     }, [dispatch]);
 
     const openModalProfile = useCallback(() => {
@@ -34,11 +34,11 @@ export const ProfileMenu = () => {
     }, [dispatch]);
 
     const onCreateArticle = useCallback(() => {
-        navigate(RoutePathMain.articles_create);
+        navigate(getRouteArticleCreate());
     }, [navigate]);
 
     const onOpenAdminPanel = useCallback(() => {
-        navigate(RoutePathMain.admin_panel);
+        navigate(getRouteAdminPanel());
     }, [navigate]);
 
     const items: DropdownItem[] = [
