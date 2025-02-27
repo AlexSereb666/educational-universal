@@ -13,7 +13,8 @@
     "build-storybook": "storybook build -c ./config/storybook",
     "generate:slice": "node ./scripts/createSlice/index.js",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
-    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix"
+    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "postinstall": "rmdir /s /q .\\node_modules\\.cache"
   },
   "keywords": [],
   "author": "",
