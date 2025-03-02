@@ -14,7 +14,11 @@
     "generate:slice": "node ./scripts/createSlice/index.js",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
-    "postinstall": "rmdir /s /q .\\node_modules\\.cache"
+    "postinstall": "rmdir /s /q .\\node_modules\\.cache",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "lint:ts"
   },
   "keywords": [],
   "author": "",
@@ -63,11 +67,12 @@
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "globals": "^15.14.0",
     "html-webpack-plugin": "^5.6.0",
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-html-reporters": "^3.1.7",
+    "lint-staged": "^15.4.3",
     "mini-css-extract-plugin": "^2.9.0",
     "react-refresh": "^0.14.2",
     "react-refresh-typescript": "^2.0.9",
