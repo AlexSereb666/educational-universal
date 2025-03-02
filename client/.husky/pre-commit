@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_husky_sh"
+
+npm run lint:ts
+npm run unit

@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "app/providers/StoreProvider";
-import {User, userActions} from "entities/User";
-import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
+import {ThunkConfig} from "@/app/providers/StoreProvider";
+import {User, userActions} from "@/entities/User";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 interface RegistrationByUserProps {
     username: string;

@@ -1,8 +1,8 @@
 import './ArticleDetails.module.scss';
 import {memo, useCallback, useEffect} from "react";
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {articleDetailsReducer} from "../../model/slice/articleDetailsSlice";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchArticleById} from "../../model/services/fetchArticleById/fetchArticleById";
 import {useSelector} from "react-redux";
 import {
@@ -12,10 +12,10 @@ import {
 } from "../../model/selectors/articleDetails";
 import * as cls from './ArticleDetails.module.scss';
 import {Skeleton} from "@/shared/ui/Skeleton";
-import defaultImg from 'shared/assets/defaultAvatar.png';
-import viewImg from 'shared/assets/eas.png';
-import calendarImg from 'shared/assets/calendar.png';
-import {formatDate} from "shared/lib/date/formatDate";
+import defaultImg from '@/shared/assets/defaultAvatar.png';
+import viewImg from '@/shared/assets/eas.png';
+import calendarImg from '@/shared/assets/calendar.png';
+import {formatDate} from "@/shared/lib/date/formatDate";
 import {ArticlesBlock} from "../../../Articles/model/type/articles";
 import {ArticleCodeBlockComponent} from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
 import {ArticleTextBlockComponent} from "../ArticleTextBlockComponent/ArticleTextBlockComponent";

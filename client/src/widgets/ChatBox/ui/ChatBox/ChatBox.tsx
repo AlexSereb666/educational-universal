@@ -1,12 +1,12 @@
 import {memo, useEffect} from "react";
 import {useSelector} from "react-redux";
 import * as cls from './ChatBox.module.scss';
-import {getChatMessangerChat, getChatMessangerIsLoading} from "entities/ChatMessanger";
+import {getChatMessangerChat, getChatMessangerIsLoading} from "@/entities/ChatMessanger";
 import {Loader} from "@/shared/ui/Loader";
 import {MessageListChat} from "features/MessageListChat";
-import {ChatInput} from "features/ChatInput";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {chatMessangerActions, socket} from "entities/ChatMessanger";
+import {ChatInput} from "@/features/ChatInput";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {chatMessangerActions, socket} from "@/entities/ChatMessanger";
 
 export const ChatBox = memo(() => {
     const dispatch = useAppDispatch();

@@ -4,9 +4,9 @@ import {TextArea} from "@/shared/ui/TextArea";
 import {Button} from "@/shared/ui/Button";
 import {useSelector} from "react-redux";
 import {getAddCommentFormError, getAddCommentFormText} from "../../model/selectors/addCommentFormSelectors";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {addCommentFormActions, addCommentFormReducer} from "../../model/slice/AddCommentFormSlice";
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 
 const reducers: ReducersList = {
     addCommentForm: addCommentFormReducer,

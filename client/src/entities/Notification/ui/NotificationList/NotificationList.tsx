@@ -1,6 +1,6 @@
 import {memo} from "react";
 import * as cls from './NotificationList.module.scss';
-import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
+import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
 import {useNotifications} from "../../api/notificationApi";
 import {VStack} from "@/shared/ui/Stack";
 import {NotificationItem} from "../NotificationItem/NotificationItem";

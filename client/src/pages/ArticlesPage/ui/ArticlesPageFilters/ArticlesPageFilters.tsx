@@ -4,7 +4,7 @@ import {
     ArticleSortField,
     ArticleView,
     getTypesArticleData
-} from "entities/Articles";
+} from "@/entities/Articles";
 import {articlePageActions} from "../../model/slices/ArticlePageSlice";
 import {useSelector} from "react-redux";
 import {
@@ -14,10 +14,10 @@ import {
     getArticlesPageView
 } from "../../model/selectors/articlesPageSelectors";
 import {fetchArticlesList} from '../../model/services/fetchArticlesList/fetchArticlesList';
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {Input} from "@/shared/ui/Input";
-import {SortOrder} from "shared/types/order";
-import {useDebounce} from "shared/lib/hooks/useDebounce/useDebounce";
+import {SortOrder} from "@/shared/types/order";
+import {useDebounce} from "@/shared/lib/hooks/useDebounce/useDebounce";
 import {TabItem, Tabs} from "@/shared/ui/Tabs";
 import {getArticlesPageType} from "../../model/selectors/articlesPageSelectors";
 import {ArticleSortSelector} from '@/features/ArticleSortSelector';

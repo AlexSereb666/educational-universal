@@ -1,1 +1,1 @@
-export { NotFoundPageAsync as NotFoundPage } from 'pages/NotFoundPage/ui/NotFoundPage.async';
+export { NotFoundPageAsync as NotFoundPage } from './ui/NotFoundPage.async';

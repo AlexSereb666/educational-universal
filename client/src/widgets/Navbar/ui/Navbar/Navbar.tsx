@@ -1,8 +1,8 @@
 import React from 'react';
 import * as cls from './Navbar.module.scss';
-import logo from 'shared/assets/logo.png';
+import logo from '@/shared/assets/logo.png';
 import {ProfileMenu} from "../ProfileMenu/ProfileMenu";
-import {NotificationButton} from "features/NotificationButton";
+import {NotificationButton} from "@/features/NotificationButton";
 
 export const Navbar = () => {
     return (

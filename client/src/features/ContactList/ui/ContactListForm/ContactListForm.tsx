@@ -13,9 +13,9 @@ import {ItemListUsers} from "../ItemListUsers/ItemListUsers";
 import {getSearchOffset} from "../../model/selectors/getSearchOffset/getSearchOffset";
 import {getSearchLimit} from "../../model/selectors/getSearchLimit/getSearchLimit";
 import {Loader} from "@/shared/ui/Loader";
-import {fetchChatByUserIds} from "entities/ChatMessanger";
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {chatMessangerReducer} from "entities/ChatMessanger";
+import {fetchChatByUserIds} from "@/entities/ChatMessanger";
+import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {chatMessangerReducer} from "@/entities/ChatMessanger";
 
 const initialReducers: ReducersList = {
     search: searchReducer,

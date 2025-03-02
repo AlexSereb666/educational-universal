@@ -1,12 +1,12 @@
 import React from 'react';
-import {Navbar} from "widgets/Navbar";
-import {Sidebar} from "widgets/Sidebar";
+import {Navbar} from "@/widgets/Navbar";
+import {Sidebar} from "@/widgets/Sidebar";
 import * as cls from './MainPage.module.scss';
 import {Outlet} from "react-router-dom";
 
 const MainPage = () => {
     return (
-        <div>
+        <div data-testid="MainPage">
             <Navbar />
             <div className={cls.container}>
                 <div>

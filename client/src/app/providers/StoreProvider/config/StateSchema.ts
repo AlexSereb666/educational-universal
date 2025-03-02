@@ -1,18 +1,18 @@
-import {UserSchema} from "entities/User";
-import {LoginSchema} from "features/Login";
+import {UserSchema} from "@/entities/User";
+import {LoginSchema} from "@/features/Login";
 import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject
 } from '@reduxjs/toolkit';
 import {AxiosInstance} from "axios";
-import {RegistrationSchema} from "features/Registration";
-import {ContactListSearchSchema} from "features/ContactList";
-import {ChatMessanger} from "entities/ChatMessanger";
-import {ArticleDetailsSchema, TypesArticleSchema} from "entities/Articles";
-import {ProfileSchema} from "features/Profile";
-import {AddCommentFormSchema} from "features/AddCommentForm";
-import {ArticlesPageSchema} from "pages/ArticlesPage";
-import {ScrollSaveSchema} from "features/ScrollSave";
-import {ArticleDetailsPageSchema} from "pages/ArticlesDetailsPage";
+import {RegistrationSchema} from "@/features/Registration";
+import {ContactListSearchSchema} from "@/features/ContactList";
+import {ChatMessanger} from "@/entities/ChatMessanger";
+import {ArticleDetailsSchema, TypesArticleSchema} from "@/entities/Articles";
+import {ProfileSchema} from "@/features/Profile";
+import {AddCommentFormSchema} from "@/features/AddCommentForm";
+import {ArticlesPageSchema} from "@/pages/ArticlesPage";
+import {ScrollSaveSchema} from "@/features/ScrollSave";
+import {ArticleDetailsPageSchema} from "@/pages/ArticlesDetailsPage";
 import {rtkApi} from "@/shared/api/rtkApi";
 
 export interface StateSchema {

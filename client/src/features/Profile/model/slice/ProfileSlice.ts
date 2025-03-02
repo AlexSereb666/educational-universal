@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {User} from "entities/User";
+import {User} from "@/entities/User";
 import {fetchUserById} from "../service/fetchUserById/fetchUserById";
 import {ProfileSchema} from "../types/profileSchema";
 

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
-import { ACCESS_TOKEN_KEY } from "shared/const/localstorage";
+import { ACCESS_TOKEN_KEY } from "@/shared/const/localstorage";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: __API__,

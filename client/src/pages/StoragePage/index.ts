@@ -1,1 +1,1 @@
-export { StoragePageAsync as StoragePage } from 'pages/StoragePage/ui/StoragePage.async';
+export { StoragePageAsync as StoragePage } from './ui/StoragePage.async';

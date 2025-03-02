@@ -1,10 +1,10 @@
 import React, { memo, useState, useRef } from "react";
-import imageSend from "shared/assets/send.png";
+import imageSend from "@/shared/assets/send.png";
 import * as cls from "./ChatInput.module.scss";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {useSelector} from "react-redux";
-import {getChatMessangerChat} from "entities/ChatMessanger";
-import {chatMessangerActions} from "entities/ChatMessanger";
+import {getChatMessangerChat} from "@/entities/ChatMessanger";
+import {chatMessangerActions} from "@/entities/ChatMessanger";
 
 export const ChatInput = memo(() => {
     const dispatch = useAppDispatch();

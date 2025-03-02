@@ -3,7 +3,7 @@ import { ChatMessanger } from "../types/chatMessanger";
 import { fetchChatByUserIds } from "../../model/services/searchChatMessanger/searchChatMessanger";
 import { Chat, Message } from "../../model/types/chatMessanger";
 import {io, Socket} from "socket.io-client";
-import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 const initialState: ChatMessanger = {
     chat: null,

@@ -1,12 +1,12 @@
 import React, {useState, useCallback} from 'react';
 import * as cls from './ProfileMenu.module.scss';
-import defaultAvatar from 'shared/assets/defaultAvatar.png';
-import {isUserAdmin, logout} from "entities/User";
+import defaultAvatar from '@/shared/assets/defaultAvatar.png';
+import {isUserAdmin, logout} from "@/entities/User";
 import {useNavigate} from "react-router-dom";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
+import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
 import {Modal} from "@/shared/ui/Modal";
-import {ModalProfile} from "features/Profile";
+import {ModalProfile} from "@/features/Profile";
 import {Dropdown, DropdownItem} from "@/shared/ui/Dropdown";
 import {useSelector} from "react-redux";
 import {getRouteAdminPanel, getRouteArticleCreate, getRouteLogin} from "@/shared/const/router";

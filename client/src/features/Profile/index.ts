@@ -4,7 +4,7 @@ export {
 
 export {
     fetchUserById
-} from 'features/Profile/model/service/fetchUserById/fetchUserById';
+} from '@/features/Profile/model/service/fetchUserById/fetchUserById';
 
 export type {
     ProfileSchema

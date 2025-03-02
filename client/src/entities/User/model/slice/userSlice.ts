@@ -1,6 +1,6 @@
 import {User, UserSchema} from "../types/user";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 import {logout} from "../services/logout/logout";
 import {initAuth} from "../../model/services/initAuth/initAuth";
 

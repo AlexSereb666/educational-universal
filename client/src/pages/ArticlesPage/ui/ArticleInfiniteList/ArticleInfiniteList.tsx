@@ -8,7 +8,7 @@ import {
 import {fetchNextArticlesPage} from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import {useAppDispatch} from "../../../../shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {getArticles} from "../../model/slices/ArticlePageSlice";
-import {ArticleList, fetchTypesArticle} from "entities/Articles";
+import {ArticleList, fetchTypesArticle} from "@/entities/Articles";
 import {useSearchParams} from "react-router-dom";
 import {initArticlesPage} from "../../model/services/initArticlesPage/initArticlesPage";
 

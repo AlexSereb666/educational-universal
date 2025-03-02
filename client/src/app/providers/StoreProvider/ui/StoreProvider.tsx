@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import {StateSchema} from "app/providers/StoreProvider";
+import {StateSchema} from "@/app/providers/StoreProvider";
 import {ReducersMapObject} from "@reduxjs/toolkit";
 import {createReduxStore} from "../config/store";
 import {Provider} from "react-redux";

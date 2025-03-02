@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ACCESS_TOKEN_KEY} from "shared/const/localstorage";
+import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
 
 export const $api = axios.create({
     withCredentials: true,

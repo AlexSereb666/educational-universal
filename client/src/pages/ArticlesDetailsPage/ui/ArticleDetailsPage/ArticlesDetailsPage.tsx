@@ -1,7 +1,7 @@
-import {ArticleDetails} from "entities/Articles";
+import {ArticleDetails} from "@/entities/Articles";
 import {useParams} from "react-router-dom";
 import * as cls from './ArticlesDetailsPage.module.scss';
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {articleDetailsPageReducer} from "../../model/slice";
 import {
     ArticleDetailsPageHeader

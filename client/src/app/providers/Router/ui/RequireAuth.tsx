@@ -1,11 +1,12 @@
-import {useAuthUser} from "shared/lib/hooks/useAuthUser/useAuthUser";
+import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
 import {Navigate, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {getUserRoles, UserRoles} from "../../../../entities/User";
+import {getUserRoles, UserRoles} from "@/entities/User";
 import {getRouteLogin} from "@/shared/const/router";
+import {ReactNode} from "react";
 
 interface RequireAuthProps {
-    children: React.ReactNode;
+    children: ReactNode;
     roles?: UserRoles[];
     authOnly?: boolean;
 }
@@ -38,6 +39,6 @@ function RequireAuth(props: RequireAuthProps) {
     }
 
     return children;
-};
+}
 
 export default RequireAuth;
