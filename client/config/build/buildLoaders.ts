@@ -39,7 +39,6 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
     };
 
     const cssLoaderWithModules = {
-        exclude: /node_modules/,
         loader: "css-loader",
         options: {
             modules: {
@@ -50,7 +49,6 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
 
     const scssLoader = {
         test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
         use: [
             // Creates `style` nodes from JS strings
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,

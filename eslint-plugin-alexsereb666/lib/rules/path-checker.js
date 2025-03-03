@@ -1,8 +1,3 @@
-/**
- * @fileoverview empty
- * @author alexsereb666
- */
-
 "use strict";
 
 const path = require('path');
@@ -17,7 +12,7 @@ module.exports = {
       recommended: false,
       url: null,
     },
-    fixable: null,
+    fixable: 'code',
     schema: [
       {
         type: 'object',
@@ -43,7 +38,25 @@ module.exports = {
         const fromFilename = context.getFilename();
 
         if(shouldBeRelative(fromFilename, importTo)) {
-          context.report(node, 'В рамках одного слайса все пути должны быть относительными');
+          context.report({
+            node,
+            message: 'В рамках одного слайса все пути должны быть относительными',
+            fix: (fixer) => {
+              const normalizedPath = getNormalizedCurrentFilePath(fromFilename) // /entities/Article/Article.tsx
+                  .split('/')
+                  .slice(0, -1)
+                  .join('/');
+              let relativePath = path.relative(normalizedPath, `/${importTo}`)
+                  .split('\\')
+                  .join('/');
+
+              if(!relativePath.startsWith('.')) {
+                relativePath = './' + relativePath;
+              }
+
+              return fixer.replaceText(node.source, `'${relativePath}'`)
+            }
+          });
         }
       }
     };
@@ -56,6 +69,12 @@ const layers = {
   'shared': 'shared',
   'pages': 'pages',
   'widgets': 'widgets',
+}
+
+function getNormalizedCurrentFilePath(currentFilePath) {
+  const normalizedPath = path.toNamespacedPath(currentFilePath);
+  const projectFrom = normalizedPath.split('src')[1];
+  return projectFrom.split('\\').join('/')
 }
 
 function shouldBeRelative(from, to) {
@@ -72,9 +91,8 @@ function shouldBeRelative(from, to) {
     return false;
   }
 
-  const normalizedPath = path.toNamespacedPath(from);
-  const projectFrom = normalizedPath.split('src')[1];
-  const fromArray = projectFrom.split('\\')
+  const projectFrom = getNormalizedCurrentFilePath(from);
+  const fromArray = projectFrom.split('/')
 
   const fromLayer = fromArray[1];
   const fromSlice = fromArray[2];

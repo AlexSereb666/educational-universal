@@ -1,7 +1,8 @@
-import {Fragment, memo, ReactNode} from "react";
+import {Fragment, memo, ReactNode, useCallback} from "react";
 import {Menu} from "@headlessui/react";
 import * as cls from './Dropdown.module.scss';
 import classNames from 'classnames';
+import {useNavigate} from "react-router-dom";
 
 export interface DropdownItem {
     disabled?: boolean;
@@ -20,6 +21,12 @@ export const Dropdown = memo((props: DropdownProps) => {
         items,
         trigger,
     } = props;
+
+    const navigate = useNavigate();
+
+    const onHref = useCallback((href: string) => {
+        navigate(href);
+    }, [navigate]);
 
     return (
         <Menu as="div" className={cls.Dropdown}>
@@ -40,7 +47,7 @@ export const Dropdown = memo((props: DropdownProps) => {
 
                     if (item.href) {
                         return (
-                            <Menu.Item as="a" href={item.href} disabled={item.disabled} key={index}>
+                            <Menu.Item as="a" onClick={() => onHref(item.href)} disabled={item.disabled} key={index}>
                                 {content}
                             </Menu.Item>
                         )

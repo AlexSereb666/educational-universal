@@ -44,6 +44,7 @@ export default [
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-require-imports": "off",
       "no-undef": "off",
+      "@typescript-eslint/no-namespace": "off",
     }
   }
 ];

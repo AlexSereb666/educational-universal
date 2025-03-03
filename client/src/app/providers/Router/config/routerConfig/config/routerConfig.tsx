@@ -18,12 +18,13 @@ import {
     getRouteArticles,
     getRouteLogin,
     getRouteMain,
-    getRouteMessenger,
+    getRouteMessenger, getRouteProfile,
     getRouteRegistration,
     getRouteStorage,
 } from '@/shared/const/router';
 import {UserRoles} from "@/entities/User";
 import {AppRoutesProps} from "../types/router";
+import {ProfilePage} from "@/pages/ProfilePage";
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -60,6 +61,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
                 element: <AdminPanelPage />,
                 roles: [UserRoles.ADMIN]
             },
+            {
+                path: getRouteProfile(':id'),
+                element: <ProfilePage />,
+            }
         ]
     },
     [AppRoutes.LOGIN]: {

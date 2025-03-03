@@ -50,25 +50,25 @@ export const ModalProfile = memo((props: ModalProfileProps) => {
                 <div className={cls.body_profile}>
                     <img src={avatarDefault} alt={'Аватар'} className={cls.avatar}/>
                     <div>
-                    <span>
-                        Имя пользователя:
-                    </span>
-                        <span className={cls.data_user}>
-                        {user.login}
-                    </span>
+                        <span>
+                            Имя пользователя:
+                        </span>
+                            <span className={cls.data_user}>
+                            {user.login}
+                        </span>
                     </div>
                     <div>
-                    <span>
-                        Email пользователя:
-                    </span>
-                        <span className={cls.data_user}>
-                        {user.email}
-                    </span>
+                        <span>
+                            Email пользователя:
+                        </span>
+                            <span className={cls.data_user}>
+                            {user.email}
+                        </span>
                     </div>
                     <div>
-                    <span className={cls.data_user_active}>
-                        {user.isActivated ? 'Профиль активный' : 'Профиль неактивный'}
-                    </span>
+                        <span className={cls.data_user_active}>
+                            {user.isActivated ? 'Профиль активный' : 'Профиль неактивный'}
+                        </span>
                     </div>
                 </div>
             </>

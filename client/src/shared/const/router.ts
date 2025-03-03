@@ -17,3 +17,4 @@ export const getRouteArticleDetails = (id: string) => `${getRouteMain()}/article
 export const getRouteArticleCreate = () => `${getRouteMain()}/articles/new`;
 export const getRouteArticleEdit = (id: string) => `${getRouteMain()}/articles/${id}/edit`;
 export const getRouteAdminPanel = () => `${getRouteMain()}/admin`;
+export const getRouteProfile = (id: string) => `${getRouteMain()}/profile/${id}`;
