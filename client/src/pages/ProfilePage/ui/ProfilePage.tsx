@@ -1,19 +1,21 @@
-import classnames from 'classnames';
-import * as cls from './ProfilePage.module.scss';
+import {ProfileCard, profileCardReducer} from "@/features/ProfileCard";
+import {useParams} from "react-router-dom";
+import {VStack} from "@/shared/ui/Stack";
+import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 
-interface ProfilePageProps {
-    classname?: string;
+const reducers: ReducersList = {
+    profileCard: profileCardReducer,
 }
 
-const ProfilePage = (props: ProfilePageProps) => {
-    const {
-        classname,
-    } = props;
+const ProfilePage = () => {
+    const { id } = useParams<{ id: string }>();
 
     return (
-        <div className={classnames(cls.ProfilePage, {}, [classname])}>
-            ProfilePage
-        </div>
+        <DynamicModuleLoader reducers={reducers}>
+            <VStack>
+                <ProfileCard id={id} />
+            </VStack>
+        </DynamicModuleLoader>
     )
 };
 

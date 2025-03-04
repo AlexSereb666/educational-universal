@@ -5,6 +5,7 @@ import {CreateUserDto} from "./dto/create-user.dto";
 import {Op} from "sequelize";
 import {Role} from "../roles/roles.model";
 import {Permissions} from "../permissions/permissions.model";
+import {UserForRolesDto} from "./dto/userForRoles.dto";
 
 @Injectable()
 export class UsersService {
@@ -24,7 +25,7 @@ export class UsersService {
     }
 
     async getUserById(id: number) {
-        return await this.userRepository.findOne({
+        const user = await this.userRepository.findOne({
             where: {id},
             include: [
                 {
@@ -33,6 +34,8 @@ export class UsersService {
                 },
             ],
         });
+
+        return new UserForRolesDto(user);
     }
 
     async getUserByLogin(login: string) {
@@ -83,5 +86,22 @@ export class UsersService {
         }
 
         return await this.userRepository.findAndCountAll(options);
+    }
+
+    async editDataUserById({id, login}: {id: number, login: string}) {
+        if (!login) {
+            throw new HttpException('Логин не может быть пустым', HttpStatus.BAD_REQUEST);
+        }
+
+        const user = await this.userRepository.findByPk(id);
+
+        if (!user) {
+            throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND);
+        }
+
+        user.login = login;
+        await user.save();
+
+        return this.getUserById(user.id);
     }
 }

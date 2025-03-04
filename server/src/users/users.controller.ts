@@ -2,6 +2,7 @@ import {Body, Controller, Get, Param, Post, Query, UseGuards} from "@nestjs/comm
 import {UsersService} from "./users.service";
 import {CreateUserDto} from "./dto/create-user.dto";
 import {AuthGuard} from "../auth/auth.guard";
+import {UserDto} from "../auth/dto/user.dto";
 
 @Controller('users')
 export class UsersController {
@@ -32,5 +33,17 @@ export class UsersController {
     @UseGuards(AuthGuard)
     getUserById(@Param('id') id: number) {
         return this.usersService.getUserById(id);
+    }
+
+    @Post('edit/:id')
+    @UseGuards(AuthGuard)
+    editDataUserById(
+        @Param('id') id: number,
+        @Body() { login }: { login: string }
+    ) {
+        return this.usersService.editDataUserById({
+            id,
+            login,
+        });
     }
 }

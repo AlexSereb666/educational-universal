@@ -14,6 +14,7 @@ import {ArticlesPageSchema} from "@/pages/ArticlesPage";
 import {ScrollSaveSchema} from "@/features/ScrollSave";
 import {ArticleDetailsPageSchema} from "@/pages/ArticlesDetailsPage";
 import {rtkApi} from "@/shared/api/rtkApi";
+import {ProfileCardSchema} from "@/features/ProfileCard";
 
 export interface StateSchema {
     user: UserSchema;
@@ -30,6 +31,7 @@ export interface StateSchema {
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
     articleDetailsPage?: ArticleDetailsPageSchema;
+    profileCard?: ProfileCardSchema,
 }
 
 export type StateSchemaKey = keyof StateSchema;
