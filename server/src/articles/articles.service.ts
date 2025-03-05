@@ -8,6 +8,7 @@ import {CreateArticlesDto} from "./dto/create-articles.dto";
 import {ArticlesTypeBlock} from "../articlesTypeBlock/articlesTypeBlock.model";
 import { Op } from 'sequelize';
 import {User} from "../users/users.model";
+import {ArticleComment} from "../articlesComment/articlesComment.model";
 
 @Injectable()
 export class ArticlesService {
@@ -189,6 +190,33 @@ export class ArticlesService {
                 {
                     statusCode: HttpStatus.BAD_REQUEST,
                     message: 'Ошибка создания тестовой статьи',
+                    error: error.message,
+                    details: error.errors || null,
+                },
+                HttpStatus.BAD_REQUEST
+            );
+        }
+    }
+
+    async deleteArticle(id: number) {
+        const transaction = await this.sequelize.transaction();
+
+        try {
+            const article = await this.articlesRepository.findByPk(id);
+            if (!article) {
+                throw new HttpException('Статья не найдена', HttpStatus.NOT_FOUND);
+            }
+
+            await this.articlesRepository.destroy({ where: { id }, transaction });
+
+            await transaction.commit();
+            return { message: 'Статья успешно удалена' };
+        } catch (error) {
+            await transaction.rollback();
+            throw new HttpException(
+                {
+                    statusCode: HttpStatus.BAD_REQUEST,
+                    message: 'Ошибка удаления статьи',
                     error: error.message,
                     details: error.errors || null,
                 },

@@ -21,7 +21,7 @@ export const ArticleRecommendationsList = memo((props: ArticleRecommendationsLis
     }
 
     return (
-        <div className={classNames('', {}, [className])}>
+        <div className={classNames('', {}, [className])} data-testid='ArticleRecommendationsList'>
             <div className={cls.title_comment}>
                 Рекомендуем
             </div>

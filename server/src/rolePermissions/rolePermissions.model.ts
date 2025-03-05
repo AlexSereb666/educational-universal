@@ -7,7 +7,7 @@ interface RolePermissionsAttrs {
     permissionId: number;
 }
 
-@Table({ tableName: 'rolePermissions' })
+@Table({ tableName: 'role_permissions' })
 export class RolePermissions extends Model<RolePermissions, RolePermissionsAttrs> {
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;

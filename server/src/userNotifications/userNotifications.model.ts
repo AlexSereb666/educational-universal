@@ -24,9 +24,9 @@ export class UserNotifications extends Model<UserNotifications, UserNotification
     @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
     isRead: boolean;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, { onDelete: 'CASCADE', hooks: true })
     user: User;
 
-    @BelongsTo(() => Notifications)
+    @BelongsTo(() => Notifications, { onDelete: 'CASCADE', hooks: true })
     notification: Notifications;
 }

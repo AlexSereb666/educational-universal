@@ -14,7 +14,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
     const { comment, isLoading, error } = props;
 
     return (
-      <div className={cls.container}>
+      <div className={cls.container} data-testid='CommentCard'>
           <div className={cls.header}>
               <div className={cls.title}>
                   <img src={avatarDeafult as string} alt={'Аватар'} className={cls.avatar} />

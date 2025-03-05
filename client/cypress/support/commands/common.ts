@@ -1,7 +1,9 @@
 import {ACCESS_TOKEN_KEY} from "../../../src/shared/const/localstorage";
+import {User} from "../../../src/entities/User/model/types/user";
+import {selectByTestId} from "../../helpres/selectByTestId";
 
 export const login = (login: string = 'test', password: string = 'test') => {
-    cy.request({
+    return cy.request({
         method: 'POST',
         url: `http://localhost:8000/auth/login`,
         body: {
@@ -24,6 +26,19 @@ export const login = (login: string = 'test', password: string = 'test') => {
             }
         }
 
-        cy.visit('/');
+        return cy.wrap(user as User);
     })
 };
+
+export const getByTestId = (testId: string) => {
+    return cy.get(selectByTestId(testId));
+}
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            login(email?: string, password?: string): Chainable<User>,
+            getByTestId(testId: string): ReturnType<typeof cy.get>,
+        }
+    }
+}

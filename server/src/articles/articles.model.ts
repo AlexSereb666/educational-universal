@@ -52,6 +52,6 @@ export class Articles extends Model<Articles, CreateArticlesAttrs> {
     @Column({type: DataType.INTEGER})
     userId: number;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, { onDelete: 'CASCADE', hooks: true })
     user: User;
 }

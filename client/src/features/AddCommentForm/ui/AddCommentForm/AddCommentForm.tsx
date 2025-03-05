@@ -36,7 +36,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={cls.container}>
+            <div className={cls.container} data-testid='AddCommentForm'>
                 <div className={cls.text}>
                     <TextArea
                         size={'small'}

@@ -26,14 +26,14 @@ export class ArticlesBlock extends Model<ArticlesBlock, articlesBlockAttrs> {
     @Column({type: DataType.INTEGER})
     articleId: number;
 
-    @BelongsTo(() => Articles)
+    @BelongsTo(() => Articles, { onDelete: 'CASCADE', hooks: true })
     article: Articles;
 
     @ForeignKey(() => ArticlesTypeBlock)
     @Column({type: DataType.INTEGER})
     typeBlockId: number;
 
-    @BelongsTo(() => ArticlesTypeBlock)
+    @BelongsTo(() => ArticlesTypeBlock, { onDelete: 'CASCADE', hooks: true })
     typeBlock: ArticlesTypeBlock;
 }
 

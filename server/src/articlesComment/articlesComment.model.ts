@@ -29,9 +29,9 @@ export class ArticleComment extends Model<ArticleComment, ArticleCommentAttrs> {
     @Column({ type: DataType.INTEGER, allowNull: false })
     articleId: number;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, { onDelete: 'CASCADE', hooks: true })
     user: User;
 
-    @BelongsTo(() => Articles)
+    @BelongsTo(() => Articles, { onDelete: 'CASCADE', hooks: true })
     article: Articles;
 }

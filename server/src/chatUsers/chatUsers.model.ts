@@ -15,9 +15,9 @@ export class ChatUser extends Model<ChatUser> {
     @Column({ type: DataType.INTEGER })
     userId: number;
 
-    @BelongsTo(() => Chat)
+    @BelongsTo(() => Chat, { onDelete: 'CASCADE', hooks: true })
     chat: Chat;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, { onDelete: 'CASCADE', hooks: true })
     user: User;
 }

@@ -80,7 +80,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     }
 
     return (
-        <div className={cls[view]}>
+        <div className={cls[view]} data-testid='ArticleListItem'>
             {renderArticleItem()}
         </div>
     );

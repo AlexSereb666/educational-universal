@@ -12,9 +12,11 @@ const ProfilePage = () => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack>
-                <ProfileCard id={id} />
-            </VStack>
+            <div data-testid="ProfilePage">
+                <VStack>
+                    <ProfileCard id={id} />
+                </VStack>
+            </div>
         </DynamicModuleLoader>
     )
 };

@@ -1,18 +1,16 @@
-import {selectByTestId} from "../../helpres/selectByTestId";
-
 describe('Роутинг', () => {
   describe('Пользователь не авторизован', () => {
     it('Переход на страницу авторизации', () => {
       cy.visit('/');
-      cy.get(selectByTestId('LoginPage')).should('exist');
+      cy.getByTestId('LoginPage').should('exist');
     });
     it('Переход на главную страницу', () => {
       cy.visit('/main');
-      cy.get(selectByTestId('LoginPage')).should('exist');
+      cy.getByTestId('LoginPage').should('exist');
     });
     it('Переход на несуществующий маршрут', () => {
       cy.visit('/bilebirda');
-      cy.get(selectByTestId('LoginPage')).should('exist');
+      cy.getByTestId('NotFoundPage').should('exist');
     });
   });
   describe('Пользователь авторизован', () => {
@@ -21,7 +19,7 @@ describe('Роутинг', () => {
     });
     it('Переход на главную страницу', () => {
       cy.visit('/main');
-      cy.get(selectByTestId('MainPage')).should('exist');
+      cy.getByTestId('MainPage').should('exist');
     });
   });
-})
+});

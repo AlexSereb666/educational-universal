@@ -7,7 +7,7 @@ interface UserRolesAttrs {
     roleId: number;
 }
 
-@Table({ tableName: 'userRoles' })
+@Table({ tableName: 'user_roles' })
 export class UserRoles extends Model<UserRoles, UserRolesAttrs> {
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;

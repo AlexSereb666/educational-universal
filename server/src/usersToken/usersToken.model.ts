@@ -18,6 +18,6 @@ export class UsersToken extends Model<UsersToken, UsersTokenAttrs> {
     @Column({ type: DataType.INTEGER })
     userId: number;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, { onDelete: 'CASCADE', hooks: true })
     user: User;
 }

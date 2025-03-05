@@ -68,7 +68,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <div className={cls.articles_list} onScroll={onScroll} ref={listRef}>
+        <div
+            className={cls.articles_list}
+            onScroll={onScroll}
+            ref={listRef}
+            data-testid='ArticleList'
+        >
             {articles.length > 0
             ? articles.map(renderArticle)
             : null}
