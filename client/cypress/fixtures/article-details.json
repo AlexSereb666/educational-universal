@@ -1,0 +1,51 @@
+{
+  "id": 2,
+  "title": "Тестовая статья",
+  "subtitle": "Это подзаголовок тестовой статьи",
+  "img": "test_image.jpg",
+  "view": 0,
+  "createdAt": "2025-03-05T14:22:19.071Z",
+  "updatedAt": "2025-03-05T14:22:19.072Z",
+  "userId": 1,
+  "types": [
+    {
+      "id": 1,
+      "name": "IT"
+    },
+    {
+      "id": 2,
+      "name": "Экономика"
+    },
+    {
+      "id": 3,
+      "name": "Технологии"
+    }
+  ],
+  "blocks": [
+    {
+      "id": 1,
+      "step": 1,
+      "content": "Контент блока 1",
+      "title": "Блок 1",
+      "typeBlock": {
+        "id": 1,
+        "name": "TEXT"
+      }
+    },
+    {
+      "id": 2,
+      "step": 2,
+      "content": "Контент блока 2",
+      "title": "Блок 2",
+      "typeBlock": {
+        "id": 1,
+        "name": "TEXT"
+      }
+    }
+  ],
+  "user": {
+    "id": 1,
+    "login": "test",
+    "email": "aserebrakov343@gmail.com"
+  }
+}

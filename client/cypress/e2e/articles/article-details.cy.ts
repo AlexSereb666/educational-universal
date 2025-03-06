@@ -25,4 +25,4 @@ describe('Пользователь открыл страницу статьи', 
     cy.getByTestId('AddCommentForm').find('button').contains('Отправить').click();
     cy.getByTestId('CommentCard').should('have.length', 1);
   });
-})
+});

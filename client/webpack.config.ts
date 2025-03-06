@@ -20,11 +20,11 @@ export default (env: EnvVariables) => {
     }
 
     const config: webpack.Configuration = buildWebpack({
-        port: env.port ?? 3000,
-        mode: env.mode ?? 'development',
+        port: env?.port ?? 3000,
+        mode: env?.mode ?? 'development',
         paths,
-        analyzer: env.analyzer,
-        apiUrl: env.apiUrl || 'http://localhost:8000'
+        analyzer: env?.analyzer,
+        apiUrl: env?.apiUrl || 'http://localhost:8000'
     });
 
     return config;

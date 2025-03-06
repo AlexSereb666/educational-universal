@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "login": "test",
+  "email": "aserebrakov343@gmail.com",
+  "isActivated": true,
+  "roles": [],
+  "permissions": []
+}

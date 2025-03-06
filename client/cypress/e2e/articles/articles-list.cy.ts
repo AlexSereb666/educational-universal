@@ -6,7 +6,11 @@ describe('Пользователь перешел на страницу стат
   });
 
   it('Страница успешно загрузилась и выдала как минимум 3 статьи', () => {
+    cy.intercept('GET', '**/articles?*', { fixture: 'articles.json' });
     cy.getByTestId('ArticleList').should('exist');
     cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
+  });
+  it.skip('Пример заскипанного теста', () => {
+    cy.get('bilebirda').should('exist');
   });
 });
