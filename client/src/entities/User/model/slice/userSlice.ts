@@ -1,8 +1,10 @@
-import {User, UserSchema} from "../types/user";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
-import {logout} from "../services/logout/logout";
-import {initAuth} from "../../model/services/initAuth/initAuth";
+import { User, UserSchema } from '../types/user';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ACCESS_TOKEN_KEY } from '@/shared/const/localstorage';
+import { logout } from '../services/logout/logout';
+import { initAuth } from '../../model/services/initAuth/initAuth';
+import { saveJsonSettings } from '@/entities/User/model/services/saveJsonSettings/saveJsonSettings';
+import { JsonSettings } from '@/entities/User/model/types/jsonSettings';
 
 const initialState: UserSchema = {
     _inited: false,
@@ -29,8 +31,13 @@ export const userSlice = createSlice({
             })
             .addCase(initAuth.rejected, (state, action) => {
                 state._inited = true;
+            })
+            .addCase(saveJsonSettings.fulfilled, (state, { payload }: PayloadAction<JsonSettings>) => {
+                if (state.authData) {
+                    state.authData.jsonSettings = payload;
+                }
             });
-    }
+    },
 });
 
 export const { actions: userActions } = userSlice;

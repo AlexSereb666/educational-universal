@@ -1,12 +1,11 @@
-import {Body, Controller, Get, Param, Post, Query, UseGuards} from "@nestjs/common";
-import {UsersService} from "./users.service";
-import {CreateUserDto} from "./dto/create-user.dto";
-import {AuthGuard} from "../auth/auth.guard";
-import {UserDto} from "../auth/dto/user.dto";
+import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { AuthGuard } from '../auth/auth.guard';
+import { UserDto } from '../auth/dto/user.dto';
 
 @Controller('users')
 export class UsersController {
-
     constructor(private usersService: UsersService) {}
 
     @Post()
@@ -21,11 +20,7 @@ export class UsersController {
     }
 
     @Get('searchByLogin')
-    getAllByLogin(
-        @Query('limit') limit: number,
-        @Query('offset') offset: number,
-        @Query('search') search: string,
-    ) {
+    getAllByLogin(@Query('limit') limit: number, @Query('offset') offset: number, @Query('search') search: string) {
         return this.usersService.getUsersWithPagination(limit, offset, search);
     }
 
@@ -37,13 +32,16 @@ export class UsersController {
 
     @Post('edit/:id')
     @UseGuards(AuthGuard)
-    editDataUserById(
-        @Param('id') id: number,
-        @Body() { login }: { login: string }
-    ) {
+    editDataUserById(@Param('id') id: number, @Body() { login }: { login: string }) {
         return this.usersService.editDataUserById({
             id,
             login,
         });
+    }
+
+    @Patch('update-settings/:id')
+    @UseGuards(AuthGuard)
+    updateJsonSettings(@Param('id') id: number, @Body('jsonSettings') jsonSettings: any) {
+        return this.usersService.updateJsonSettings({ id, jsonSettings });
     }
 }

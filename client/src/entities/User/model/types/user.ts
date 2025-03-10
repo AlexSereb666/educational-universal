@@ -1,4 +1,5 @@
-import {RolePermissions, UserRoles} from "../const/user";
+import { RolePermissions, UserRoles } from '../const/user';
+import { JsonSettings } from './jsonSettings';
 
 export interface Permission {
     id: number;
@@ -18,6 +19,7 @@ export interface User {
     login?: string;
     email: string;
     isActivated: boolean;
+    jsonSettings: JsonSettings;
     roles: Role[];
     permissions: Permission[];
 }
