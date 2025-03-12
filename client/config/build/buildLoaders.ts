@@ -12,30 +12,22 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
         type: 'asset/resource',
     }
 
-    /*const svgLoader = {
-        test: /\.svg$/,
-        issuer: /\.[jt]sx?$/,
-        use: [
-            {
-                loader: '@svgr/webpack',
-                options: {
-                    icon: true,
-                    svgoConfig: [
-                        {
-                            name: 'convertColors',
-                            params: {
-                                currentColor: true,
-                            }
-                        }
-                    ]
-                }
-            }
-        ],
-    }*/
-
     const svgLoader = {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: [{
+            loader: '@svgr/webpack',
+            options: {
+                icon: true,
+                svgoConfig: [
+                    {
+                        name: 'convertColors',
+                        params: {
+                            currentColor: true,
+                        }
+                    }
+                ]
+            }
+        }],
     };
 
     const cssLoaderWithModules = {

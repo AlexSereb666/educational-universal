@@ -2,19 +2,25 @@ export enum AppRoutes {
     LOGIN = 'login',
     REGISTRATION = 'registration',
     MAIN = 'main',
-
+    MESSENGER = 'messenger',
+    STORAGE = 'storage',
+    ARTICLES = 'articles',
+    ARTICLE_DETAILS = 'article_details',
+    ARTICLE_CREATE = 'article_create',
+    ARTICLE_EDIT = 'article_edit',
+    ADMIN_PANEL = 'admin_panel',
+    PROFILE = 'profile',
     NOT_FOUND = 'not_found',
 }
 
 export const getRouteLogin = () => `/`;
 export const getRouteRegistration = () => `/registration`;
 export const getRouteMain = () => `/main`;
-
-export const getRouteMessenger = () => `${getRouteMain()}/messenger`;
-export const getRouteStorage = () => `${getRouteMain()}/storage`;
-export const getRouteArticles = () => `${getRouteMain()}/articles`;
-export const getRouteArticleDetails = (id: string) => `${getRouteMain()}/articles/${id}`;
-export const getRouteArticleCreate = () => `${getRouteMain()}/articles/new`;
-export const getRouteArticleEdit = (id: string) => `${getRouteMain()}/articles/${id}/edit`;
-export const getRouteAdminPanel = () => `${getRouteMain()}/admin`;
-export const getRouteProfile = (id: string) => `${getRouteMain()}/profile/${id}`;
+export const getRouteMessenger = () => `/messenger`;
+export const getRouteStorage = () => `/storage`;
+export const getRouteArticles = () => `/articles`;
+export const getRouteArticleDetails = (id: string) => `/articles/${id}`;
+export const getRouteArticleCreate = () => `/articles/new`;
+export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;
+export const getRouteAdminPanel = () => `/admin`;
+export const getRouteProfile = (id: string) => `/profile/${id}`;
