@@ -1,25 +1,24 @@
-import {UserSchema} from "@/entities/User";
-import {LoginSchema} from "@/features/Login";
-import {
-    AnyAction, EnhancedStore, Reducer, ReducersMapObject
-} from '@reduxjs/toolkit';
-import {AxiosInstance} from "axios";
-import {RegistrationSchema} from "@/features/Registration";
-import {ContactListSearchSchema} from "@/features/ContactList";
-import {ChatMessanger} from "@/entities/ChatMessanger";
-import {ArticleDetailsSchema, TypesArticleSchema} from "@/entities/Articles";
-import {ProfileSchema} from "@/features/Profile";
-import {AddCommentFormSchema} from "@/features/AddCommentForm";
-import {ArticlesPageSchema} from "@/pages/ArticlesPage";
-import {ScrollSaveSchema} from "@/features/ScrollSave";
-import {ArticleDetailsPageSchema} from "@/pages/ArticlesDetailsPage";
-import {rtkApi} from "@/shared/api/rtkApi";
-import {ProfileCardSchema} from "@/features/ProfileCard";
+import { UserSchema } from '@/entities/User';
+import { LoginSchema } from '@/features/Login';
+import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { AxiosInstance } from 'axios';
+import { RegistrationSchema } from '@/features/Registration';
+import { ContactListSearchSchema } from '@/features/ContactList';
+import { ChatMessanger } from '@/entities/ChatMessanger';
+import { ArticleDetailsSchema, TypesArticleSchema } from '@/entities/Articles';
+import { ProfileSchema } from '@/features/Profile';
+import { AddCommentFormSchema } from '@/features/AddCommentForm';
+import { ArticlesPageSchema } from '@/pages/ArticlesPage';
+import { ScrollSaveSchema } from '@/features/ScrollSave';
+import { ArticleDetailsPageSchema } from '@/pages/ArticlesDetailsPage';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { ProfileCardSchema } from '@/features/ProfileCard';
+import { SettingsSchema } from '@/entities/Settings';
 
 export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
-    registration: RegistrationSchema
+    registration: RegistrationSchema;
     scrollSave: ScrollSaveSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
@@ -31,7 +30,8 @@ export interface StateSchema {
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
     articleDetailsPage?: ArticleDetailsPageSchema;
-    profileCard?: ProfileCardSchema,
+    profileCard?: ProfileCardSchema;
+    settings?: SettingsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

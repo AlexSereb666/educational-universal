@@ -1,5 +1,4 @@
 import * as MiniCssExtractPlugin from "mini-css-extract-plugin";
-import ReactRefreshTypeScript from "react-refresh-typescript";
 import { Configuration } from 'webpack';
 import {BuildOptions} from "./types/types";
 import {buildBabelLoader} from "./babel/buildBabelLoader";
@@ -51,38 +50,13 @@ export function buildLoaders(options: BuildOptions): Configuration['module']['ru
         ],
     }
 
-    const tsLoader = {
-        exclude: /node_modules/,
-        test: /\.tsx?$/,
-        use: [
-            {
-                loader: 'ts-loader',
-                options: {
-                    transpileOnly: isDev,
-                    getCustomTransformers: () => ({
-                        before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-                    })
-                }
-            }
-        ]
-    }
-
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-    };
-
     const codeBabelLoader = buildBabelLoader({...options, isTsx: false});
     const tsxCodeBabelLoader = buildBabelLoader({...options, isTsx: true});
 
     return [
         assetLoader,
         scssLoader,
-        // tsLoader,
-        //babelLoader,
         svgLoader,
-        // typescriptLoader,
         codeBabelLoader,
         tsxCodeBabelLoader,
     ]

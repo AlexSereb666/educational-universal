@@ -22,10 +22,12 @@ import {
     getRouteProfile,
     getRouteRegistration,
     getRouteStorage,
+    getRouteUserSettings,
 } from '@/shared/const/router';
 import { UserRoles } from '@/entities/User';
 import { AppRoutesProps } from '../types/router';
 import { ProfilePage } from '@/pages/ProfilePage';
+import { UserSettingsPage } from '@/pages/UserSettingsPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -72,6 +74,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.PROFILE]: {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
+        authOnly: true,
+    },
+    [AppRoutes.USER_SETTINGS]: {
+        path: getRouteUserSettings(),
+        element: <UserSettingsPage />,
         authOnly: true,
     },
     [AppRoutes.LOGIN]: {

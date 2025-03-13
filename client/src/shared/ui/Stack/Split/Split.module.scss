@@ -1,0 +1,35 @@
+.Split {
+  display: flex;
+  align-items: flex-start;
+}
+
+.SplitItem {
+  display: flex;
+  justify-content: center;
+}
+
+.ratio1_1 .SplitItem:nth-child(1) { flex: 1; }
+.ratio1_1 .SplitItem:nth-child(2) { flex: 1; }
+
+.ratio2_1 .SplitItem:nth-child(1) { flex: 2; }
+.ratio2_1 .SplitItem:nth-child(2) { flex: 1; }
+
+.ratio3_1 .SplitItem:nth-child(1) { flex: 3; }
+.ratio3_1 .SplitItem:nth-child(2) { flex: 1; }
+
+.ratio4_1 .SplitItem:nth-child(1) { flex: 4; }
+.ratio4_1 .SplitItem:nth-child(2) { flex: 1; }
+
+.ratio1_2 .SplitItem:nth-child(1) { flex: 1; }
+.ratio1_2 .SplitItem:nth-child(2) { flex: 2; }
+
+.ratio1_3 .SplitItem:nth-child(1) { flex: 1; }
+.ratio1_3 .SplitItem:nth-child(2) { flex: 3; }
+
+.ratio1_4 .SplitItem:nth-child(1) { flex: 1; }
+.ratio1_4 .SplitItem:nth-child(2) { flex: 4; }
+
+.gap4 { gap: 4px; }
+.gap8 { gap: 8px; }
+.gap16 { gap: 16px; }
+.gap32 { gap: 32px; }

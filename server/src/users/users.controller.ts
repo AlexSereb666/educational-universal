@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    Patch,
+    Post,
+    Query,
+    UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
@@ -20,7 +29,11 @@ export class UsersController {
     }
 
     @Get('searchByLogin')
-    getAllByLogin(@Query('limit') limit: number, @Query('offset') offset: number, @Query('search') search: string) {
+    getAllByLogin(
+        @Query('limit') limit: number,
+        @Query('offset') offset: number,
+        @Query('search') search: string,
+    ) {
         return this.usersService.getUsersWithPagination(limit, offset, search);
     }
 

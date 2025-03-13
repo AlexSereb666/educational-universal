@@ -10,6 +10,7 @@ export enum AppRoutes {
     ARTICLE_EDIT = 'article_edit',
     ADMIN_PANEL = 'admin_panel',
     PROFILE = 'profile',
+    USER_SETTINGS = 'user_settings',
     NOT_FOUND = 'not_found',
 }
 
@@ -24,3 +25,4 @@ export const getRouteArticleCreate = () => `/articles/new`;
 export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;
 export const getRouteAdminPanel = () => `/admin`;
 export const getRouteProfile = (id: string) => `/profile/${id}`;
+export const getRouteUserSettings = () => `/settings`;

@@ -2,7 +2,14 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 10px;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
 }
 
 .tab {
@@ -31,5 +38,10 @@
 
   &.active {
     background-color: var(--selected);
+  }
+
+  &.equalWidth {
+    flex: 1;
+    text-align: center;
   }
 }

@@ -1,34 +1,40 @@
-import {HttpException, HttpStatus, Injectable} from "@nestjs/common";
-import {UsersService} from "../users/users.service";
-import {JwtService} from "@nestjs/jwt";
-import {CreateUserDto} from "../users/dto/create-user.dto";
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { UsersService } from '../users/users.service';
+import { JwtService } from '@nestjs/jwt';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
 import * as uuid from 'uuid';
-import {EmailService} from "../email/email.service";
-import {UsersTokenService} from "../usersToken/usersToken.service";
-import {UserDto} from "./dto/user.dto";
-import {ConfigService} from "@nestjs/config";
-import {UserForRolesDto} from "./dto/userForRoles.dto";
+import { EmailService } from '../email/email.service';
+import { UsersTokenService } from '../usersToken/usersToken.service';
+import { UserDto } from './dto/user.dto';
+import { ConfigService } from '@nestjs/config';
+import { UserForRolesDto } from './dto/userForRoles.dto';
 
 @Injectable()
 export class AuthService {
-
-    constructor(private userService: UsersService,
-                private jwtService: JwtService,
-                private emailService: EmailService,
-                private usersTokenService: UsersTokenService,
-                private readonly configService: ConfigService
+    constructor(
+        private userService: UsersService,
+        private jwtService: JwtService,
+        private emailService: EmailService,
+        private usersTokenService: UsersTokenService,
+        private readonly configService: ConfigService,
     ) {}
 
     async registration(userDto: CreateUserDto) {
         let candidate = await this.userService.getUserByLogin(userDto.login);
         if (candidate) {
-            throw new HttpException('Пользователь с таким логином уже существует', HttpStatus.BAD_REQUEST);
+            throw new HttpException(
+                'Пользователь с таким логином уже существует',
+                HttpStatus.BAD_REQUEST,
+            );
         }
 
         candidate = await this.userService.getUserByEmail(userDto.email);
         if (candidate) {
-            throw new HttpException('Пользователь с таким email уже существует', HttpStatus.BAD_REQUEST);
+            throw new HttpException(
+                'Пользователь с таким email уже существует',
+                HttpStatus.BAD_REQUEST,
+            );
         }
 
         const hashPassword = await bcrypt.hash(userDto.password, 5);
@@ -37,22 +43,22 @@ export class AuthService {
         const user = await this.userService.createUser({
             ...userDto,
             password: hashPassword,
-            activationLink
+            activationLink,
         });
         await this.emailService.sendActivationMail(
             userDto.email,
-            `${this.configService.get<string>('API_URL')}:${this.configService.get<string>('PORT')}/auth/activate/${activationLink}`
+            `${this.configService.get<string>('API_URL')}:${this.configService.get<string>('PORT')}/auth/activate/${activationLink}`,
         );
 
         const userParam = new UserDto(user);
-        const tokens = await this.usersTokenService.generateTokens({...userParam});
+        const tokens = await this.usersTokenService.generateTokens({ ...userParam });
 
         await this.usersTokenService.saveToken({
             userId: userParam.id,
-            refreshToken: tokens.refreshToken
+            refreshToken: tokens.refreshToken,
         });
 
-        return {...tokens, user: userParam}
+        return { ...tokens, user: userParam };
     }
 
     async login(userDto: CreateUserDto) {
@@ -71,14 +77,14 @@ export class AuthService {
         }
 
         const userParam = new UserDto(user);
-        const tokens = await this.usersTokenService.generateTokens({...userParam});
+        const tokens = await this.usersTokenService.generateTokens({ ...userParam });
 
         await this.usersTokenService.saveToken({
             userId: userParam.id,
-            refreshToken: tokens.refreshToken
+            refreshToken: tokens.refreshToken,
         });
 
-        return {...tokens, user: new UserForRolesDto(user)};
+        return { ...tokens, user: new UserForRolesDto(user) };
     }
 
     async logout(refreshToken: string) {
@@ -89,7 +95,10 @@ export class AuthService {
     async activate(activationLink: string) {
         const user = await this.userService.getUserByActivationLink(activationLink);
         if (!user) {
-            throw new HttpException('Некорректная ссылка активации', HttpStatus.BAD_REQUEST);
+            throw new HttpException(
+                'Некорректная ссылка активации',
+                HttpStatus.BAD_REQUEST,
+            );
         }
         user.isActivated = true;
         await user.save();
@@ -104,20 +113,23 @@ export class AuthService {
         const tokenFromDb = await this.usersTokenService.findtToken(refreshToken);
 
         if (!userData || !tokenFromDb) {
-            throw new HttpException('Пользователь не авторизован', HttpStatus.BAD_REQUEST);
+            throw new HttpException(
+                'Пользователь не авторизован',
+                HttpStatus.BAD_REQUEST,
+            );
         }
 
         const user = await this.userService.getUserById(userData.id);
 
         const userParam = new UserDto(user);
-        const tokens = await this.usersTokenService.generateTokens({...userParam});
+        const tokens = await this.usersTokenService.generateTokens({ ...userParam });
 
         await this.usersTokenService.saveToken({
             userId: userParam.id,
-            refreshToken: tokens.refreshToken
+            refreshToken: tokens.refreshToken,
         });
 
-        return {...tokens, user: new UserForRolesDto(user)};
+        return { ...tokens, user };
     }
 
     async generateRandomUsers() {
@@ -137,7 +149,10 @@ export class AuthService {
                     isActivated: true,
                 });
             } catch (error) {
-                console.error(`Ошибка при создании пользователя ${login}:`, error.message);
+                console.error(
+                    `Ошибка при создании пользователя ${login}:`,
+                    error.message,
+                );
                 i--;
             }
         }
@@ -155,7 +170,8 @@ export class AuthService {
     }
 
     private generateRandomPassword(): string {
-        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+        const chars =
+            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
         let password = '';
         const length = Math.floor(Math.random() * 10) + 6; // Длина пароля от 6 до 15 символов
         for (let i = 0; i < length; i++) {
