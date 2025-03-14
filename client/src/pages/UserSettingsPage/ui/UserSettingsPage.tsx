@@ -1,12 +1,11 @@
-import { useParams } from 'react-router-dom';
 import { Split } from '@/shared/ui/Stack';
 import { SettingsTabs } from '@/widgets/SettingsTabs';
 import {
     ReducersList,
     DynamicModuleLoader,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { settingsReducer } from '@/entities/Settings';
 import { SettingsPanel } from '@/widgets/SettingsPanel';
+import { settingsReducer } from '@/entities/Settings';
 
 const reducers: ReducersList = {
     settings: settingsReducer,

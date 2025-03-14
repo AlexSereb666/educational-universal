@@ -12,6 +12,8 @@
   --navbar-width-menu: 240px;
   --chat-box-width: 1050px;
 
+  --skeleton-gradient-duration: 1.5s;
+
   --color-white: #afafaf;
   --color-red: #bd0101;
   --color-select-background: rgba(175, 175, 175, 0.18);
@@ -24,10 +26,9 @@
   --color-alien-message: #201359;
   --color-my-message: #2e1a79;
 
-  --skeleton-color-light: rgba(255, 255, 255, 0.1);
-  --skeleton-color-dark: rgba(0, 0, 0, 0.1);
-  --skeleton-gradient-duration: 1.5s;
-  --skeleton-shadow-color: rgba(255, 255, 255, 0.3);
+  --skeleton-color-light1: rgba(255, 255, 255, 0.1);
+  --skeleton-color-dark1: rgba(0, 0, 0, 0.1);
+  --skeleton-shadow-color1: rgba(255, 255, 255, 0.3);
 
   --article-color-subtitle: rgba(158, 158, 158, 0.8);
 
@@ -46,7 +47,7 @@
 
   --dropdown-background-color: rgba(28, 0, 28, 0.9);
   --dropdown-border-color: rgba(141, 70, 236, 0.63);
-  --dropdown-active-color: rgba(141, 70, 236, 0.2);
+  --dropdown-active1-color: rgba(141, 70, 236, 0.2);
 
   --color-star-selected: rgba(244, 227, 34, 0.7);
 }

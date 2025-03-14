@@ -1,7 +1,7 @@
 .container {
   position: relative;
   margin: 10px 0;
-  color: var(--color-white);
+  color: var(--color-text);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -24,10 +24,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px;
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--select-border-color);
   border-radius: 4px;
   background-color: transparent;
-  color: var(--color-white);
+  color: var(--color-text);
   transition: border-color 0.2s ease;
 
   &.focused {
@@ -44,13 +44,13 @@
   font-size: inherit;
 
   &.placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--select-placeholder-color);
   }
 }
 
 .arrow {
   margin-left: 8px;
-  border: solid var(--color-white);
+  border: solid var(--color-text);
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 4px;
@@ -67,9 +67,9 @@
   top: 100%;
   left: 0;
   right: 0;
-  color: var(--color-white);
-  background: var(--background-select);
-  border: 1px solid var(--color-white);
+  color: var(--color-text);
+  background: var(--select-bg-color);
+  border: 1px solid var(--select-border-color);
   border-radius: 4px;
   max-height: 200px;
   overflow-y: auto;
@@ -94,12 +94,12 @@
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: var(--selected);
+    background-color: var(--select-active-color);
   }
 
   &.selected {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--select-selected-color);
+    color: var(--color-text);
   }
 
   &.small {
@@ -117,7 +117,7 @@
 
 .label {
   font-size: 0.875em;
-  color: var(--color-white);
+  color: var(--color-text);
   transition: color 0.2s ease;
 
   &.focused {
@@ -160,6 +160,6 @@
 
 .active {
   .select {
-    border-color: var(--color-white);
+    border-color: var(--select-border-color);
   }
 }

@@ -1,25 +1,14 @@
 .container {
-  width: 100%;
   height: var(--navbar-height);
-  background-color: black;
-  color: white;
-  box-shadow: 0 5px 10px -1px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(255, 255, 255, 0.1);
-}
-
-.navbar {
+  background-color: var(--bg-panel-color);
+  backdrop-filter: var(--blur-panel);
+  box-shadow: 0 5px 10px -1px var(--shadow-border-panel-start), 0 1px 3px var(--shadow-border-panel-end);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 10%;
 }
 
-.items {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.logo img {
-  width: 50px;
-  height: auto;
+.logo {
+  fill: var(--color-icon);
 }

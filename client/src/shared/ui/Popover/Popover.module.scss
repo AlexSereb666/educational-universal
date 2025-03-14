@@ -6,15 +6,16 @@
 .trigger {
   background-color: transparent;
   border: none;
+  display: flex;
 }
 
 .panel {
   max-width: 500px;
   position: absolute;
   right: 0;
-  background: var(--dropdown-background-color);
-  border: 1px solid var(--dropdown-border-color);
+  background: var(--notification-bg-color);
+  border: 1px solid var(--notification-border-color);
   padding: 10px 25px;
   border-radius: 8px;
-  color: var(--color-white);
+  color: var(--color-text);
 }

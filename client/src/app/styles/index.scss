@@ -1,11 +1,12 @@
 @import "reset";
 @import "variables/global";
+@import './themes';
 
 body {
   min-height: 100vh;
   height: 100vh;
   overflow-x: hidden;
-  background: linear-gradient(to bottom, black, #420042) fixed;
+  background: var(--bg-color);
   background-size: cover;
   margin: 0;
   padding: 0;

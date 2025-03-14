@@ -1,0 +1,46 @@
+[data-theme='light'] {
+  // общий фон
+  --bg-color: linear-gradient(to bottom, #194a7a, #d1dbe4) fixed;
+
+  // текст
+  --color-text: #afafaf;
+
+  // выпадающий список
+  --select-border-color: #9c9c9c;
+  --select-placeholder-color: #afafaf;
+  --select-bg-color: #334d77;
+  --select-selected-color: #476f95;
+  --select-active-color: #4a6188;
+
+  // табы
+  --border-color-tab: rgba(175, 175, 175, 0.5);
+  --hover-color-tab: #4a6188;
+  --selected-color-tab: rgba(255, 255, 255, 0.3);
+
+  // фон панелей
+  --bg-panel-color: rgba(0, 0, 0, 0.6);
+  --blur-panel: blur(20px);
+  --shadow-border-panel-start: rgba(255, 255, 255, 0.4);
+  --shadow-border-panel-end: rgba(255, 255, 255, 0.1);
+
+  // иконки svg
+  --color-icon: #5da7ba;
+
+  // элемент dropdawn
+  --bg-dropdawn-color: rgb(29, 56, 103);
+  --border-dropdownr-color: #93a2ba;
+  --text-dropdawn-color: #88a2c4;
+  --dropdown-active-color: #4a6188;
+
+  // скелетоны
+  --skeleton-color-light: rgba(255, 255, 255, 0.1);
+  --skeleton-color-dark: rgba(0, 0, 0, 0.1);
+  --skeleton-shadow-color: rgba(255, 255, 255, 0.3);
+
+  // окно уведомлений
+  --notification-bg-color: rgba(29, 56, 103, 0.95);
+  --notification-border-color: #93a2ba;
+
+
+
+}

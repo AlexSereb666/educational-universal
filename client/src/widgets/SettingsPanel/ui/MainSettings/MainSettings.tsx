@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { Text } from '@/shared/ui/Text';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack, HStack } from '@/shared/ui/Stack';
 import { Select, SelectOption } from '@/shared/ui/Select';
 import { Language } from '@/shared/const/language';
 import { saveJsonSettings, useJsonSettingByKey } from '@/entities/User';
@@ -39,11 +39,11 @@ export const MainSettings = memo(() => {
             >
                 {t('Общие настройки')}
             </Text>
-            <VStack
+            <HStack
                 max
-                gap={'8'}
+                justify={'between'}
             >
-                <Text size={'small'}>Выбор языка</Text>
+                <Text size={'small'}>{t('Выбор языка')}</Text>
                 <Select
                     value={currentLanguage}
                     options={languageOptions}
@@ -51,7 +51,7 @@ export const MainSettings = memo(() => {
                     size={'small'}
                     width={150}
                 />
-            </VStack>
+            </HStack>
         </VStack>
     );
 });

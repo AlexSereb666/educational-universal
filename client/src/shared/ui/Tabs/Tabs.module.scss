@@ -15,9 +15,9 @@
 .tab {
   padding: 10px 16px;
   cursor: pointer;
-  color: var(--color-white);
+  color: var(--color-text);
   transition: background-color 0.2s ease, color 0.2s ease;
-  border: 2px solid var(--color-code-border);
+  border: 2px solid var(--border-color-tab);
   border-radius: 10px;
 
   &.small {
@@ -33,11 +33,11 @@
   }
 
   &:hover {
-    background-color: var(--color-hover);
+    background-color: var(--hover-color-tab);
   }
 
   &.active {
-    background-color: var(--selected);
+    background-color: var(--selected-color-tab);
   }
 
   &.equalWidth {

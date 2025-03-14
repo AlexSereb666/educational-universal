@@ -1,6 +1,5 @@
 .notificationIcon {
-  width: auto;
-  height: 25px;
+  fill: var(--color-icon);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }

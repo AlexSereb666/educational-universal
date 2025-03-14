@@ -1,10 +1,12 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import * as cls from './SidebarItem.module.scss';
-import { SidebarItemType } from "../Sidebar/Sidebar";
-import { useSelector } from "react-redux";
-import { getUserAuthData } from "@/entities/User";
+import { SidebarItemType } from '../Sidebar/Sidebar';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from '@/entities/User';
 import classNames from 'classnames';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Icon } from '@/shared/ui/Icon';
+import { Text } from '@/shared/ui/Text';
 
 interface SidebarItemProps {
     item: SidebarItemType;
@@ -20,15 +22,23 @@ export const SidebarItem = memo(({ item, isActive, onClick }: SidebarItemProps) 
     }
 
     return (
-        <Link to={item.path} className={classNames(cls.container)} onClick={onClick}>
-            <img
+        <Link
+            to={item.path}
+            className={classNames(cls.container)}
+            onClick={onClick}
+        >
+            <Icon
+                Svg={item.Icon}
+                width={25}
+                height={25}
                 className={cls.icon}
-                src={item.Icon}
-                alt={item.text}
             />
-            <span className={classNames({ [cls.activeText]: isActive }, cls.mode)}>
+            <Text
+                className={cls.text}
+                size={'small'}
+            >
                 {item.text}
-            </span>
+            </Text>
         </Link>
     );
 });

@@ -1,23 +1,23 @@
-import {memo} from "react";
-import * as cls from "./NotificationButton.module.scss";
-import {NotificationList} from "@/entities/Notification";
-import {Popover} from "@/shared/ui/Popover";
-import notificationIcon from '@/shared/assets/notification.png';
+import { memo } from 'react';
+import * as cls from './NotificationButton.module.scss';
+import { NotificationList } from '@/entities/Notification';
+import { Popover } from '@/shared/ui/Popover';
+import Notification from '@/shared/assets/icons/Notification.svg';
+import { Icon } from '@/shared/ui/Icon';
 
 export const NotificationButton = memo(() => {
     const trigger = (
-        <img
+        <Icon
             className={cls.notificationIcon}
-            src={notificationIcon}
-            alt={'Нет иконки'}
+            Svg={Notification}
+            width={25}
+            height={25}
         />
     );
 
     return (
-        <Popover
-            trigger={trigger}
-        >
+        <Popover trigger={trigger}>
             <NotificationList />
         </Popover>
-    )
+    );
 });

@@ -1,19 +1,17 @@
-import {memo} from "react";
+import { memo } from 'react';
 import * as cls from './NotificationList.module.scss';
-import {useAuthUser} from "@/shared/lib/hooks/useAuthUser/useAuthUser";
-import {useNotifications} from "../../api/notificationApi";
-import {VStack} from "@/shared/ui/Stack";
-import {NotificationItem} from "../NotificationItem/NotificationItem";
-import {Skeleton} from "@/shared/ui/Skeleton";
+import { useAuthUser } from '@/shared/lib/hooks/useAuthUser/useAuthUser';
+import { useNotifications } from '../../api/notificationApi';
+import { VStack } from '@/shared/ui/Stack';
+import { NotificationItem } from '../NotificationItem/NotificationItem';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { Text } from '@/shared/ui/Text';
 
 interface NotificationProps {}
 
 export const NotificationList = memo((props: NotificationProps) => {
     const user = useAuthUser();
-    const {
-        data,
-        isLoading
-    } = useNotifications(user.id, {
+    const { data, isLoading } = useNotifications(user.id, {
         pollingInterval: 5000,
     });
 
@@ -23,19 +21,31 @@ export const NotificationList = memo((props: NotificationProps) => {
                 gap={'16'}
                 max
             >
-                <Skeleton width={400} height={50} border={'5%'} />
-                <Skeleton width={400} height={50} border={'5%'} />
-                <Skeleton width={400} height={50} border={'5%'} />
+                <Skeleton
+                    width={400}
+                    height={50}
+                    border={'5%'}
+                />
+                <Skeleton
+                    width={400}
+                    height={50}
+                    border={'5%'}
+                />
+                <Skeleton
+                    width={400}
+                    height={50}
+                    border={'5%'}
+                />
             </VStack>
-        )
+        );
     }
 
-    if (!data) {
+    if (data.length === 0) {
         return (
             <div className={cls.notFound}>
-                Уведомлений нет
+                <Text>Уведомлений нет</Text>
             </div>
-        )
+        );
     }
 
     return (
@@ -51,5 +61,5 @@ export const NotificationList = memo((props: NotificationProps) => {
                 />
             ))}
         </VStack>
-    )
-})
+    );
+});
