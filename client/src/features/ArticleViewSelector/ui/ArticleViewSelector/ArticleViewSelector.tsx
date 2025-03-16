@@ -1,8 +1,9 @@
-import {memo} from "react";
-import listIcon from 'shared/assets/list.png';
-import tileIcon from 'shared/assets/tile.png';
+import { memo } from 'react';
+import listIcon from 'shared/assets/icons/UnorderedListOutlined.svg';
+import tileIcon from 'shared/assets/icons/ViewTile.svg';
 import * as cls from './ArticleViewSelector.module.scss';
-import {ArticleView} from "@/entities/Articles";
+import { ArticleView } from '@/entities/Articles';
+import { Icon } from '@/shared/ui/Icon';
 
 interface ArticleViewSelectorProps {
     view: ArticleView;
@@ -12,23 +13,20 @@ interface ArticleViewSelectorProps {
 const viewTypes = [
     {
         view: ArticleView.BIG,
-        icon: listIcon
+        icon: listIcon,
     },
     {
         view: ArticleView.SMALL,
-        icon: tileIcon
-    }
-]
+        icon: tileIcon,
+    },
+];
 
 export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
-    const {
-        view,
-        onViewClick,
-    } = props;
+    const { view, onViewClick } = props;
 
     const onClick = (newView: ArticleView) => {
         onViewClick?.(newView);
-    }
+    };
 
     return (
         <div className={cls.container}>
@@ -38,9 +36,14 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                     key={item.view}
                     className={`${cls.btn} ${view === item.view ? cls.selected : ''}`}
                 >
-                    <img src={item.icon} alt={'Иконка'} className={cls.icon} />
+                    <Icon
+                        Svg={item.icon}
+                        width={24}
+                        height={24}
+                        className={cls.icon}
+                    />
                 </button>
             ))}
         </div>
-    )
+    );
 });

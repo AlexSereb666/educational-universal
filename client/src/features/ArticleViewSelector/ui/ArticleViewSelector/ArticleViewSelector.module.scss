@@ -8,13 +8,18 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  transition: transform 0.2s ease-in-out;
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
+.btn:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }
 
 .btn.selected {
   opacity: 0.6;
+}
+
+.icon {
+  color: var(--color-icon);
 }

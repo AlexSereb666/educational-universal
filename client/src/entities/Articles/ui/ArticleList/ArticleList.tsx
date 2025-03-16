@@ -1,17 +1,18 @@
-import React, {memo, useEffect, useRef} from "react";
-import {Article} from "../../model/type/articles";
-import {ArticleListItem} from "../ArticleListItem/ArticleListItem";
+import React, { memo, useEffect, useRef } from 'react';
+import { Article } from '../../model/type/articles';
+import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import * as cls from './ArticleList.module.scss';
-import {ArticleListItemSkeleton} from "../ArticleListItemSkeleton/ArticleListItemSkeleton";
-import {useScrollToEnd} from "@/shared/lib/hooks/useScrollToEnd/useScrollToEnd";
-import {useAppDispatch} from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
+import { useScrollToEnd } from '@/shared/lib/hooks/useScrollToEnd/useScrollToEnd';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 // eslint-disable-next-line alexsereb666-plugin/layer-imports
-import {getScrollSavePath, scrollSaveSliceActions} from "@/features/ScrollSave";
-import {useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {StateSchema} from "@/app/providers/StoreProvider";
-import {useThrottle} from "@/shared/lib/hooks/useThrottle/useThrottle";
-import {ArticleView} from "../../model/const/articles";
+import { getScrollSavePath, scrollSaveSliceActions } from '@/features/ScrollSave';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
+import { ArticleView } from '../../model/const/articles';
+import { Text } from '@/shared/ui/Text';
 
 interface ArticleListProps {
     articles: Article[];
@@ -21,18 +22,13 @@ interface ArticleListProps {
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const {
-        articles,
-        isLoading,
-        view = ArticleView.SMALL,
-        onScrollToEnd
-    } = props;
+    const { articles, isLoading, view = ArticleView.SMALL, onScrollToEnd } = props;
 
     const listRef = useRef(null);
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
-    const scrollPosition = useSelector(
-        (state: StateSchema) => getScrollSavePath(state, pathname)
+    const scrollPosition = useSelector((state: StateSchema) =>
+        getScrollSavePath(state, pathname),
     );
 
     useEffect(() => {
@@ -40,14 +36,16 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }, [dispatch]);
 
     const handleScroll = useScrollToEnd({
-        callback: onScrollToEnd
+        callback: onScrollToEnd,
     });
 
     const saveScroll = useThrottle((e: React.UIEvent<HTMLDivElement>) => {
-        dispatch(scrollSaveSliceActions.setScrollPosition({
-            position: e.currentTarget.scrollTop,
-            path: pathname
-        }));
+        dispatch(
+            scrollSaveSliceActions.setScrollPosition({
+                position: e.currentTarget.scrollTop,
+                path: pathname,
+            }),
+        );
     }, 500);
 
     const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -55,7 +53,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
             saveScroll(e);
             handleScroll(e);
         }
-    }
+    };
 
     const renderArticle = (article: Article) => {
         return (
@@ -64,20 +62,22 @@ export const ArticleList = memo((props: ArticleListProps) => {
                 article={article}
                 view={view}
             />
-        )
-    }
+        );
+    };
+
+    const notFoundArticle = () => {
+        return <Text size={'large'}>Статьи не найдены</Text>;
+    };
 
     return (
         <div
             className={cls.articles_list}
             onScroll={onScroll}
             ref={listRef}
-            data-testid='ArticleList'
+            data-testid="ArticleList"
         >
-            {articles.length > 0
-            ? articles.map(renderArticle)
-            : null}
+            {articles.length > 0 ? articles.map(renderArticle) : notFoundArticle()}
             {isLoading && <ArticleListItemSkeleton view={view} />}
         </div>
-    )
+    );
 });

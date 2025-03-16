@@ -1,9 +1,10 @@
-import { memo } from "react";
-import { ArticlesBlock } from "../../model/type/articles";
+import { memo } from 'react';
+import { ArticlesBlock } from '../../model/type/articles';
 import * as cls from './ArticleTextBlockComponent.module.scss';
+import { Text } from '@/shared/ui/Text';
 
 interface ArticleTextBlockComponentProps {
-    block: ArticlesBlock
+    block: ArticlesBlock;
 }
 
 export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentProps) => {
@@ -13,12 +14,17 @@ export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentP
         <div className={cls.articleTextBlock}>
             {block.title && (
                 <div className={cls.articleTitle}>
-                    {block.title}
+                    <Text
+                        bold={true}
+                        size={'medium'}
+                    >
+                        {block.title}
+                    </Text>
                 </div>
             )}
             <div className={cls.articleContent}>
-                {block.content}
+                <Text>{block.content}</Text>
             </div>
         </div>
-    )
+    );
 });

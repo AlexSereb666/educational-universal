@@ -1,20 +1,21 @@
 .container {
-  color: black;
+  color: var(--text-color-input);
 }
 
 .input {
   width: 100%;
   padding: 5px 10px;
   border-radius: 15px;
-  background-color: var(--color-white);
+  background-color: var(--bg-color-input);
+  color: var(--text-color-input);
 }
 
 .active {
-  color: black;
+  color: var(--text-color-input);
 }
 
 .focused {
-  color: black;
+  color: var(--text-color-input);
 }
 
 .small {

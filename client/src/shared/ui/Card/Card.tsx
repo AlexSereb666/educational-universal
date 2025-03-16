@@ -1,7 +1,9 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 import classNames from 'classnames';
 import * as cls from './Card.module.scss';
-import viewIcon from 'shared/assets/eas.png';
+import viewIcon from 'shared/assets/icons/Eye.svg';
+import { Icon } from '@/shared/ui/Icon';
+import { Text } from '@/shared/ui/Text';
 
 interface CardProps {
     image: string;
@@ -16,15 +18,33 @@ export const Card = memo((props: CardProps) => {
     const { image, title, date, views, types, onClick } = props;
 
     return (
-        <div className={classNames(cls.container)} onClick={onClick}>
-            <img className={cls.image} src={image} alt="Изображение" />
-            <div className={cls.date}>{date}</div>
-            <div className={cls.title}>{title}</div>
-            <div className={cls.view}>
-                <img className={cls.viewImage} src={viewIcon} alt="Просмотры" />
-                {views}
+        <div
+            className={classNames(cls.container)}
+            onClick={onClick}
+        >
+            <img
+                className={cls.image}
+                src={image}
+                alt="Изображение"
+            />
+            <div className={cls.date}>
+                <Text>{date}</Text>
             </div>
-            <div className={cls.types}>{types}</div>
+            <div>
+                <Text>{title}</Text>
+            </div>
+            <div className={cls.view}>
+                <Icon
+                    Svg={viewIcon}
+                    width={20}
+                    height={20}
+                    className={cls.viewImage}
+                />
+                <Text>{String(views)}</Text>
+            </div>
+            <div className={cls.types}>
+                <Text>{types}</Text>
+            </div>
         </div>
     );
 });

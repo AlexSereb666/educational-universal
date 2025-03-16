@@ -1,8 +1,8 @@
-.sort_and_view {
-  display: flex;
-  justify-content: space-between;
-}
-
-.search {
-  margin-top: 10px;
+.ArticlesPageFilters {
+  width: 100%;
+  background-color: var(--bg-panel-color);
+  box-shadow: 0 0 10px var(--shadow-border-panel-start);
+  backdrop-filter: var(--blur-panel);
+  padding: 15px;
+  border-radius: 20px;
 }

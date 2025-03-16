@@ -1,8 +1,12 @@
-import {typesArticleReducer} from "@/entities/Articles";
-import {DynamicModuleLoader, ReducersList} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {articlePageReducer} from "../../model/slices/ArticlePageSlice";
-import {ArticlesPageFilters} from "../ArticlesPageFilters/ArticlesPageFilters";
-import {ArticleInfiniteList} from "../ArticleInfiniteList/ArticleInfiniteList";
+import { typesArticleReducer } from '@/entities/Articles';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { articlePageReducer } from '../../model/slices/ArticlePageSlice';
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
+import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
+import { Split } from '@/shared/ui/Stack';
 
 const reducers: ReducersList = {
     articlesPage: articlePageReducer,
@@ -11,13 +15,18 @@ const reducers: ReducersList = {
 
 const ArticlesPage = () => {
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+        <DynamicModuleLoader
+            reducers={reducers}
+            removeAfterUnmount={false}
+        >
             <div data-testid="ArticlesPage">
-                <ArticlesPageFilters />
-                <ArticleInfiniteList />
+                <Split ratio={'3:1'}>
+                    <ArticleInfiniteList />
+                    <ArticlesPageFilters />
+                </Split>
             </div>
         </DynamicModuleLoader>
-    )
+    );
 };
 
 export default ArticlesPage;

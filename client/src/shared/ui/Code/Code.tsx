@@ -1,37 +1,36 @@
-import {memo, ReactNode, useState} from "react";
+import { memo, ReactNode, useState } from 'react';
 import * as cls from './Code.module.scss';
-import copyIcon from 'shared/assets/copy.png';
-import copySuccesIcon from 'shared/assets/copySucces.png';
+import copyIcon from 'shared/assets/icons/Copy.svg';
+import { Icon } from '@/shared/ui/Icon';
 
 interface CodeProps {
     children: ReactNode;
 }
 
 export const Code = memo((props: CodeProps) => {
-    const { children} = props;
+    const { children } = props;
     const [copied, setCopied] = useState(false);
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(String(children))
+        navigator.clipboard
+            .writeText(String(children))
             .then(() => {
                 setCopied(true);
                 setTimeout(() => setCopied(false), 3000);
             })
-            .catch(err => console.error('Ошибка копирования: ', err));
+            .catch((err) => console.error('Ошибка копирования: ', err));
     };
 
     return (
         <pre className={cls.codeContainer}>
-            <img
-                src={copied ? copySuccesIcon as string : copyIcon as string}
-                alt={'Копировать'}
+            <Icon
+                Svg={copyIcon}
+                width={25}
+                height={25}
                 className={cls.copyBtn}
                 onClick={copyToClipboard}
-                style={{ cursor: copied ? 'not-allowed' : 'pointer' }}
             />
-            <code className={cls.code}>
-                {children}
-            </code>
+            <code className={cls.code}>{children}</code>
         </pre>
-    )
+    );
 });

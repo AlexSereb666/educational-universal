@@ -1,14 +1,20 @@
 .container {
   width: 220px;
   padding: 10px;
-  background-color: var(--color-code-background-modal);
+  background-color: var(--bg-panel-color);
+  box-shadow: 0 0 10px var(--shadow-border-panel-start);
+  backdrop-filter: var(--blur-panel);
   border-radius: 10px;
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 
   &:hover {
     transform: scale(1.05);
+
+    .image {
+      filter: brightness(0.6);
+    }
   }
 }
 
@@ -17,37 +23,26 @@
   height: 250px;
   border-radius: 5px;
   object-fit: cover;
+  transition: filter 0.2s ease-in-out;
 }
 
 .date {
   position: absolute;
   top: 15px;
   right: 15px;
-  font-size: var(--font-size-m);
-  color: var(--color-code-text);
-}
-
-.title {
-  font-size: var(--font-size-m);
-  color: var(--color-code-text);
 }
 
 .view {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: var(--font-size-m);
-  color: var(--color-code-text);
 }
 
 .viewImage {
-  width: 24px;
-  height: auto;
+  color: var(--color-text);
 }
 
 .types {
-  font-size: var(--font-size-m);
-  color: var(--color-code-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

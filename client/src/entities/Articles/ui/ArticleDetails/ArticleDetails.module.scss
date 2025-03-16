@@ -23,7 +23,6 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: var(--font-size-xl);
 }
 
 .isLoading {
@@ -40,13 +39,11 @@
 }
 
 .article_image_view {
-  width: 25px;
-  height: auto;
+  color: var(--color-text);
 }
 
 .article_image_calendar {
-  width: 20px;
-  height: auto;
+  color: var(--color-text);
 }
 
 .article_image_wrapper {
@@ -61,22 +58,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-}
-
-.article_title {
-  font-size: var(--font-size-xl);
-  color: var(--color-white);
-  font-weight: bold;
-}
-
-.article_subtitle {
-  font-size: var(--font-size-l);
-  color: var(--article-color-subtitle);
-}
-
-.article_info_item span {
-  font-size: var(--font-size-m);
-  color: var(--color-white);
 }
 
 .article_info {

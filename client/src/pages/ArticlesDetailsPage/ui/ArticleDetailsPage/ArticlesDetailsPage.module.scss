@@ -4,6 +4,11 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
+  background-color: var(--bg-panel-color);
+  box-shadow: 0 0 10px var(--shadow-border-panel-start);
+  backdrop-filter: var(--blur-panel);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .articles_details_page::-webkit-scrollbar {
@@ -16,13 +21,6 @@
 
 .articles_details_page::-webkit-scrollbar-track {
   background: transparent;
-}
-
-.title_comment {
-  font-size: var(--font-size-xl);
-  color: var(--color-white);
-  font-weight: bold;
-  margin-top: 10px;
 }
 
 .add_comment {

@@ -5,6 +5,11 @@
   // текст
   --color-text: #afafaf;
 
+  // поля для ввода
+  --bg-color-input: #adb3c1;
+  --text-color-input: #535353;
+  --disabled-color-input: #636363;
+
   // выпадающий список
   --select-border-color: #9c9c9c;
   --select-placeholder-color: #afafaf;
@@ -41,6 +46,38 @@
   --notification-bg-color: rgba(29, 56, 103, 0.95);
   --notification-border-color: #93a2ba;
 
+  // компонент switch
+  --switch-background-color: rgba(255, 255, 255, 0.5);
+  --switch-background-color-enabled: #218daa;
+  --switch-background-color-disabled: rgba(120, 120, 120, 0.6);
+  --switch-thumb-color-disabled: rgba(135, 135, 135, 0.6);
+
+  // инпут отправки сообщений в мессенджере
+  --bg-color-input-messenger-panel: rgba(93, 167, 186, 0.4);
+  --bg-color-input-messenger: rgba(0, 0, 0, 0.5);
+  --border-color-input-messenger: #afafaf;
+  --btn-color-input-messenger: #79dff8;
+
+  // сообщения чата
+  --color-alien-message: #485e8a;
+  --color-my-message: #2557b6;
+
+  // кнопка
+  --bg-color-default: #64769e;
+  --text-color-default: #1c2222;
+  --bg-color-hover: #4e5a7c;
+  --text-color-hover: #afafaf;
+  --bg-color-active: #343f53;
+  --text-color-active: #afafaf;
+  --bg-color-disabled: gray;
+  --text-color-disabled: darkgray;
+
+  // блок с кодом
+  --bg-color-block-code: rgba(73, 73, 73, 0.7);
+  --border-color-block-code: rgba(175, 175, 175, 0.5);
+
+  // звезды (рейтинги)
+  --bg-color-active-rating: #594a07;
 
 
 }

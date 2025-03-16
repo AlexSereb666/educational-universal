@@ -4,7 +4,8 @@
   cursor: pointer;
   font-family: inherit;
   transition: background-color 0.3s, color 0.3s;
-  background-color: var(--color-white);
+  background-color: var(--bg-color-default);
+  color: var(--text-color-default);
 
   &--small {
     font-size: 16px;
@@ -19,28 +20,29 @@
   }
 
   &--default {
-    background-color: var(--color-white);
-    color: black;
+    background-color: var(--bg-color-default);
+    color: var(--text-color-default);
   }
 
   &:hover {
-    background-color: #b400b4;
+    background-color: var(--bg-color-hover);
+    color: var(--text-color-hover)
   }
 
   &:active {
-    background-color: #420042;
-    color: var(--color-white);
+    background-color: var(--bg-color-active);
+    color: var(--text-color-active);
   }
 
   &--disabled {
     cursor: not-allowed;
     opacity: 0.5;
-    background-color: gray;
-    color: darkgray;
+    background-color: var(--bg-color-disabled);
+    color: var(--text-color-disabled);
 
     &:hover, &:active {
-      background-color: gray;
-      color: darkgray;
+      background-color: var(--bg-color-disabled);
+      color: var(--text-color-disabled);
     }
   }
 }
