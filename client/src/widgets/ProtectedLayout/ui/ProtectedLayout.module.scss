@@ -1,7 +1,7 @@
 .container {
   display: flex;
   height: calc(100vh - var(--navbar-height));
-  padding: 50px 10% 20px 10%;
+  padding: calc(50px + var(--navbar-height)) 10% 0 10%;
 }
 
 .content {

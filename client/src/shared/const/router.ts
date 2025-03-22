@@ -3,7 +3,7 @@ export enum AppRoutes {
     REGISTRATION = 'registration',
     MAIN = 'main',
     MESSENGER = 'messenger',
-    STORAGE = 'storage',
+    CLOUD_STORAGE = 'cloud_storage',
     ARTICLES = 'articles',
     ARTICLE_DETAILS = 'article_details',
     ARTICLE_CREATE = 'article_create',
@@ -18,7 +18,7 @@ export const getRouteLogin = () => `/`;
 export const getRouteRegistration = () => `/registration`;
 export const getRouteMain = () => `/main`;
 export const getRouteMessenger = () => `/messenger`;
-export const getRouteStorage = () => `/storage`;
+export const getRouteCloudStorage = () => `/storage`;
 export const getRouteArticles = () => `/articles`;
 export const getRouteArticleDetails = (id: string) => `/articles/${id}`;
 export const getRouteArticleCreate = () => `/articles/new`;

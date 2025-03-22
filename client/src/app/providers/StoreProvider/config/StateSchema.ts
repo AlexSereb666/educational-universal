@@ -14,6 +14,7 @@ import { ArticleDetailsPageSchema } from '@/pages/ArticlesDetailsPage';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ProfileCardSchema } from '@/features/ProfileCard';
 import { SettingsSchema } from '@/entities/Settings';
+import { CloudStoragePreferencesSchema, CloudStorageSchema } from '@/entities/Storage';
 
 export interface StateSchema {
     user: UserSchema;
@@ -32,6 +33,8 @@ export interface StateSchema {
     articleDetailsPage?: ArticleDetailsPageSchema;
     profileCard?: ProfileCardSchema;
     settings?: SettingsSchema;
+    cloudStorage?: CloudStorageSchema;
+    cloudStoragePreferences?: CloudStoragePreferencesSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

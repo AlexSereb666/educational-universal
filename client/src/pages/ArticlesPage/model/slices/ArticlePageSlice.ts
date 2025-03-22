@@ -1,9 +1,10 @@
-import {createEntityAdapter, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Article, ArticleSortField, ArticleView} from "@/entities/Articles";
-import {StateSchema} from "@/app/providers/StoreProvider";
-import {ArticlesPageSchema, fetchArticlesList} from "../../../ArticlesPage";
-import {ARTICLES_VIEW_LOCALSTORAGE_KEY} from "@/shared/const/localstorage";
-import {SortOrder} from "@/shared/types/order";
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Article, ArticleSortField } from '@/entities/Articles';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { ArticlesPageSchema, fetchArticlesList } from '../../../ArticlesPage';
+import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { SortOrder } from '@/shared/types/order';
+import { View } from '@/shared/const/view';
 
 const articlesAdapter = createEntityAdapter<Article, number>({
     selectId: (article) => article.id,
@@ -14,13 +15,13 @@ export const getArticles = articlesAdapter.getSelectors<StateSchema>(
 );
 
 const articlePageSlice = createSlice({
-    name: "articlePageSlice",
+    name: 'articlePageSlice',
     initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
         isLoading: false,
         error: undefined,
         ids: [],
         entities: {},
-        view: ArticleView.SMALL,
+        view: View.SMALL,
         page: 1,
         limit: 20,
         hasMore: true,
@@ -31,7 +32,7 @@ const articlePageSlice = createSlice({
         type: 0,
     }),
     reducers: {
-        setView: (state, action: PayloadAction<ArticleView>) => {
+        setView: (state, action: PayloadAction<View>) => {
             state.view = action.payload;
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
         },
@@ -51,11 +52,11 @@ const articlePageSlice = createSlice({
             state.type = action.payload;
         },
         initState: (state) => {
-            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView;
+            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as View;
             state.view = view;
-            state.limit = view === ArticleView.BIG ? 5 : 20;
+            state.limit = view === View.BIG ? 5 : 20;
             state._inited = true;
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -67,10 +68,7 @@ const articlePageSlice = createSlice({
                     articlesAdapter.removeAll(state);
                 }
             })
-            .addCase(fetchArticlesList.fulfilled, (
-                state,
-                action,
-            ) => {
+            .addCase(fetchArticlesList.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasMore = action.payload.length >= state.limit;
 
@@ -87,7 +85,5 @@ const articlePageSlice = createSlice({
     },
 });
 
-export const {
-    reducer: articlePageReducer,
-    actions: articlePageActions
-} = articlePageSlice;
+export const { reducer: articlePageReducer, actions: articlePageActions } =
+    articlePageSlice;

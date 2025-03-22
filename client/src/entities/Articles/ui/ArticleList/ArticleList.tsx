@@ -11,18 +11,18 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
-import { ArticleView } from '../../model/const/articles';
 import { Text } from '@/shared/ui/Text';
+import { View } from '@/shared/const/view';
 
 interface ArticleListProps {
     articles: Article[];
     isLoading?: boolean;
-    view?: ArticleView;
+    view?: View;
     onScrollToEnd?: () => void;
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const { articles, isLoading, view = ArticleView.SMALL, onScrollToEnd } = props;
+    const { articles, isLoading, view = View.SMALL, onScrollToEnd } = props;
 
     const listRef = useRef(null);
     const dispatch = useAppDispatch();

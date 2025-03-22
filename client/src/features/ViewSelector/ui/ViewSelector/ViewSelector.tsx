@@ -1,30 +1,30 @@
 import { memo } from 'react';
 import listIcon from 'shared/assets/icons/UnorderedListOutlined.svg';
 import tileIcon from 'shared/assets/icons/ViewTile.svg';
-import * as cls from './ArticleViewSelector.module.scss';
-import { ArticleView } from '@/entities/Articles';
+import * as cls from './ViewSelector.module.scss';
 import { Icon } from '@/shared/ui/Icon';
+import { View } from '@/shared/const/view';
 
-interface ArticleViewSelectorProps {
-    view: ArticleView;
-    onViewClick?: (view: ArticleView) => void;
+interface ViewSelectorProps {
+    view: View;
+    onViewClick?: (view: View) => void;
 }
 
 const viewTypes = [
     {
-        view: ArticleView.BIG,
+        view: View.BIG,
         icon: listIcon,
     },
     {
-        view: ArticleView.SMALL,
+        view: View.SMALL,
         icon: tileIcon,
     },
 ];
 
-export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
+export const ViewSelector = memo((props: ViewSelectorProps) => {
     const { view, onViewClick } = props;
 
-    const onClick = (newView: ArticleView) => {
+    const onClick = (newView: View) => {
         onViewClick?.(newView);
     };
 

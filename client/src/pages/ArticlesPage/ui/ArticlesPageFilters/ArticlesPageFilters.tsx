@@ -1,6 +1,6 @@
 import { memo, useCallback, useMemo } from 'react';
 import * as cls from './ArticlesPageFilters.module.scss';
-import { ArticleSortField, ArticleView, getTypesArticleData } from '@/entities/Articles';
+import { ArticleSortField, getTypesArticleData } from '@/entities/Articles';
 import { articlePageActions } from '../../model/slices/ArticlePageSlice';
 import { useSelector } from 'react-redux';
 import {
@@ -17,9 +17,10 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { TabItem, Tabs } from '@/shared/ui/Tabs';
 import { getArticlesPageType } from '../../model/selectors/articlesPageSelectors';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import classNames from 'classnames';
-import { HStack, VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/Stack';
+import { ViewSelector } from '@/features/ViewSelector';
+import { View } from '@/shared/const/view';
 
 export const ArticlesPageFilters = memo(() => {
     const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export const ArticlesPageFilters = memo(() => {
     const debounceFetchData = useDebounce(fetchData, 500);
 
     const onChangeView = useCallback(
-        (view: ArticleView) => {
+        (view: View) => {
             dispatch(articlePageActions.setView(view));
         },
         [dispatch],
@@ -98,7 +99,7 @@ export const ArticlesPageFilters = memo(() => {
     return (
         <div className={classNames(cls.ArticlesPageFilters, {}, [])}>
             <VStack>
-                <ArticleViewSelector
+                <ViewSelector
                     view={view}
                     onViewClick={onChangeView}
                 />

@@ -1,0 +1,9 @@
+.CloudStorageExplorer {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  background-color: var(--bg-panel-color);
+  box-shadow: 0 0 10px var(--shadow-border-panel-start);
+  backdrop-filter: var(--blur-panel);
+  border-radius: 10px;
+}

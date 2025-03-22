@@ -9,8 +9,3 @@ export enum ArticleTypeBlockList {
     CODE = 'CODE',
     IMAGE = 'IMAGE',
 }
-
-export enum ArticleView {
-    BIG = 'BIG',
-    SMALL = 'SMALL',
-}

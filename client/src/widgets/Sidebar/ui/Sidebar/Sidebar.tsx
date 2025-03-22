@@ -7,8 +7,8 @@ import iconArticles from '@/shared/assets/icons/Articles.svg';
 import iconDatabase from '@/shared/assets/icons/Database.svg';
 import {
     getRouteArticles,
+    getRouteCloudStorage,
     getRouteMessenger,
-    getRouteStorage,
 } from '@/shared/const/router';
 import { VStack } from '@/shared/ui/Stack';
 
@@ -29,7 +29,7 @@ export const SidebarItemsList: SidebarItemType[] = [
         authOnly: true,
     },
     {
-        path: getRouteStorage(),
+        path: getRouteCloudStorage(),
         Icon: iconCloud,
         text: 'Облачное хранилище',
         authOnly: true,

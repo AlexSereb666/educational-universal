@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import * as cls from './Input.module.scss';
 
 interface InputProps {
+    className?: string;
     value: string;
     onChange?: (value: string) => void;
     label?: string;
@@ -18,7 +19,8 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
         label,
         isActive = true,
         size = 'medium',
-        type = 'text'
+        type = 'text',
+        className,
     } = props;
 
     const [isFocused, setIsFocused] = useState(false);
@@ -40,7 +42,11 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
     };
 
     return (
-        <div className={classNames(cls.container, cls[size], { [cls.active]: isActive })}>
+        <div
+            className={classNames(cls.container, className, cls[size], {
+                [cls.active]: isActive,
+            })}
+        >
             <input
                 type={type}
                 value={value}
@@ -50,7 +56,11 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
                 className={cls.input}
                 disabled={!isActive}
             />
-            <label className={classNames(cls.label, { [cls.focused]: isFocused || value })}>{label}</label>
+            <label
+                className={classNames(cls.label, { [cls.focused]: isFocused || value })}
+            >
+                {label}
+            </label>
         </div>
     );
 });

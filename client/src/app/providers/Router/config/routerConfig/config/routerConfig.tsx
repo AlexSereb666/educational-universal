@@ -1,7 +1,6 @@
 import { MainPage } from '@/pages/MainPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
-import { StoragePage } from '@/pages/StoragePage';
 import { MessengerPage } from '@/pages/MessengerPage';
 import { RegistrationPage } from '@/pages/RegistrationPage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
@@ -16,18 +15,19 @@ import {
     getRouteArticleDetails,
     getRouteArticleEdit,
     getRouteArticles,
+    getRouteCloudStorage,
     getRouteLogin,
     getRouteMain,
     getRouteMessenger,
     getRouteProfile,
     getRouteRegistration,
-    getRouteStorage,
     getRouteUserSettings,
 } from '@/shared/const/router';
 import { UserRoles } from '@/entities/User';
 import { AppRoutesProps } from '../types/router';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { UserSettingsPage } from '@/pages/UserSettingsPage';
+import { CloudStoragePage } from '@/pages/CloudStoragePage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -40,9 +40,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <MessengerPage />,
         authOnly: true,
     },
-    [AppRoutes.STORAGE]: {
-        path: getRouteStorage(),
-        element: <StoragePage />,
+    [AppRoutes.CLOUD_STORAGE]: {
+        path: getRouteCloudStorage(),
+        element: <CloudStoragePage />,
         authOnly: true,
     },
     [AppRoutes.ARTICLES]: {

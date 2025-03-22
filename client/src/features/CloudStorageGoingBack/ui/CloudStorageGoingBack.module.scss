@@ -1,0 +1,16 @@
+.CloudStorageGoingBack {
+  color: var(--color-icon);
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &.disabled {
+    opacity: 0;
+  }
+
+  &.active {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

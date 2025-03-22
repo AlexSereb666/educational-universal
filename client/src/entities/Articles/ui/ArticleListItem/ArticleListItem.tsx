@@ -7,14 +7,14 @@ import viewIcon from 'shared/assets/icons/Eye.svg';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
-import { ArticleView } from '../../model/const/articles';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { Text } from '@/shared/ui/Text';
 import { Icon } from '@/shared/ui/Icon';
+import { View } from '@/shared/const/view';
 
 interface ArticleListItemProps {
     article: Article;
-    view: ArticleView;
+    view: View;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
@@ -26,7 +26,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     };
 
     const renderArticleItem = () => {
-        if (view === ArticleView.BIG) {
+        if (view === View.BIG) {
             return (
                 <div className={cls.container}>
                     <img
@@ -70,7 +70,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             );
         }
 
-        if (view === ArticleView.SMALL) {
+        if (view === View.SMALL) {
             return (
                 <Card
                     image={imageDefault}
