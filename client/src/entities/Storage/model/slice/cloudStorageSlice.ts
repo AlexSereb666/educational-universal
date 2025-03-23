@@ -4,6 +4,11 @@ import { getFolder } from '../services/getFolder/getFolder';
 import { CloudStorage } from '../types/CloudStorage';
 import { addFolder } from '../services/addFolder/addFolder';
 import { Folder } from '../types/folder';
+import { File } from '../types/file';
+import { renameFile } from '../services/renameFile/renameFile';
+import { renameFolder } from '../services/renameFolder/renameFolder';
+import { deleteFile } from '../services/deleteFile/deleteFile';
+import { deleteFolder } from '../services/deleteFolder/deleteFolder';
 
 const initialState: CloudStorageSchema = {
     isLoading: false,
@@ -46,7 +51,46 @@ export const cloudStorageSlice = createSlice({
             .addCase(addFolder.rejected, (state: CloudStorageSchema, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
-            });
+            })
+            .addCase(
+                renameFile.fulfilled,
+                (state: CloudStorageSchema, action: PayloadAction<File>) => {
+                    state.data.files = state.data.files.map((file) =>
+                        file.id === action.payload.id ? action.payload : file,
+                    );
+                },
+            )
+            .addCase(
+                renameFolder.fulfilled,
+                (state: CloudStorageSchema, action: PayloadAction<Folder>) => {
+                    console.log('хуй', state);
+                    state.data.folders = state.data.folders.map((folder) =>
+                        folder.id === action.payload.id ? action.payload : folder,
+                    );
+                },
+            )
+            .addCase(
+                deleteFile.fulfilled,
+                (
+                    state: CloudStorageSchema,
+                    action: PayloadAction<{ fileId: number }>,
+                ) => {
+                    state.data.files = state.data.files.filter(
+                        (file) => String(file.id) !== String(action.payload.fileId),
+                    );
+                },
+            )
+            .addCase(
+                deleteFolder.fulfilled,
+                (
+                    state: CloudStorageSchema,
+                    action: PayloadAction<{ folderId: number }>,
+                ) => {
+                    state.data.folders = state.data.folders.filter(
+                        (folder) => String(folder.id) !== String(action.payload.folderId),
+                    );
+                },
+            );
     },
 });
 

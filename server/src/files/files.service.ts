@@ -43,24 +43,24 @@ export class FilesService {
         });
     }
 
-    async deleteFile(userId: number, filePath: string) {
+    async deleteFile(userId: number, fileId: number) {
         const file = await this.filesRepository.findOne({
-            where: { userId, storagePath: filePath },
+            where: { userId, id: fileId },
         });
 
         if (!file) {
             throw new Error('Файл не найден или у вас нет к нему доступа');
         }
 
-        const fullFilePath = path.join(this.baseUploadPath, filePath);
+        const fullFilePath = path.join(this.baseUploadPath, file.storagePath);
 
         if (fs.existsSync(fullFilePath)) {
             fs.unlinkSync(fullFilePath);
         }
 
-        await this.filesRepository.destroy({ where: { id: file.id } });
+        await this.filesRepository.destroy({ where: { id: fileId } });
 
-        return { message: 'Файл успешно удалён' };
+        return { fileId };
     }
 
     async uploadFile(userId: number, file: Express.Multer.File, dto: UploadFileDto) {
@@ -116,6 +116,6 @@ export class FilesService {
         file.storagePath = newStoragePath;
         await file.save();
 
-        return { message: 'Файл успешно переименован', file };
+        return file;
     }
 }

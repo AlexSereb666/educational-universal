@@ -22,3 +22,7 @@ export {
     cloudStoragePreferencesReducer,
 } from './model/slice/cloudStoragePreferencesSlice';
 export { addFolder } from './model/services/addFolder/addFolder';
+export { renameFile } from './model/services/renameFile/renameFile';
+export { renameFolder } from './model/services/renameFolder/renameFolder';
+export { deleteFile } from './model/services/deleteFile/deleteFile';
+export { deleteFolder } from './model/services/deleteFolder/deleteFolder';

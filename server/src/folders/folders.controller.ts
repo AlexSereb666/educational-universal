@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { FoldersService } from './folders.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
+import { RenameFolderDto } from './dto/rename-folder.dto';
 
 @Controller('folders')
 export class FoldersController {
@@ -19,10 +20,16 @@ export class FoldersController {
         return this.foldersService.getFolderContents(Number(userId), folderId);
     }
 
-    @Delete('delete')
+    @Delete('delete/:userId/:folderId')
     async deleteFolder(
-        @Body() { userId, folderId }: { userId: number; folderId: number },
+        @Param('userId') userId: number,
+        @Param('folderId') folderId: number,
     ) {
         return this.foldersService.deleteFolder(userId, folderId);
+    }
+
+    @Patch('rename')
+    async renameFolder(@Body() dto: RenameFolderDto) {
+        return this.foldersService.renameFolder(dto);
     }
 }

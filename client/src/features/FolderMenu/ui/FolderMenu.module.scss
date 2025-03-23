@@ -1,0 +1,12 @@
+.FolderMenu {
+  width: 100%;
+  cursor: pointer;
+}
+
+.text {
+  transition: 0.5s ease;
+
+  &:hover {
+    color: var(--color-icon);
+  }
+}

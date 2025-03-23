@@ -20,7 +20,8 @@ import { formatBytes } from '@/shared/lib/size/formatBytes';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import classNames from 'classnames';
 import { useAuthUser } from '@/shared/lib/hooks/useAuthUser/useAuthUser';
-import { Input } from '@/shared/ui/Input';
+import { FolderMenu } from '@/features/FolderMenu';
+import { StorageItem } from '@/shared/const/storage';
 
 interface CloudStorageExplorerListProps {
     className?: string;
@@ -104,7 +105,11 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
                         <Text>{formatDate(folder.createdAt)}</Text>
                         <Text>--</Text>
                         <Text>{t('Папка')}</Text>
-                        <Text>⋮</Text>
+                        <FolderMenu
+                            id={folder.id}
+                            type={StorageItem.FOLDER}
+                            className={cls.FolderMenu}
+                        />
                     </div>
                 ))}
                 {data?.files.map((file) => (
@@ -124,7 +129,10 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
                         <Text>{formatDate(file.createdAt)}</Text>
                         <Text>{formatBytes(file.size)}</Text>
                         <Text>{file.mimeType}</Text>
-                        <Text>⋮</Text>
+                        <FolderMenu
+                            id={file.id}
+                            type={StorageItem.FILE}
+                        />
                     </div>
                 ))}
             </div>

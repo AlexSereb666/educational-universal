@@ -45,4 +45,8 @@
   &:hover {
     transform: scale(0.98);
   }
+
+  &:has(.FolderMenu:hover) {
+    transform: none;
+  }
 }

@@ -16,7 +16,7 @@ export const CloudStorageGoingBack = memo(() => {
                 data?.currentFolder?.parentId,
             ),
         );
-    }, [dispatch]);
+    }, [dispatch, data]);
 
     const isDisabled = data?.currentFolder === null;
 

@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Folders } from './folders.model';
 import { FilesService } from '../files/files.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
+import { RenameFolderDto } from './dto/rename-folder.dto';
 
 @Injectable()
 export class FoldersService {
@@ -52,7 +53,8 @@ export class FoldersService {
 
     async deleteFolder(userId: number, folderId: number) {
         const folder = await this.foldersRepository.findByPk(folderId);
-        if (!folder || folder.userId !== userId) {
+
+        if (!folder || folder.userId !== Number(userId)) {
             throw new Error('Папка не найдена или нет доступа');
         }
 
@@ -63,13 +65,13 @@ export class FoldersService {
         for (const id of folderIds) {
             const files = await this.filesService.getFilesInFolder(userId, id);
             for (const file of files) {
-                await this.filesService.deleteFile(userId, file.storagePath);
+                await this.filesService.deleteFile(userId, file.id);
             }
         }
 
         await this.foldersRepository.destroy({ where: { id: folderIds } });
 
-        return { message: 'Папка и все вложенные файлы удалены' };
+        return { folderId };
     }
 
     private async getAllSubfolders(parentId: number): Promise<Folders[]> {
@@ -82,5 +84,20 @@ export class FoldersService {
         }
 
         return allFolders;
+    }
+
+    async renameFolder(dto: RenameFolderDto) {
+        const { userId, folderId, newName } = dto;
+
+        const folder = await this.foldersRepository.findByPk(folderId);
+
+        if (!folder || folder.userId !== userId) {
+            throw new Error('Папка не найдена или нет доступа');
+        }
+
+        folder.name = newName;
+        await folder.save();
+
+        return folder;
     }
 }

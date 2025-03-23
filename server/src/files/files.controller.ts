@@ -47,9 +47,9 @@ export class FilesController {
         res.sendFile(filePath);
     }
 
-    @Delete('delete')
-    async deleteFile(@Body() { userId, filePath }: { userId: number; filePath: string }) {
-        return this.filesService.deleteFile(userId, filePath);
+    @Delete('delete/:userId/:fileId')
+    async deleteFile(@Param('userId') userId: number, @Param('fileId') fileId: number) {
+        return this.filesService.deleteFile(userId, fileId);
     }
 
     @Post(':userId/upload')

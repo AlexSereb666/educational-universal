@@ -22,6 +22,10 @@ export const getFolder = createAsyncThunk<
             },
         });
 
+        if (!response.data) {
+            return rejectWithValue('Ошибка получения данных');
+        }
+
         return response.data;
     } catch (e) {
         console.log(e);

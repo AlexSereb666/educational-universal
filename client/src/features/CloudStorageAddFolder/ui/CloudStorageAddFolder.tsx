@@ -26,6 +26,7 @@ export const CloudStorageAddFolder = memo(() => {
         (value: string) => {
             if (value) {
                 dispatch(addFolder(value));
+                setValue('');
                 closeModal();
             }
         },
@@ -46,6 +47,7 @@ export const CloudStorageAddFolder = memo(() => {
                 isOpen={isOpen}
                 onClose={closeModal}
                 className={cls.modal}
+                lazy
             >
                 <VStack
                     max
@@ -60,7 +62,7 @@ export const CloudStorageAddFolder = memo(() => {
                         max
                         align={'end'}
                     >
-                        <Button onClick={() => onClick(value)}>Создать</Button>
+                        <Button onClick={() => onClick(value)}>{t('Создать')}</Button>
                     </VStack>
                 </VStack>
             </Modal>
