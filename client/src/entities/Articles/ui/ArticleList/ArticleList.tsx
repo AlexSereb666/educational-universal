@@ -22,7 +22,7 @@ interface ArticleListProps {
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const { articles, isLoading, view = View.SMALL, onScrollToEnd } = props;
+    const { articles, isLoading, view = View.GRID, onScrollToEnd } = props;
 
     const listRef = useRef(null);
     const dispatch = useAppDispatch();

@@ -10,7 +10,7 @@ interface ArticleListItemSkeletonProps {
 export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps) => {
     const { view } = props;
 
-    if (view === View.BIG) {
+    if (view === View.LIST) {
         return (
             <div className={cls.container}>
                 <Skeleton
@@ -27,7 +27,7 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps
                 />
             </div>
         );
-    } else if (view === View.SMALL) {
+    } else if (view === View.GRID) {
         return (
             <div className={cls.container_2}>
                 <Skeleton

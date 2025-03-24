@@ -9,6 +9,7 @@ import { renameFile } from '../services/renameFile/renameFile';
 import { renameFolder } from '../services/renameFolder/renameFolder';
 import { deleteFile } from '../services/deleteFile/deleteFile';
 import { deleteFolder } from '../services/deleteFolder/deleteFolder';
+import { uploadFile } from '@/entities/Storage/model/services/uploadFile/uploadFile';
 
 const initialState: CloudStorageSchema = {
     isLoading: false,
@@ -63,7 +64,6 @@ export const cloudStorageSlice = createSlice({
             .addCase(
                 renameFolder.fulfilled,
                 (state: CloudStorageSchema, action: PayloadAction<Folder>) => {
-                    console.log('хуй', state);
                     state.data.folders = state.data.folders.map((folder) =>
                         folder.id === action.payload.id ? action.payload : folder,
                     );
@@ -89,6 +89,12 @@ export const cloudStorageSlice = createSlice({
                     state.data.folders = state.data.folders.filter(
                         (folder) => String(folder.id) !== String(action.payload.folderId),
                     );
+                },
+            )
+            .addCase(
+                uploadFile.fulfilled,
+                (state: CloudStorageSchema, action: PayloadAction<File>) => {
+                    state.data.files.push(action.payload);
                 },
             );
     },

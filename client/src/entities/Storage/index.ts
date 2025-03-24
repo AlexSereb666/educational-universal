@@ -12,10 +12,15 @@ export {
     useCloudStorageIsLoading,
 } from './model/selectors/cloudStorage';
 export { getFolder } from './model/services/getFolder/getFolder';
-export type { CloudStoragePreferencesSchema } from './model/types/CloudStoragePreferencesSchema';
+export type {
+    CloudStoragePreferencesSchema,
+    UploadFile,
+} from './model/types/CloudStoragePreferencesSchema';
 export {
     useCloudStorageCurrentFolderId,
     useCloudStorageView,
+    useCloudStorageUploadFiles,
+    useCloudStorageIsActiveUpload,
 } from './model/selectors/cloudStoragePreferences';
 export {
     cloudStoragePreferencesActions,
@@ -26,3 +31,4 @@ export { renameFile } from './model/services/renameFile/renameFile';
 export { renameFolder } from './model/services/renameFolder/renameFolder';
 export { deleteFile } from './model/services/deleteFile/deleteFile';
 export { deleteFolder } from './model/services/deleteFolder/deleteFolder';
+export { uploadFile } from './model/services/uploadFile/uploadFile';

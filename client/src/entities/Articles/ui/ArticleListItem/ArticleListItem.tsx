@@ -26,7 +26,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     };
 
     const renderArticleItem = () => {
-        if (view === View.BIG) {
+        if (view === View.LIST) {
             return (
                 <div className={cls.container}>
                     <img
@@ -70,7 +70,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             );
         }
 
-        if (view === View.SMALL) {
+        if (view === View.GRID) {
             return (
                 <Card
                     image={imageDefault}

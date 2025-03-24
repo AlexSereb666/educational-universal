@@ -83,4 +83,9 @@
   --overlay-color: rgba(0, 0, 0, 0.6);
   --color-border-modal: rgba(193, 218, 218, 0.5);
   --bg-color-modal: rgba(62, 66, 66, 0.7);
+
+  // шкала загруки
+  --default-bg-color-progress-bar: #a6a6a6;
+  --success-bg-color-progress-bar: #4caf50;
+  --text-color-progress-bar: #fff;
 }

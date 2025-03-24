@@ -12,11 +12,11 @@ interface ViewSelectorProps {
 
 const viewTypes = [
     {
-        view: View.BIG,
+        view: View.LIST,
         icon: listIcon,
     },
     {
-        view: View.SMALL,
+        view: View.GRID,
         icon: tileIcon,
     },
 ];

@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
-import * as cls from './FolderMenu.module.scss';
+import * as cls from './CloudStorageMenuItem.module.scss';
 import { Text } from '@/shared/ui/Text';
 import { Dropdown, DropdownItem } from '@/shared/ui/Dropdown';
 import { CloudStorageRenameItem } from '../../CloudStorageRenameItem';
@@ -8,13 +8,13 @@ import { StorageItem } from '@/shared/const/storage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { deleteFile, deleteFolder } from '@/entities/Storage';
 
-interface FolderMenuProps {
+interface CloudStorageMenuItemProps {
     className?: string;
     id: number;
     type: StorageItem;
 }
 
-export const FolderMenu = memo((props: FolderMenuProps) => {
+export const CloudStorageMenuItem = memo((props: CloudStorageMenuItemProps) => {
     const { id, type, className } = props;
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
@@ -63,7 +63,7 @@ export const FolderMenu = memo((props: FolderMenuProps) => {
 
     return (
         <div
-            className={classNames(cls.FolderMenu, {}, [className])}
+            className={classNames(cls.CloudStorageMenuItem, {}, [className])}
             onClick={onClick}
         >
             <Dropdown

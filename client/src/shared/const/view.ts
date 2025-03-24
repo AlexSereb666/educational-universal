@@ -1,4 +1,4 @@
 export enum View {
-    BIG = 'BIG',
-    SMALL = 'SMALL',
+    LIST = 'list',
+    GRID = 'grid',
 }
