@@ -6,7 +6,7 @@ import { Dropdown, DropdownItem } from '@/shared/ui/Dropdown';
 import { CloudStorageRenameItem } from '../../CloudStorageRenameItem';
 import { StorageItem } from '@/shared/const/storage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { deleteFile, deleteFolder } from '@/entities/Storage';
+import { deleteFile, deleteFolder, downloadFile } from '@/entities/Storage';
 
 interface CloudStorageMenuItemProps {
     className?: string;
@@ -31,6 +31,14 @@ export const CloudStorageMenuItem = memo((props: CloudStorageMenuItemProps) => {
         setIsOpen(false);
     }, []);
 
+    const downloadItem = useCallback(() => {
+        dispatch(
+            downloadFile({
+                fileId: id,
+            }),
+        );
+    }, [dispatch, id]);
+
     const deleteItem = useCallback(() => {
         if (type === StorageItem.FILE) {
             dispatch(
@@ -52,6 +60,14 @@ export const CloudStorageMenuItem = memo((props: CloudStorageMenuItemProps) => {
             content: 'Переименовать',
             onClick: openModal,
         },
+        ...(type === StorageItem.FILE
+            ? [
+                  {
+                      content: 'Скачать',
+                      onClick: downloadItem,
+                  },
+              ]
+            : []),
         {
             content: 'Поделиться',
         },

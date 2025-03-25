@@ -8,6 +8,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '@/shared/config/i18n/i18n';
 import { TranslationProvider } from '@/app/providers/TranslationProvider';
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
+import { ToastProvider } from '@/app/providers/ToastProvider';
 
 const container = document.getElementById('root');
 
@@ -20,7 +21,9 @@ if (container) {
                     <I18nextProvider i18n={i18n}>
                         <TranslationProvider>
                             <ThemeProvider>
-                                <App />
+                                <ToastProvider>
+                                    <App />
+                                </ToastProvider>
                             </ThemeProvider>
                         </TranslationProvider>
                     </I18nextProvider>

@@ -15,12 +15,14 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import { ProfileCardSchema } from '@/features/ProfileCard';
 import { SettingsSchema } from '@/entities/Settings';
 import { CloudStoragePreferencesSchema, CloudStorageSchema } from '@/entities/Storage';
+import { ToastSchema } from '@/entities/Toast';
 
 export interface StateSchema {
     user: UserSchema;
     login: LoginSchema;
     registration: RegistrationSchema;
     scrollSave: ScrollSaveSchema;
+    toast: ToastSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     search?: ContactListSearchSchema;

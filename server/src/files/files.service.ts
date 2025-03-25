@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import * as path from 'path';
 import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
@@ -117,5 +117,31 @@ export class FilesService {
         await file.save();
 
         return file;
+    }
+
+    async downloadFile(userId: number, fileId: number) {
+        const file = await this.filesRepository.findOne({
+            where: { id: fileId },
+        });
+
+        if (!file) {
+            throw new NotFoundException('Файл не найден');
+        }
+
+        if (file.userId !== Number(userId)) {
+            throw new ForbiddenException('Нет доступа к файлу');
+        }
+
+        const filePath = path.join(this.baseUploadPath, file.storagePath);
+
+        if (!fs.existsSync(filePath)) {
+            throw new NotFoundException('Файл отсутствует на сервере');
+        }
+
+        return {
+            filePath,
+            fileName: file.name,
+            mimeType: file.mimeType,
+        };
     }
 }

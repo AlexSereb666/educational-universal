@@ -88,4 +88,17 @@
   --default-bg-color-progress-bar: #a6a6a6;
   --success-bg-color-progress-bar: #4caf50;
   --text-color-progress-bar: #fff;
+
+  // всплывающее уведомление
+  --bg-color-toast: #474755;
+  --shadow-color-toast: rgba(255, 255, 255, 0.3);
+  --progress-color-toast: rgba(255, 255, 255, 0.3);
+  --bg-color-toast-success: rgb(35, 71, 35);
+  --color-icon-success: #43a641;
+  --bg-color-toast-error: rgb(85, 7, 7);
+  --color-icon-error: #d12222;
+  --bg-color-toast-info: rgb(36, 53, 106);
+  --color-icon-info: #4170c6;
+  --bg-color-toast-warning: rgb(87, 73, 30);
+  --color-icon-warning: #c3ad2f;
 }

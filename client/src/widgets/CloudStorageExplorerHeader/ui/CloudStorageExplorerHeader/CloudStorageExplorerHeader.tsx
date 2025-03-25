@@ -6,13 +6,13 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import {
     cloudStoragePreferencesActions,
     useCloudStorageIsActiveUpload,
+    useCloudStorageUploadFiles,
     useCloudStorageView,
 } from '@/entities/Storage';
 import { View } from '@/shared/const/view';
 import { CloudStorageAddFolder } from '@/features/CloudStorageAddFolder';
 import { CloudStorageUploadFile } from '@/features/CloudStorageUploadFile';
 import { UploadWidget } from '../../../UploadWidget';
-import { useCloudStorageUploadFiles } from '@/entities/Storage';
 
 export const CloudStorageExplorerHeader = memo(() => {
     const dispatch = useAppDispatch();

@@ -66,4 +66,29 @@ export class FilesController {
     async renameFile(@Body() dto: RenameFileDto) {
         return this.filesService.renameFile(dto);
     }
+
+    @Get('download/:fileId/:userId')
+    async downloadFile(
+        @Param('fileId') fileId: number,
+        @Param('userId') userId: number,
+        @Res() res: Response,
+    ) {
+        const { filePath, fileName, mimeType } = await this.filesService.downloadFile(
+            userId,
+            fileId,
+        );
+
+        res.setHeader(
+            'Content-Disposition',
+            `attachment; filename="${encodeURIComponent(fileName)}"`,
+        );
+        res.setHeader('Content-Type', mimeType);
+        res.setHeader('Content-Length', fs.statSync(filePath).size);
+
+        res.download(filePath, fileName, (err) => {
+            if (err) {
+                console.log('Ошибка при отправке файла:', err);
+            }
+        });
+    }
 }

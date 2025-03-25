@@ -10,6 +10,7 @@ import { renameFolder } from '../services/renameFolder/renameFolder';
 import { deleteFile } from '../services/deleteFile/deleteFile';
 import { deleteFolder } from '../services/deleteFolder/deleteFolder';
 import { uploadFile } from '@/entities/Storage/model/services/uploadFile/uploadFile';
+import { downloadFile } from '@/entities/Storage/model/services/downloadFile/downloadFile';
 
 const initialState: CloudStorageSchema = {
     isLoading: false,
@@ -96,7 +97,8 @@ export const cloudStorageSlice = createSlice({
                 (state: CloudStorageSchema, action: PayloadAction<File>) => {
                     state.data.files.push(action.payload);
                 },
-            );
+            )
+            .addCase(downloadFile.fulfilled, (state, action) => {});
     },
 });
 

@@ -32,3 +32,4 @@ export { renameFolder } from './model/services/renameFolder/renameFolder';
 export { deleteFile } from './model/services/deleteFile/deleteFile';
 export { deleteFolder } from './model/services/deleteFolder/deleteFolder';
 export { uploadFile } from './model/services/uploadFile/uploadFile';
+export { downloadFile } from './model/services/downloadFile/downloadFile';

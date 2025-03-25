@@ -3,6 +3,9 @@ import { File as CFile } from '../../types/file';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getUserAuthData } from '@/entities/User';
 import { selectCloudStorageData } from '../../selectors/cloudStorage';
+import { toastActions } from '@/entities/Toast';
+import { ToastType } from '@/shared/const/toast';
+import { truncateString } from '@/shared/lib/string/truncateString';
 
 interface UploadFileAttrs {
     file: File;
@@ -12,7 +15,7 @@ interface UploadFileAttrs {
 export const uploadFile = createAsyncThunk<CFile, UploadFileAttrs, ThunkConfig<string>>(
     'storage/uploadFile',
     async ({ file, onProgress }, thunkApi) => {
-        const { extra, rejectWithValue, getState } = thunkApi;
+        const { extra, rejectWithValue, getState, dispatch } = thunkApi;
 
         const user = getUserAuthData(getState());
         const data = selectCloudStorageData(getState());
@@ -34,6 +37,15 @@ export const uploadFile = createAsyncThunk<CFile, UploadFileAttrs, ThunkConfig<s
                         const percentCompleted = Math.round(
                             (progressEvent.loaded * 100) / (progressEvent.total || 1),
                         );
+                        if (percentCompleted === 100) {
+                            dispatch(
+                                toastActions.addToast({
+                                    title: `${truncateString(file.name, 20)} успешно загружен`,
+                                    type: ToastType.SUCCESS,
+                                    duration: 3000,
+                                }),
+                            );
+                        }
                         onProgress?.(percentCompleted);
                     },
                 },
