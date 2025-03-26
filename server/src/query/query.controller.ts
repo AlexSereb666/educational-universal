@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { QueryService } from './query.service';
 
 @Controller('query')
@@ -8,5 +8,10 @@ export class QueryController {
     @Post('execute')
     async executeQuery(@Body('sql') sql: string) {
         return this.queryService.executeQuery(sql);
+    }
+
+    @Get('schema')
+    async getSchema() {
+        return this.queryService.getSchema();
     }
 }

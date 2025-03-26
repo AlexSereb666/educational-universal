@@ -4,19 +4,20 @@ import { SidebarItem } from '../SidebarItem/SidebarItem';
 import iconMessage from '@/shared/assets/icons/MessageOutlined.svg';
 import iconCloud from '@/shared/assets/icons/Cloud.svg';
 import iconArticles from '@/shared/assets/icons/Articles.svg';
-import iconDatabase from '@/shared/assets/icons/Database.svg';
 import {
     getRouteArticles,
     getRouteCloudStorage,
     getRouteMessenger,
 } from '@/shared/const/router';
 import { VStack } from '@/shared/ui/Stack';
+import { UserRoles } from '@/entities/User';
 
 interface SidebarItemType {
     path: string;
     text: string;
     Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
     authOnly?: boolean;
+    roles?: UserRoles[];
 }
 
 export type { SidebarItemType };
@@ -38,12 +39,6 @@ export const SidebarItemsList: SidebarItemType[] = [
         path: getRouteArticles(),
         Icon: iconArticles,
         text: 'Статьи',
-        authOnly: true,
-    },
-    {
-        path: '#',
-        Icon: iconDatabase,
-        text: 'База данных',
         authOnly: true,
     },
 ];
