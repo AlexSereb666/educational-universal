@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import classNames from 'classnames';
 import * as cls from './Card.module.scss';
 import viewIcon from 'shared/assets/icons/Eye.svg';
-import { Icon } from '@/shared/ui/Icon';
-import { Text } from '@/shared/ui/Text';
+import { Icon } from '../Icon';
+import { Text } from '../Text';
 
 interface CardProps {
     image: string;

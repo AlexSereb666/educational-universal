@@ -1,4 +1,5 @@
-import {ChangeEvent, memo} from "react";
+import * as React from 'react';
+import { ChangeEvent, memo } from 'react';
 import * as cls from './TextArea.module.scss';
 
 interface TextAreaProps {
@@ -11,14 +12,7 @@ interface TextAreaProps {
 }
 
 export const TextArea = memo((props: TextAreaProps) => {
-    const {
-        placeholder,
-        size,
-        value,
-        onChange,
-        disabled,
-        resizable,
-    } = props;
+    const { placeholder, size, value, onChange, disabled, resizable } = props;
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if (onChange) {
@@ -34,5 +28,5 @@ export const TextArea = memo((props: TextAreaProps) => {
             onChange={handleChange}
             disabled={disabled}
         />
-    )
+    );
 });

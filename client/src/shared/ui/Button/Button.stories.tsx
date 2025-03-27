@@ -1,63 +1,76 @@
-import React from 'react';
-import { Button, ButtonProps } from './Button';
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-export default {
-    title: 'Components/Button',
+import { Button } from './Button';
+
+const meta = {
+    title: 'shared/Button',
     component: Button,
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs'],
     argTypes: {
-        onClick: { action: 'clicked' },
+        size: {
+            control: 'select',
+            options: ['small', 'medium', 'large'],
+            description: 'Размер кнопки',
+        },
+        disabled: {
+            control: 'boolean',
+            description: 'Делает кнопку неактивной',
+        },
+        children: {
+            control: 'text',
+            description: 'Содержимое кнопки (обычно текст)',
+        },
+        onClick: {
+            action: 'clicked',
+            description: 'Функция обработчика клика',
+        },
+    },
+    args: {
+        children: 'Текст Кнопки',
+        disabled: false,
+        size: 'medium',
+        onClick: fn(),
+    },
+} satisfies Meta<typeof Button>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+    args: {
+        children: 'Обычная кнопка',
     },
 };
 
-const Template = (args: ButtonProps) => <Button {...args} />;
-
-// История для стандартной кнопки
-export const Default = Template.bind({});
-Default.args = {
-    children: 'Default Button', // Текст кнопки
-    size: 'medium',
-    disabled: false,
+export const Large: Story = {
+    args: {
+        size: 'large',
+        children: 'Большая кнопка',
+    },
 };
 
-// История для маленькой кнопки
-export const Small = Template.bind({});
-Small.args = {
-    children: 'Small Button',
-    size: 'small',
-    disabled: false,
+export const Medium: Story = {
+    args: {
+        size: 'medium',
+        children: 'Средняя кнопка',
+    },
 };
 
-// История для средней кнопки
-export const Medium = Template.bind({});
-Medium.args = {
-    children: 'Medium Button',
-    size: 'medium',
-    disabled: false,
+export const Small: Story = {
+    args: {
+        size: 'small',
+        children: 'Маленькая кнопка',
+    },
 };
 
-// История для большой кнопки
-export const Large = Template.bind({});
-Large.args = {
-    children: 'Large Button',
-    size: 'large',
-    disabled: false,
-};
-
-// История для кнопки в состоянии disabled
-export const Disabled = Template.bind({});
-Disabled.args = {
-    children: 'Disabled Button',
-    size: 'medium',
-    disabled: true,
-};
-
-// История для кнопки с кастомными цветами
-export const CustomColors = Template.bind({});
-CustomColors.args = {
-    children: 'Custom Colors Button',
-    size: 'medium',
-    disabled: false,
-    defaultColor: 'green',
-    hoverColor: 'yellow',
-    activeColor: 'red',
+export const Disabled: Story = {
+    args: {
+        disabled: true,
+        children: 'Заблокированная кнопка',
+    },
 };

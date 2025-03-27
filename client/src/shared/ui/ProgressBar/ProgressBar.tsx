@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { memo } from 'react';
 import * as cls from './ProgressBar.module.scss';
 import classNames from 'classnames';

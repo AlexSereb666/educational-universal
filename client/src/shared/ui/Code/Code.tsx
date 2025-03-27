@@ -1,7 +1,8 @@
+import * as React from 'react';
 import { memo, ReactNode, useState } from 'react';
 import * as cls from './Code.module.scss';
 import copyIcon from 'shared/assets/icons/Copy.svg';
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '../Icon';
 
 interface CodeProps {
     children: ReactNode;

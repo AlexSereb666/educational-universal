@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { memo, ReactNode, FC } from 'react';
 import classNames from 'classnames';
 import * as cls from './Tabs.module.scss';

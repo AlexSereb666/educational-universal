@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Fragment, memo, ReactNode, useCallback } from 'react';
 import { Menu } from '@headlessui/react';
 import * as cls from './Dropdown.module.scss';

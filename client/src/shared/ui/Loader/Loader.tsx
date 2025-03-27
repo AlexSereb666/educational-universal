@@ -1,3 +1,4 @@
+import * as React from 'react';
 import * as cls from './Loader.module.scss';
 
 export const Loader = () => (

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ReactNode } from 'react';
 import * as cls from './Split.module.scss';
 import classNames from 'classnames';

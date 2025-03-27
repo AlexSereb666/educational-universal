@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import * as React from 'react';
+import { ReactNode } from 'react';
 import * as cls from './Flex.module.scss';
 import classNames from 'classnames';
 
@@ -62,7 +63,7 @@ export const Flex = (props: FlexProps) => {
         gap && gapClasses[gap],
         {
             [cls.max]: max,
-        }
+        },
     );
 
     return <div className={classes}>{children}</div>;

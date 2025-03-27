@@ -1,4 +1,5 @@
-import {CSSProperties, memo} from "react";
+import * as React from 'react';
+import { CSSProperties, memo } from 'react';
 import * as cls from './Skeleton.module.scss';
 
 interface SkeletonProps {
@@ -8,22 +9,18 @@ interface SkeletonProps {
 }
 
 export const Skeleton = memo((props: SkeletonProps) => {
-   const {
-       width,
-       height,
-       border
-   } = props;
+    const { width, height, border } = props;
 
-   const styles: CSSProperties = {
-       width,
-       height,
-       borderRadius: border,
-   }
+    const styles: CSSProperties = {
+        width,
+        height,
+        borderRadius: border,
+    };
 
     return (
-       <div
-           className={cls.skeleton}
-           style={styles}
-       />
-   )
+        <div
+            className={cls.skeleton}
+            style={styles}
+        />
+    );
 });

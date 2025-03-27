@@ -1,6 +1,7 @@
+import * as React from 'react';
 import * as cls from './Text.module.scss';
-import classNames from "classnames";
-import {memo} from "react";
+import classNames from 'classnames';
+import { memo } from 'react';
 
 interface TextProps {
     className?: string;
@@ -10,16 +11,13 @@ interface TextProps {
 }
 
 export const Text = memo((props: TextProps) => {
-    const {
-        className,
-        children,
-        size = 'small',
-        bold = false,
-    } = props;
+    const { className, children, size = 'small', bold = false } = props;
 
     return (
-        <span className={classNames(cls.Text, cls[size], {[cls.bold]: bold}, className)}>
+        <span
+            className={classNames(cls.Text, cls[size], { [cls.bold]: bold }, className)}
+        >
             {children}
         </span>
-    )
+    );
 });

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Switch as HSwitch } from '@headlessui/react';
 import { memo } from 'react';
 import * as cls from './Switch.module.scss';
@@ -27,13 +28,10 @@ export const Switch = memo((props: SwitchProps) => {
     const labelClass = classNames(
         cls.label,
         cls[`label-${sizeLabel}`],
-        cls[`label-${positionLabel}`]
+        cls[`label-${positionLabel}`],
     );
 
-    const containerClass = classNames(
-        cls.switchContainer,
-        cls[`alignment-${alignment}`]
-    );
+    const containerClass = classNames(cls.switchContainer, cls[`alignment-${alignment}`]);
 
     return (
         <div className={containerClass}>
@@ -46,14 +44,14 @@ export const Switch = memo((props: SwitchProps) => {
                 className={classNames(
                     cls.switch,
                     { [cls['switch-enabled']]: value },
-                    { [cls['switch-disabled']]: disabled }
+                    { [cls['switch-disabled']]: disabled },
                 )}
             >
                 <span
                     className={classNames(
                         cls['switch-thumb'],
                         { [cls['switch-thumb-enabled']]: value },
-                        { [cls['switch-thumb-disabled']]: disabled }
+                        { [cls['switch-thumb-disabled']]: disabled },
                     )}
                 />
             </HSwitch>
