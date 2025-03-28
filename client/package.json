@@ -16,7 +16,6 @@
     "generate:slice": "node ./scripts/createSlice/index.js",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
-    "postinstall": "rmdir /s /q .\\node_modules\\.cache",
     "prepare": "husky install",
     "i18n:extract": "i18next 'src/**/*.{ts,tsx}' --config i18next-parser.config.ts && node scripts/fix-ru.js"
   },
