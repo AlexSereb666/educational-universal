@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./server  # Указывает, где находится Dockerfile
+      dockerfile: Dockerfile
+    container_name: nest-server
+    restart: unless-stopped
+    env_file:
+      - server/.development.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - nest-network
+
+  db:
+    image: postgres:15
+    container_name: nest-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: social-network
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - nest-network
+
+networks:
+  nest-network:
+
+volumes:
+  pg_data:

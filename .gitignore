@@ -4,6 +4,8 @@ client/reports
 .idea
 server/node_modules
 server/uploads
+server/.development.env
+server/.production.env
 eslint-plugin-alexsereb666/node_modules
 node_modules
 
