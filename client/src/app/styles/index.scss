@@ -1,6 +1,6 @@
-@import "reset";
-@import "variables/global";
-@import './themes';
+@use "reset" as *;
+@use "variables/global" as *;
+@use "./themes" as *;
 
 body {
   min-height: 100vh;

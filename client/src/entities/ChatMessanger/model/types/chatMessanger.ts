@@ -1,3 +1,5 @@
+import { ConnectionStatus } from '@/shared/const/connectionStatus';
+
 export interface Message {
     id: number;
     chatId: number;
@@ -28,4 +30,6 @@ export interface ChatMessanger {
     messages: Message[];
     isLoading: boolean;
     error?: string;
+    connectionStatus: ConnectionStatus;
+    connectionError: string | null;
 }

@@ -1,2 +1,2 @@
-@import './themes/light';
-@import './themes/dark';
+@use './themes/light' as *;
+@use './themes/dark' as *;

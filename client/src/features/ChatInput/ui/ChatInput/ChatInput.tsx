@@ -7,7 +7,11 @@ import { chatMessangerActions } from '@/entities/ChatMessanger';
 import Send from '@/shared/assets/icons/Send.svg';
 import { Icon } from '@/shared/ui/Icon';
 
-export const ChatInput = memo(() => {
+interface ChatInputProps {
+    disabled?: boolean;
+}
+
+export const ChatInput = memo(({ disabled }: ChatInputProps) => {
     const dispatch = useAppDispatch();
     const chat = useSelector(getChatMessangerChat);
 
@@ -24,13 +28,14 @@ export const ChatInput = memo(() => {
     };
 
     const sendMessageOnClick = () => {
-        if (message.trim()) {
+        if (message.trim() && chat && !disabled) {
             dispatch(
-                chatMessangerActions.sendMessage({
+                chatMessangerActions.sendMessageRequest({
                     chatId: chat.id,
                     text: message,
                 }),
             );
+
             setMessage('');
             if (textareaRef.current) {
                 textareaRef.current.style.height = 'auto';
@@ -55,10 +60,12 @@ export const ChatInput = memo(() => {
                 placeholder="Введите сообщение..."
                 className={cls.chatInputField}
                 rows={1}
+                disabled={disabled || !chat}
             />
             <button
                 className={cls.sendButton}
                 onClick={sendMessageOnClick}
+                disabled={disabled || !chat || !message.trim()}
             >
                 <Icon
                     Svg={Send}

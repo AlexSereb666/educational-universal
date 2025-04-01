@@ -1,53 +1,50 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ChatMessanger } from "../types/chatMessanger";
-import { fetchChatByUserIds } from "../../model/services/searchChatMessanger/searchChatMessanger";
-import { Chat, Message } from "../../model/types/chatMessanger";
-import {io, Socket} from "socket.io-client";
-import {ACCESS_TOKEN_KEY} from "@/shared/const/localstorage";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ChatMessanger } from '../types/chatMessanger';
+import { fetchChatByUserIds } from '../../model/services/searchChatMessanger/searchChatMessanger';
+import { Chat, Message } from '../../model/types/chatMessanger';
+import { ConnectionStatus } from '@/shared/const/connectionStatus';
 
 const initialState: ChatMessanger = {
     chat: null,
     messages: [],
     isLoading: false,
+    error: undefined,
+    connectionStatus: ConnectionStatus.IDLE,
+    connectionError: null,
 };
-
-export let socket: Socket | null = null;
 
 export const chatMessangerSlice = createSlice({
     name: 'chatMessanger',
     initialState,
     reducers: {
-        connectToChat: (state, action: PayloadAction<number>) => {
-            const chatId = action.payload;
-
-            socket = io(`${__API__}/chat`);
-
-            socket.on('connect', () => {
-                console.log('Connected to WebSocket server');
-            });
-
-            socket.emit('joinChat', chatId);
-        },
-        disconnectFromChat: (state) => {
-            if (socket) {
-                socket.disconnect();
-                socket = null;
-                console.log('Disconnected from WebSocket server');
+        startConnecting: (state, action: PayloadAction<number>) => {},
+        disconnect: (state) => {},
+        sendMessageRequest: (
+            state,
+            action: PayloadAction<{ chatId: number; text: string }>,
+        ) => {},
+        setConnectionStatus: (state, action: PayloadAction<ConnectionStatus>) => {
+            state.connectionStatus = action.payload;
+            if (action.payload !== ConnectionStatus.ERROR) {
+                state.connectionError = null;
             }
         },
-        addMessage: (state, action: PayloadAction<Message>) => {
-            state.messages.push(action.payload);
+        connectionError: (state, action: PayloadAction<string>) => {
+            state.connectionError = action.payload;
+            state.connectionStatus = ConnectionStatus.ERROR;
         },
-        sendMessage: (state, action: PayloadAction<{ chatId: number; text: string; }>) => {
-            if (socket) {
-                const { chatId, text} = action.payload;
-
-                const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-                const parsedToken = JSON.parse(atob(token.split('.')[1]));
-                const userId = parsedToken.id;
-
-                socket.emit('sendMessage', { chatId, userId, text });
+        messageReceived: (state, action: PayloadAction<Message>) => {
+            if (!state.messages.some((msg) => msg.id === action.payload.id)) {
+                state.messages.push(action.payload);
             }
+        },
+        clearChatData: (state) => {
+            state.chat = null;
+            state.messages = [];
+            state.isLoading = false;
+            state.error = undefined;
+            state.connectionStatus = ConnectionStatus.IDLE;
+            state.connectionError = null;
         },
     },
     extraReducers: (builder) => {
@@ -56,14 +53,19 @@ export const chatMessangerSlice = createSlice({
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(fetchChatByUserIds.fulfilled, (state, action: PayloadAction<{ chat: Chat; messages: Message[] }>) => {
-                state.chat = action.payload.chat;
-                state.messages = action.payload.messages;
-                state.isLoading = false;
-            })
+            .addCase(
+                fetchChatByUserIds.fulfilled,
+                (state, action: PayloadAction<{ chat: Chat; messages: Message[] }>) => {
+                    state.chat = action.payload.chat;
+                    state.messages = action.payload.messages;
+                    state.isLoading = false;
+                    state.connectionStatus = ConnectionStatus.IDLE;
+                },
+            )
             .addCase(fetchChatByUserIds.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+                state.connectionStatus = ConnectionStatus.IDLE;
             });
     },
 });

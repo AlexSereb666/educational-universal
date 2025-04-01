@@ -6,6 +6,7 @@ import { $api } from '@/shared/api/api';
 import { scrollSaveSliceReducer } from '@/features/ScrollSave';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { toastReducer } from '@/entities/Toast';
+import { socketMiddleware } from '../middleware/socketMiddleware';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -34,7 +35,10 @@ export function createReduxStore(
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }).concat(rtkApi.middleware),
+                // serializableCheck: false, // сериализуемость
+            })
+                .concat(rtkApi.middleware)
+                .prepend(socketMiddleware()),
     });
 
     // @ts-ignore

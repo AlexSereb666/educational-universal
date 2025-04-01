@@ -1,15 +1,22 @@
-import * as webpack from 'webpack';
+// @ts-ignore
+import webpack from 'webpack';
 import { Configuration } from 'webpack';
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import * as MiniCssExtractPlugin from "mini-css-extract-plugin";
+// @ts-ignore
+import HtmlWebpackPlugin from "html-webpack-plugin";
+// @ts-ignore
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
-import * as ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import * as path from "path";
-import * as CopyPlugin from "copy-webpack-plugin";
 // @ts-ignore
-import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import * as CircularDependencyPlugin from 'circular-dependency-plugin';
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+// @ts-ignore
+import path from "path";
+// @ts-ignore
+import CopyPlugin from "copy-webpack-plugin";
+// @ts-ignore
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+// @ts-ignore
+import CircularDependencyPlugin from 'circular-dependency-plugin';
 
 export function buildPlugins({mode, paths, analyzer, apiUrl}: BuildOptions): Configuration['plugins'] {
     const isDev = mode === 'development';
