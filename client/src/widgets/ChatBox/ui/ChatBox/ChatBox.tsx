@@ -12,6 +12,7 @@ import { ChatInput } from '@/features/ChatInput';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { chatMessangerActions } from '@/entities/ChatMessanger';
 import { Text } from '@/shared/ui/Text';
+import { ConnectionStatus } from '@/shared/const/connectionStatus';
 
 export const ChatBox = memo(() => {
     const dispatch = useAppDispatch();
@@ -66,7 +67,7 @@ export const ChatBox = memo(() => {
             );
         }
 
-        if (connectionStatus === 'pending') {
+        if (connectionStatus === ConnectionStatus.PENDING) {
             return (
                 <div className={cls.not_found_chat}>
                     <Loader />
@@ -74,7 +75,7 @@ export const ChatBox = memo(() => {
             );
         }
 
-        if (connectionStatus === 'error') {
+        if (connectionStatus === ConnectionStatus.ERROR) {
             return (
                 <div className={cls.not_found_chat}>
                     <Text>Ошибка подключения к чату</Text>
@@ -84,9 +85,9 @@ export const ChatBox = memo(() => {
 
         if (
             chat &&
-            (connectionStatus === 'connected' ||
-                connectionStatus === 'disconnected' ||
-                connectionStatus === 'idle')
+            (connectionStatus === ConnectionStatus.CONNECTING ||
+                connectionStatus === ConnectionStatus.DISCONNECTING ||
+                connectionStatus === ConnectionStatus.IDLE)
         ) {
             return (
                 <div className={cls.container}>
@@ -94,7 +95,9 @@ export const ChatBox = memo(() => {
                         <MessageListChat />
                     </div>
                     <div className={cls.chat_input}>
-                        <ChatInput disabled={connectionStatus !== 'connected'} />
+                        <ChatInput
+                            disabled={connectionStatus !== ConnectionStatus.CONNECTING}
+                        />
                     </div>
                 </div>
             );
