@@ -1,0 +1,45 @@
+.card {
+  display: grid;
+  grid-template-columns: 4fr 2fr 2fr 2fr 0.5fr;
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--color-text);
+  align-items: center;
+
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .icon {
+    color: var(--color-icon);
+    position: absolute;
+    left: 0;
+  }
+
+  &:hover {
+    transform: scale(0.98);
+  }
+
+  &:has(.menu:hover) {
+    transform: none;
+  }
+}
+
+.dragging {
+  background-color: var(--bg-color-dragging);
+}
+
+.over {
+  background-color: var(--bg-color-dragging);
+}
+
+.forbidden {
+  background-color: var(--bg-color-dragging);
+}

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { CloudStorage } from '../../..';
+import { CloudStorage } from '../../types/CloudStorage';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 interface getFolderAttrs {

@@ -1,72 +1,52 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import * as cls from './CloudStorageExplorerViewGrid.module.scss';
-import { CloudStorageMenuItem } from '@/features/CloudStorageMenuItem';
-import { StorageItem } from '@/shared/const/storage';
-import { Icon } from '@/shared/ui/Icon';
-import FolderIcon from '@/shared/assets/icons/Folder.svg';
 import { Text } from '@/shared/ui/Text';
-import { truncateString } from '@/shared/lib/string/truncateString';
-import FileIcon from '@/shared/assets/icons/File.svg';
-import { File, Folder } from '@/entities/Storage';
+import { StorageItem } from '@/entities/Storage';
+import { StorageItemType } from '@/shared/const/storage';
+import { StorageItemCard } from '../StorageItemCard/StorageItemCard';
+import { View } from '@/shared/const/view';
+import { useTranslation } from '@/shared/lib/hooks/useTranslation/useTranslation';
 
 interface CloudStorageExplorerViewGridProps {
     className?: string;
-    folders: Folder[];
-    files: File[];
+    items: StorageItem[];
     openFolder: (id: number) => void;
+    onItemDrop: (draggedItem: StorageItem, targetItem: StorageItem) => void;
 }
 
 export const CloudStorageExplorerViewGrid = memo(
     (props: CloudStorageExplorerViewGridProps) => {
-        const { className, folders, files, openFolder } = props;
+        const { className, items, openFolder, onItemDrop } = props;
+        const { t } = useTranslation('CloudStorageExplorerViewGrid');
+
+        const handleItemClick = useCallback(
+            (item: StorageItem) => {
+                if (item.type === StorageItemType.FOLDER) {
+                    openFolder(item.id);
+                }
+            },
+            [openFolder],
+        );
 
         return (
-            <div
-                className={classNames(cls.CloudStorageExplorerViewGrid, {}, [className])}
-            >
+            <div className={classNames({}, {}, [className])}>
                 <div className={cls.containerGrid}>
-                    {folders &&
-                        folders.map((folder) => (
-                            <div
-                                key={folder.id}
-                                onClick={() => openFolder(folder.id)}
-                                className={cls.container}
-                            >
-                                <CloudStorageMenuItem
-                                    id={folder.id}
-                                    type={StorageItem.FOLDER}
-                                    className={cls.FolderMenu}
-                                />
-                                <Icon
-                                    Svg={FolderIcon}
-                                    width={100}
-                                    height={100}
-                                    className={cls.icon}
-                                />
-                                <Text>{truncateString(folder.name, 16)}</Text>
-                            </div>
+                    {items &&
+                        items.map((item) => (
+                            <StorageItemCard
+                                key={`${item.id}.${item.type}`}
+                                item={item}
+                                view={View.GRID}
+                                onClick={handleItemClick}
+                                onDropItem={onItemDrop}
+                            />
                         ))}
-                    {files &&
-                        files.map((file) => (
-                            <div
-                                key={file.id}
-                                className={cls.container}
-                            >
-                                <CloudStorageMenuItem
-                                    id={file.id}
-                                    type={StorageItem.FILE}
-                                    className={cls.FolderMenu}
-                                />
-                                <Icon
-                                    Svg={FileIcon}
-                                    width={100}
-                                    height={100}
-                                    className={cls.icon}
-                                />
-                                <Text>{truncateString(file.name, 16)}</Text>
-                            </div>
-                        ))}
+                    {(!items || items.length === 0) && (
+                        <div className={cls.emptyGrid}>
+                            <Text>{t('Список пуст')}</Text>
+                        </div>
+                    )}
                 </div>
             </div>
         );

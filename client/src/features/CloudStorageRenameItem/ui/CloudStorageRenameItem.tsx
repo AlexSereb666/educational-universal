@@ -6,12 +6,12 @@ import { useTranslation } from '@/shared/lib/hooks/useTranslation/useTranslation
 import { Button } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import * as cls from './CloudStorageRenameItem.module.scss';
-import { StorageItem } from '@/shared/const/storage';
 import { renameFile, renameFolder } from '@/entities/Storage';
+import { StorageItemType } from '@/shared/const/storage';
 
 interface CloudStorageRenameItemProps {
     id: number;
-    type: StorageItem;
+    type: StorageItemType;
     isOpen: boolean;
     onClose: () => void;
 }
@@ -25,14 +25,14 @@ export const CloudStorageRenameItem = memo((props: CloudStorageRenameItemProps) 
     const onClick = useCallback(
         (value: string) => {
             if (value) {
-                if (type === StorageItem.FILE) {
+                if (type === StorageItemType.FILE) {
                     dispatch(
                         renameFile({
                             fileId: id,
                             newName: value,
                         }),
                     );
-                } else if (type === StorageItem.FOLDER) {
+                } else if (type === StorageItemType.FOLDER) {
                     dispatch(
                         renameFolder({
                             folderId: id,

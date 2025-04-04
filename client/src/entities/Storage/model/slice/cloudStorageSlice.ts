@@ -9,8 +9,9 @@ import { renameFile } from '../services/renameFile/renameFile';
 import { renameFolder } from '../services/renameFolder/renameFolder';
 import { deleteFile } from '../services/deleteFile/deleteFile';
 import { deleteFolder } from '../services/deleteFolder/deleteFolder';
-import { uploadFile } from '@/entities/Storage/model/services/uploadFile/uploadFile';
-import { downloadFile } from '@/entities/Storage/model/services/downloadFile/downloadFile';
+import { uploadFile } from '../services/uploadFile/uploadFile';
+import { downloadFile } from '../services/downloadFile/downloadFile';
+import { StorageItemType } from '@/shared/const/storage';
 
 const initialState: CloudStorageSchema = {
     isLoading: false,
@@ -47,7 +48,10 @@ export const cloudStorageSlice = createSlice({
                 addFolder.fulfilled,
                 (state: CloudStorageSchema, action: PayloadAction<Folder>) => {
                     state.isLoading = false;
-                    state.data.folders.push(action.payload);
+                    state.data.items.push({
+                        ...action.payload,
+                        type: StorageItemType.FOLDER,
+                    });
                 },
             )
             .addCase(addFolder.rejected, (state: CloudStorageSchema, action) => {
@@ -57,16 +61,22 @@ export const cloudStorageSlice = createSlice({
             .addCase(
                 renameFile.fulfilled,
                 (state: CloudStorageSchema, action: PayloadAction<File>) => {
-                    state.data.files = state.data.files.map((file) =>
-                        file.id === action.payload.id ? action.payload : file,
+                    state.data.items = state.data.items.map((item) =>
+                        item.id === action.payload.id &&
+                        item.type === StorageItemType.FILE
+                            ? { ...action.payload, type: StorageItemType.FILE }
+                            : item,
                     );
                 },
             )
             .addCase(
                 renameFolder.fulfilled,
                 (state: CloudStorageSchema, action: PayloadAction<Folder>) => {
-                    state.data.folders = state.data.folders.map((folder) =>
-                        folder.id === action.payload.id ? action.payload : folder,
+                    state.data.items = state.data.items.map((item) =>
+                        item.id === action.payload.id &&
+                        item.type === StorageItemType.FOLDER
+                            ? { ...action.payload, type: StorageItemType.FOLDER }
+                            : item,
                     );
                 },
             )
@@ -76,8 +86,12 @@ export const cloudStorageSlice = createSlice({
                     state: CloudStorageSchema,
                     action: PayloadAction<{ fileId: number }>,
                 ) => {
-                    state.data.files = state.data.files.filter(
-                        (file) => String(file.id) !== String(action.payload.fileId),
+                    state.data.items = state.data.items.filter(
+                        (item) =>
+                            !(
+                                String(item.id) === String(action.payload.fileId) &&
+                                item.type === StorageItemType.FILE
+                            ),
                     );
                 },
             )
@@ -87,15 +101,22 @@ export const cloudStorageSlice = createSlice({
                     state: CloudStorageSchema,
                     action: PayloadAction<{ folderId: number }>,
                 ) => {
-                    state.data.folders = state.data.folders.filter(
-                        (folder) => String(folder.id) !== String(action.payload.folderId),
+                    state.data.items = state.data.items.filter(
+                        (item) =>
+                            !(
+                                String(item.id) === String(action.payload.folderId) &&
+                                item.type === StorageItemType.FOLDER
+                            ),
                     );
                 },
             )
             .addCase(
                 uploadFile.fulfilled,
                 (state: CloudStorageSchema, action: PayloadAction<File>) => {
-                    state.data.files.push(action.payload);
+                    state.data.items.push({
+                        ...action.payload,
+                        type: StorageItemType.FILE,
+                    });
                 },
             )
             .addCase(downloadFile.fulfilled, (state, action) => {});

@@ -1,3 +1,5 @@
+import { StorageItemType } from '@/shared/const/storage';
+
 export interface File {
     id: number;
     userId: number;
@@ -8,4 +10,5 @@ export interface File {
     storagePath: string;
     createdAt: string;
     updatedAt: string;
+    type?: StorageItemType.FILE;
 }

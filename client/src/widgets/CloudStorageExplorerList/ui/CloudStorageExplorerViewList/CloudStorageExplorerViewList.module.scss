@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.header, .row {
+.header {
   display: grid;
   grid-template-columns: 4fr 2fr 2fr 2fr 0.5fr;
   text-align: center;
@@ -14,31 +14,11 @@
 .list {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
-.row span {
+.emptyList {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding: 10px 0;
-}
-
-.icon {
-  color: var(--color-icon);
-  position: absolute;
-  left: 0;
-}
-
-.row {
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(0.98);
-  }
-
-  &:has(.FolderMenu:hover) {
-    transform: none;
-  }
 }

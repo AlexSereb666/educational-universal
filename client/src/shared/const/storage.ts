@@ -1,4 +1,4 @@
-export enum StorageItem {
+export enum StorageItemType {
     FOLDER = 'folder',
     FILE = 'file',
 }

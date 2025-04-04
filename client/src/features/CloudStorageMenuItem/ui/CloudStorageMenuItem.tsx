@@ -4,14 +4,14 @@ import * as cls from './CloudStorageMenuItem.module.scss';
 import { Text } from '@/shared/ui/Text';
 import { Dropdown, DropdownItem } from '@/shared/ui/Dropdown';
 import { CloudStorageRenameItem } from '../../CloudStorageRenameItem';
-import { StorageItem } from '@/shared/const/storage';
+import { StorageItemType } from '@/shared/const/storage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { deleteFile, deleteFolder, downloadFile } from '@/entities/Storage';
 
 interface CloudStorageMenuItemProps {
     className?: string;
     id: number;
-    type: StorageItem;
+    type: StorageItemType;
 }
 
 export const CloudStorageMenuItem = memo((props: CloudStorageMenuItemProps) => {
@@ -40,13 +40,13 @@ export const CloudStorageMenuItem = memo((props: CloudStorageMenuItemProps) => {
     }, [dispatch, id]);
 
     const deleteItem = useCallback(() => {
-        if (type === StorageItem.FILE) {
+        if (type === StorageItemType.FILE) {
             dispatch(
                 deleteFile({
                     fileId: id,
                 }),
             );
-        } else if (type === StorageItem.FOLDER) {
+        } else if (type === StorageItemType.FOLDER) {
             dispatch(
                 deleteFolder({
                     folderId: id,
@@ -60,7 +60,7 @@ export const CloudStorageMenuItem = memo((props: CloudStorageMenuItemProps) => {
             content: 'Переименовать',
             onClick: openModal,
         },
-        ...(type === StorageItem.FILE
+        ...(type === StorageItemType.FILE
             ? [
                   {
                       content: 'Скачать',

@@ -1,0 +1,41 @@
+.card {
+  width: 150px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-panel-color);
+  box-shadow: 0 0 10px var(--shadow-border-panel-start);
+  backdrop-filter: var(--blur-panel);
+  border-radius: 10px;
+  cursor: pointer;
+
+  .icon {
+    color: var(--color-icon);
+    position: static;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    .icon {
+      transform: scale(1.1);
+    }
+  }
+
+  .menu {
+    text-align: right;
+  }
+}
+
+.dragging {
+  background-color: var(--bg-color-dragging);
+}
+
+.over {
+  background-color: var(--bg-color-dragging);
+}
+
+.forbidden {
+  background-color: var(--bg-color-dragging);
+}

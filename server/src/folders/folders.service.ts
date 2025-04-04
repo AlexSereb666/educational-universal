@@ -4,6 +4,7 @@ import { Folders } from './folders.model';
 import { FilesService } from '../files/files.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
 import { RenameFolderDto } from './dto/rename-folder.dto';
+import { FolderContentsDto } from './dto/folder-contents.dto';
 
 @Injectable()
 export class FoldersService {
@@ -32,8 +33,12 @@ export class FoldersService {
         return folder;
     }
 
-    async getFolderContents(userId: number, folderId?: number) {
+    async getFolderContents(
+        userId: number,
+        folderId?: number,
+    ): Promise<FolderContentsDto> {
         let currentFolder = null;
+
         if (folderId) {
             currentFolder = await this.foldersRepository.findByPk(folderId);
 
@@ -48,7 +53,7 @@ export class FoldersService {
 
         const files = await this.filesService.getFilesInFolder(userId, folderId);
 
-        return { currentFolder, folders, files };
+        return new FolderContentsDto(currentFolder, folders, files);
     }
 
     async deleteFolder(userId: number, folderId: number) {

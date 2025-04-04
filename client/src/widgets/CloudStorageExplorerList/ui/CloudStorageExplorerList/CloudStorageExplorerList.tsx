@@ -2,6 +2,7 @@ import { memo, useCallback, useEffect } from 'react';
 import {
     cloudStoragePreferencesActions,
     getFolder,
+    StorageItem,
     uploadFile,
     useCloudStorageCurrentFolderId,
     useCloudStorageData,
@@ -35,13 +36,15 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
     const view = useCloudStorageView();
 
     useEffect(() => {
-        dispatch(
-            getFolder({
-                userId: Number(user.id),
-                folderId: currentFolderId,
-            }),
-        );
-    }, [dispatch, currentFolderId]);
+        if (user?.id) {
+            dispatch(
+                getFolder({
+                    userId: Number(user.id),
+                    folderId: currentFolderId,
+                }),
+            );
+        }
+    }, [dispatch, currentFolderId, user?.id]);
 
     const openFolder = useCallback(
         (id: number) => {
@@ -50,7 +53,7 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
         [dispatch],
     );
 
-    const handleDrop = (files: File[]) => {
+    const handleFileUploadDrop = (files: File[]) => {
         files.forEach((file) => {
             dispatch(
                 cloudStoragePreferencesActions.addFileUploads({
@@ -76,11 +79,21 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
         });
     };
 
+    const handleItemDrop = useCallback(
+        (draggedItem: StorageItem, targetItem: StorageItem) => {
+            console.log('--- Item Drop Handled ---');
+            console.log('Dragged Item:', draggedItem);
+            console.log('Target Item:', targetItem);
+            console.log('-------------------------');
+        },
+        [dispatch, currentFolderId],
+    );
+
     if (isLoading) {
         return <CloudStorageExplorerSkeleton view={view} />;
     }
 
-    if (data?.files.length === 0 && data?.folders.length === 0) {
+    if (data?.items.length === 0) {
         return (
             <div className={cls.notFoundData}>
                 <Text size={'large'}>{t('Нет данных')}</Text>
@@ -91,7 +104,7 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
     return (
         <DragAndDropWrapper
             className={cls.CloudStorageExplorerList}
-            onDrop={handleDrop}
+            onDrop={handleFileUploadDrop}
             renderDragOverContent={() => (
                 <div className={cls.DragAndDrop}>
                     <Text
@@ -106,16 +119,16 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
             {view === View.LIST ? (
                 <CloudStorageExplorerViewList
                     className={className}
-                    folders={data?.folders}
-                    files={data?.files}
+                    items={data?.items ?? []}
                     openFolder={openFolder}
+                    onItemDrop={handleItemDrop}
                 />
             ) : (
                 <CloudStorageExplorerViewGrid
                     className={className}
-                    folders={data?.folders}
-                    files={data?.files}
+                    items={data?.items ?? []}
                     openFolder={openFolder}
+                    onItemDrop={handleItemDrop}
                 />
             )}
         </DragAndDropWrapper>

@@ -33,3 +33,4 @@ export { deleteFile } from './model/services/deleteFile/deleteFile';
 export { deleteFolder } from './model/services/deleteFolder/deleteFolder';
 export { uploadFile } from './model/services/uploadFile/uploadFile';
 export { downloadFile } from './model/services/downloadFile/downloadFile';
+export type { StorageItem } from './model/types/CloudStorage';
