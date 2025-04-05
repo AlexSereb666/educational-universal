@@ -12,6 +12,8 @@ import {
     Res,
     UploadedFile,
     UseInterceptors,
+    UsePipes,
+    ValidationPipe,
 } from '@nestjs/common';
 import { FilesService } from './files.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -19,6 +21,7 @@ import { Response } from 'express';
 import * as fs from 'fs';
 import { UploadFileDto } from './dto/upload-file.dto';
 import { RenameFileDto } from './dto/rename-file.dto';
+import { MoveFileDto } from './dto/move-file.dto';
 
 @Controller('files')
 export class FilesController {
@@ -90,5 +93,11 @@ export class FilesController {
                 console.log('Ошибка при отправке файла:', err);
             }
         });
+    }
+
+    @Patch('move')
+    @UsePipes(new ValidationPipe())
+    async moveFile(@Body() dto: MoveFileDto) {
+        return this.filesService.moveFile(dto);
     }
 }

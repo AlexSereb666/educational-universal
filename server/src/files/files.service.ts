@@ -6,12 +6,17 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Files } from './files.model';
 import { UploadFileDto } from './dto/upload-file.dto';
 import { RenameFileDto } from './dto/rename-file.dto';
+import { Folders } from '../folders/folders.model';
+import { MoveFileDto } from './dto/move-file.dto';
 
 @Injectable()
 export class FilesService {
     private readonly baseUploadPath = path.resolve(__dirname, '..', '..', 'uploads');
 
-    constructor(@InjectModel(Files) private filesRepository: typeof Files) {
+    constructor(
+        @InjectModel(Files) private filesRepository: typeof Files,
+        @InjectModel(Folders) private foldersRepository: typeof Folders,
+    ) {
         this.ensureDirectoryExists(this.baseUploadPath);
     }
 
@@ -143,5 +148,32 @@ export class FilesService {
             fileName: file.name,
             mimeType: file.mimeType,
         };
+    }
+
+    async moveFile(dto: MoveFileDto): Promise<Files> {
+        const { userId, fileId, targetFolderId } = dto;
+
+        const fileToMove = await this.filesRepository.findOne({
+            where: { id: fileId, userId },
+        });
+
+        if (!fileToMove) {
+            throw new NotFoundException('Файл не найден или нет доступа');
+        }
+
+        if (targetFolderId !== null) {
+            const targetFolder = await this.foldersRepository.findOne({
+                where: { id: targetFolderId, userId },
+            });
+
+            if (!targetFolder) {
+                throw new NotFoundException('Целевая папка не найдена или нет доступа');
+            }
+        }
+
+        fileToMove.folderId = targetFolderId;
+        await fileToMove.save();
+
+        return fileToMove;
     }
 }

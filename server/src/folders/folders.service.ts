@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Folders } from './folders.model';
 import { FilesService } from '../files/files.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
 import { RenameFolderDto } from './dto/rename-folder.dto';
 import { FolderContentsDto } from './dto/folder-contents.dto';
+import { MoveFolderDto } from './dto/move-folder.dto';
 
 @Injectable()
 export class FoldersService {
@@ -104,5 +105,53 @@ export class FoldersService {
         await folder.save();
 
         return folder;
+    }
+
+    async moveFolder(dto: MoveFolderDto): Promise<Folders> {
+        const { userId, folderId, targetParentId } = dto;
+
+        const folderToMove = await this.foldersRepository.findOne({
+            where: { id: folderId, userId },
+        });
+
+        if (!folderToMove) {
+            throw new NotFoundException('Перемещаемая папка не найдена или нет доступа');
+        }
+
+        if (targetParentId !== null) {
+            const targetFolder = await this.foldersRepository.findOne({
+                where: { id: targetParentId, userId },
+            });
+
+            if (!targetFolder) {
+                throw new NotFoundException('Целевая папка не найдена или нет доступа');
+            }
+
+            if (folderId === targetParentId) {
+                throw new BadRequestException('Нельзя переместить папку в саму себя');
+            }
+
+            let currentParent = targetFolder;
+            while (currentParent) {
+                if (currentParent.id === folderId) {
+                    throw new BadRequestException(
+                        'Нельзя переместить папку в её дочернюю папку',
+                    );
+                }
+
+                if (currentParent.parentId === null) break;
+
+                currentParent = await this.foldersRepository.findOne({
+                    where: { id: currentParent.parentId, userId },
+                });
+
+                if (!currentParent) break;
+            }
+        }
+
+        folderToMove.parentId = targetParentId;
+        await folderToMove.save();
+
+        return folderToMove;
     }
 }

@@ -9,5 +9,6 @@ import { FoldersController } from './folders.controller';
     controllers: [FoldersController],
     providers: [FoldersService],
     imports: [SequelizeModule.forFeature([Folders]), forwardRef(() => FilesModule)],
+    exports: [FoldersService],
 })
 export class FoldersModule {}

@@ -2,6 +2,8 @@ import { memo, useCallback, useEffect } from 'react';
 import {
     cloudStoragePreferencesActions,
     getFolder,
+    moveFile,
+    moveFolder,
     StorageItem,
     uploadFile,
     useCloudStorageCurrentFolderId,
@@ -19,6 +21,7 @@ import { CloudStorageExplorerViewList } from '../CloudStorageExplorerViewList/Cl
 import { CloudStorageExplorerViewGrid } from '../CloudStorageExplorerViewGrid/CloudStorageExplorerViewGrid';
 import { CloudStorageExplorerSkeleton } from '../CloudStorageExplorerSkeleton/CloudStorageExplorerSkeleton';
 import { DragAndDropWrapper } from '@/shared/lib/components/DragAndDropWrapper/DragAndDropWrapper';
+import { StorageItemType } from '@/shared/const/storage';
 
 interface CloudStorageExplorerListProps {
     className?: string;
@@ -81,10 +84,23 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
 
     const handleItemDrop = useCallback(
         (draggedItem: StorageItem, targetItem: StorageItem) => {
-            console.log('--- Item Drop Handled ---');
-            console.log('Dragged Item:', draggedItem);
-            console.log('Target Item:', targetItem);
-            console.log('-------------------------');
+            if (draggedItem.type === StorageItemType.FILE) {
+                dispatch(
+                    moveFile({
+                        fileId: draggedItem.id,
+                        targetFolderId: targetItem.id,
+                    }),
+                );
+            }
+
+            if (draggedItem.type === StorageItemType.FOLDER) {
+                dispatch(
+                    moveFolder({
+                        folderId: draggedItem.id,
+                        targetParentId: targetItem.id,
+                    }),
+                );
+            }
         },
         [dispatch, currentFolderId],
     );

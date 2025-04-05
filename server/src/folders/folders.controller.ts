@@ -1,7 +1,19 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
+    Query,
+    UsePipes,
+    ValidationPipe,
+} from '@nestjs/common';
 import { FoldersService } from './folders.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
 import { RenameFolderDto } from './dto/rename-folder.dto';
+import { MoveFolderDto } from './dto/move-folder.dto';
 
 @Controller('folders')
 export class FoldersController {
@@ -31,5 +43,11 @@ export class FoldersController {
     @Patch('rename')
     async renameFolder(@Body() dto: RenameFolderDto) {
         return this.foldersService.renameFolder(dto);
+    }
+
+    @Patch('move')
+    @UsePipes(new ValidationPipe())
+    async moveFolder(@Body() dto: MoveFolderDto) {
+        return this.foldersService.moveFolder(dto);
     }
 }

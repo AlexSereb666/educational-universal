@@ -12,6 +12,8 @@ import { deleteFolder } from '../services/deleteFolder/deleteFolder';
 import { uploadFile } from '../services/uploadFile/uploadFile';
 import { downloadFile } from '../services/downloadFile/downloadFile';
 import { StorageItemType } from '@/shared/const/storage';
+import { moveFile } from '../services/moveFile/moveFile';
+import { moveFolder } from '@/entities/Storage/model/services/moveFolder/moveFolder';
 
 const initialState: CloudStorageSchema = {
     isLoading: false,
@@ -119,7 +121,25 @@ export const cloudStorageSlice = createSlice({
                     });
                 },
             )
-            .addCase(downloadFile.fulfilled, (state, action) => {});
+            .addCase(downloadFile.fulfilled, (state, action) => {})
+            .addCase(moveFile.fulfilled, (state, action: PayloadAction<File>) => {
+                state.data.items = state.data.items.filter(
+                    (item) =>
+                        !(
+                            String(item.id) === String(action.payload.id) &&
+                            item.type === StorageItemType.FILE
+                        ),
+                );
+            })
+            .addCase(moveFolder.fulfilled, (state, action: PayloadAction<Folder>) => {
+                state.data.items = state.data.items.filter(
+                    (item) =>
+                        !(
+                            String(item.id) === String(action.payload.id) &&
+                            item.type === StorageItemType.FOLDER
+                        ),
+                );
+            });
     },
 });
 
