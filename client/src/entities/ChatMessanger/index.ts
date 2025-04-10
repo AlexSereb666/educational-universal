@@ -15,3 +15,6 @@ export {
     getChatMessangerMessages,
     getChatMessangerIsLoading,
 } from './model/selectors/chatMessenger';
+
+export type { Message } from './model/types/chatMessanger';
+export { chatSocketModule } from './config/socketHandlers';

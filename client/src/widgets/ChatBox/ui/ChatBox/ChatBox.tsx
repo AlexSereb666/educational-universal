@@ -85,7 +85,7 @@ export const ChatBox = memo(() => {
 
         if (
             chat &&
-            (connectionStatus === ConnectionStatus.CONNECTING ||
+            (connectionStatus === ConnectionStatus.CONNECTED ||
                 connectionStatus === ConnectionStatus.DISCONNECTING ||
                 connectionStatus === ConnectionStatus.IDLE)
         ) {
@@ -96,7 +96,7 @@ export const ChatBox = memo(() => {
                     </div>
                     <div className={cls.chat_input}>
                         <ChatInput
-                            disabled={connectionStatus !== ConnectionStatus.CONNECTING}
+                            disabled={connectionStatus !== ConnectionStatus.CONNECTED}
                         />
                     </div>
                 </div>

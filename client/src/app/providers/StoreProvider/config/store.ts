@@ -6,7 +6,9 @@ import { $api } from '@/shared/api/api';
 import { scrollSaveSliceReducer } from '@/features/ScrollSave';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { toastReducer } from '@/entities/Toast';
-import { socketMiddleware } from '../middleware/socketMiddleware';
+import { createSocketMiddleware } from '../middleware/socketMiddleware';
+import { chatSocketModule } from '@/entities/ChatMessanger';
+import { SocketModuleConfig } from '@/shared/types/socket';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -26,6 +28,8 @@ export function createReduxStore(
         api: $api,
     };
 
+    const listSocketMiddleware: SocketModuleConfig[] = [chatSocketModule];
+
     const store = configureStore({
         reducer: reducerManager.reduce as Reducer<StateSchema>,
         devTools: __IS_DEV__,
@@ -35,10 +39,9 @@ export function createReduxStore(
                 thunk: {
                     extraArgument: extraArg,
                 },
-                // serializableCheck: false, // сериализуемость
             })
                 .concat(rtkApi.middleware)
-                .prepend(socketMiddleware()),
+                .prepend(createSocketMiddleware(listSocketMiddleware)),
     });
 
     // @ts-ignore

@@ -17,7 +17,9 @@ export const chatMessangerSlice = createSlice({
     name: 'chatMessanger',
     initialState,
     reducers: {
-        startConnecting: (state, action: PayloadAction<number>) => {},
+        startConnecting: (state, action: PayloadAction<number>) => {
+            state.connectionStatus = ConnectionStatus.PENDING;
+        },
         disconnect: (state) => {},
         sendMessageRequest: (
             state,

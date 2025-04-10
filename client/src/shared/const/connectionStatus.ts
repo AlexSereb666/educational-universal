@@ -1,7 +1,7 @@
 export enum ConnectionStatus {
     IDLE = 'idle',
     PENDING = 'pending',
-    CONNECTING = 'connected',
+    CONNECTED = 'connected',
     ERROR = 'error',
     DISCONNECTING = 'disconnected',
 }
