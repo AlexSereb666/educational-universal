@@ -36,3 +36,4 @@ export { downloadFile } from './model/services/downloadFile/downloadFile';
 export type { StorageItem } from './model/types/CloudStorage';
 export { moveFile } from './model/services/moveFile/moveFile';
 export { moveFolder } from './model/services/moveFolder/moveFolder';
+export { useStorageItemDropHandler } from './lib/hooks/useStorageItemDropHandler/useStorageItemDropHandler';

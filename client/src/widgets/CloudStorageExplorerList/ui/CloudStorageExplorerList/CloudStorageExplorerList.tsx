@@ -2,14 +2,13 @@ import { memo, useCallback, useEffect } from 'react';
 import {
     cloudStoragePreferencesActions,
     getFolder,
-    moveFile,
-    moveFolder,
     StorageItem,
     uploadFile,
     useCloudStorageCurrentFolderId,
     useCloudStorageData,
     useCloudStorageIsLoading,
     useCloudStorageView,
+    useStorageItemDropHandler,
 } from '@/entities/Storage';
 import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/Text';
@@ -21,7 +20,6 @@ import { CloudStorageExplorerViewList } from '../CloudStorageExplorerViewList/Cl
 import { CloudStorageExplorerViewGrid } from '../CloudStorageExplorerViewGrid/CloudStorageExplorerViewGrid';
 import { CloudStorageExplorerSkeleton } from '../CloudStorageExplorerSkeleton/CloudStorageExplorerSkeleton';
 import { DragAndDropWrapper } from '@/shared/lib/components/DragAndDropWrapper/DragAndDropWrapper';
-import { StorageItemType } from '@/shared/const/storage';
 
 interface CloudStorageExplorerListProps {
     className?: string;
@@ -37,6 +35,8 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
     const isLoading = useCloudStorageIsLoading();
     const currentFolderId = useCloudStorageCurrentFolderId();
     const view = useCloudStorageView();
+
+    const handleItemDrop = useStorageItemDropHandler<StorageItem>();
 
     useEffect(() => {
         if (user?.id) {
@@ -81,29 +81,6 @@ export const CloudStorageExplorerList = memo((props: CloudStorageExplorerListPro
             );
         });
     };
-
-    const handleItemDrop = useCallback(
-        (draggedItem: StorageItem, targetItem: StorageItem) => {
-            if (draggedItem.type === StorageItemType.FILE) {
-                dispatch(
-                    moveFile({
-                        fileId: draggedItem.id,
-                        targetFolderId: targetItem.id,
-                    }),
-                );
-            }
-
-            if (draggedItem.type === StorageItemType.FOLDER) {
-                dispatch(
-                    moveFolder({
-                        folderId: draggedItem.id,
-                        targetParentId: targetItem.id,
-                    }),
-                );
-            }
-        },
-        [dispatch, currentFolderId],
-    );
 
     if (isLoading) {
         return <CloudStorageExplorerSkeleton view={view} />;
