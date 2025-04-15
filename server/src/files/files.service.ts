@@ -11,7 +11,7 @@ import { MoveFileDto } from './dto/move-file.dto';
 
 @Injectable()
 export class FilesService {
-    private readonly baseUploadPath = path.resolve(__dirname, '..', '..', 'uploads');
+    public readonly baseUploadPath = path.resolve(__dirname, '..', '..', 'uploads');
 
     constructor(
         @InjectModel(Files) private filesRepository: typeof Files,
@@ -175,5 +175,17 @@ export class FilesService {
         await fileToMove.save();
 
         return fileToMove;
+    }
+
+    async deleteFileByRelativePath(relativePath: string): Promise<void> {
+        if (!relativePath) {
+            return;
+        }
+
+        const fullPath = path.join(this.baseUploadPath, relativePath);
+
+        if (fs.existsSync(fullPath)) {
+            fs.unlinkSync(fullPath);
+        }
     }
 }

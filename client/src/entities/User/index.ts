@@ -8,7 +8,11 @@ export { logout } from './model/services/logout/logout';
 
 export type { User, UserSchema } from './model/types/user';
 
-export { getUserRoles, isUserAdmin, isUserModerator } from './model/selectors/roleSelectors';
+export {
+    getUserRoles,
+    isUserAdmin,
+    isUserModerator,
+} from './model/selectors/roleSelectors';
 
 export { UserRoles, RolePermissions } from './model/const/user';
 
@@ -22,3 +26,5 @@ export {
 } from './model/selectors/jsonSettingsSelectors';
 
 export { saveJsonSettings } from './model/services/saveJsonSettings/saveJsonSettings';
+
+export { updateAvatar } from './model/services/updateAvatar/updateAvatar';

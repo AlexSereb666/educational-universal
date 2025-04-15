@@ -1,6 +1,6 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "@/app/providers/StoreProvider";
-import {User} from "@/entities/User";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { getUserAuthData, User } from '@/entities/User';
 
 interface SearchUsersByUsernameProps {
     search: string;
@@ -17,27 +17,45 @@ export const searchUsersByUsername = createAsyncThunk<
     SearchUsersResponse,
     SearchUsersByUsernameProps,
     ThunkConfig<string>
->(
-    'users/searchByLogin',
-    async (searchData, thunkApi) => {
-        const { extra, rejectWithValue } = thunkApi;
-        try {
-            const response = await extra.api.get<SearchUsersResponse>('/users/searchByLogin', {
+>('users/searchByLogin', async (searchData, thunkApi) => {
+    const { extra, rejectWithValue, getState } = thunkApi;
+
+    const user = getUserAuthData(getState());
+
+    try {
+        const response = await extra.api.get<SearchUsersResponse>(
+            '/users/searchByLogin',
+            {
                 params: {
                     limit: searchData.limit,
                     offset: searchData.offset,
-                    search: searchData.search
-                }
-            });
+                    search: searchData.search,
+                },
+            },
+        );
 
-            if (!response.data) {
-                throw new Error('Нет данных');
-            }
-
-            return response.data;
-        } catch (e) {
-            console.log(e);
-            return rejectWithValue('Ошибка при поиске пользователей');
+        if (!response.data) {
+            throw new Error('Нет данных');
         }
+
+        let modifiedRows = response.data.rows;
+
+        if (user && response.data.rows && response.data.rows.length > 0) {
+            modifiedRows = response.data.rows.map((userInList) => {
+                if (userInList.id === user.id) {
+                    return { ...userInList, login: 'Избранный' };
+                }
+
+                return userInList;
+            });
+        }
+
+        return {
+            ...response.data,
+            rows: modifiedRows,
+        };
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('Ошибка при поиске пользователей');
     }
-);
+});

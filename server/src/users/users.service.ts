@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -6,14 +6,22 @@ import { Op } from 'sequelize';
 import { Role } from '../roles/roles.model';
 import { Permissions } from '../permissions/permissions.model';
 import { UserForRolesDto } from './dto/userForRoles.dto';
+import { FilesService } from '../files/files.service';
+import * as path from 'node:path';
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectModel(User) private userRepository: typeof User) {}
+    constructor(
+        @InjectModel(User) private userRepository: typeof User,
+        private filesService: FilesService,
+    ) {}
 
     async createUser(dto: CreateUserDto) {
         if (!dto.login || !dto.password || !dto.email) {
-            throw new HttpException('Не указан логин, email или пароль', HttpStatus.NOT_FOUND);
+            throw new HttpException(
+                'Не указан логин, email или пароль',
+                HttpStatus.NOT_FOUND,
+            );
         }
 
         return await this.userRepository.create(dto);
@@ -126,5 +134,36 @@ export class UsersService {
         await user.save();
 
         return this.getUserById(user.id);
+    }
+
+    async updateAvatar(userId: number, avatarFile: Express.Multer.File) {
+        const user = await this.userRepository.findByPk(userId);
+        if (!user) {
+            throw new NotFoundException('Пользователь не найден');
+        }
+
+        const oldAvatarRelativePath = user.avatar;
+
+        try {
+            const avatarDirectory = `avatars/${userId}`;
+
+            const newAvatarRelativePath = await this.filesService.saveFile(
+                avatarFile,
+                avatarDirectory,
+            );
+
+            user.avatar = newAvatarRelativePath;
+
+            await user.save();
+
+            if (
+                oldAvatarRelativePath &&
+                oldAvatarRelativePath !== newAvatarRelativePath
+            ) {
+                await this.filesService.deleteFileByRelativePath(oldAvatarRelativePath);
+            }
+
+            return newAvatarRelativePath;
+        } catch (error) {}
     }
 }

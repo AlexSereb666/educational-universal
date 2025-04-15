@@ -5,6 +5,7 @@ import { logout } from '../services/logout/logout';
 import { initAuth } from '../../model/services/initAuth/initAuth';
 import { saveJsonSettings } from '../../model/services/saveJsonSettings/saveJsonSettings';
 import { JsonSettings } from '../../model/types/jsonSettings';
+import { updateAvatar } from '@/entities/User/model/services/updateAvatar/updateAvatar';
 
 const initialState: UserSchema = {
     _inited: false,
@@ -39,7 +40,10 @@ export const userSlice = createSlice({
                         state.authData.jsonSettings = payload;
                     }
                 },
-            );
+            )
+            .addCase(updateAvatar.fulfilled, (state, action: PayloadAction<string>) => {
+                state.authData.avatar = action.payload;
+            });
     },
 });
 

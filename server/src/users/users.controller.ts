@@ -1,17 +1,22 @@
 import {
+    BadRequestException,
     Body,
     Controller,
     Get,
     Param,
+    ParseIntPipe,
     Patch,
     Post,
     Query,
+    UploadedFile,
     UseGuards,
+    UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { UserDto } from '../auth/dto/user.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')
 export class UsersController {
@@ -56,5 +61,20 @@ export class UsersController {
     @UseGuards(AuthGuard)
     updateJsonSettings(@Param('id') id: number, @Body('jsonSettings') jsonSettings: any) {
         return this.usersService.updateJsonSettings({ id, jsonSettings });
+    }
+
+    @Patch(':id/avatar')
+    @UseGuards(AuthGuard)
+    @UseInterceptors(FileInterceptor('avatar'))
+    async updateAvatar(
+        @Param('id', ParseIntPipe) userId: number,
+        @UploadedFile() file: Express.Multer.File,
+    ) {
+        if (!file) {
+            throw new BadRequestException(
+                'Файл аватара не предоставлен (ключ "avatar" в form-data)',
+            );
+        }
+        return this.usersService.updateAvatar(userId, file);
     }
 }

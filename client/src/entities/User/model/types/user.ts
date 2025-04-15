@@ -18,6 +18,7 @@ export interface User {
     username?: string;
     login?: string;
     email: string;
+    avatar?: string | null;
     isActivated: boolean;
     jsonSettings: JsonSettings;
     roles: Role[];
