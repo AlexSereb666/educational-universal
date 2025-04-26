@@ -5,6 +5,7 @@ import {
     getChatMessangerChat,
     getChatMessangerConnectionStatus,
     getChatMessangerIsLoading,
+    getMessagesChat,
 } from '@/entities/ChatMessanger';
 import { Loader } from '@/shared/ui/Loader';
 import { MessageListChat } from 'features/MessageListChat';
@@ -22,6 +23,16 @@ export const ChatBox = memo(() => {
     const connectionStatus = useSelector(getChatMessangerConnectionStatus);
 
     const connectedChatIdRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        if (chat) {
+            dispatch(
+                getMessagesChat({
+                    chatId: chat.id,
+                }),
+            );
+        }
+    }, [chat]);
 
     useEffect(() => {
         const newChatId = chat?.id ?? null;

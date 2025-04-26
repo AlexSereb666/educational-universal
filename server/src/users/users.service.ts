@@ -87,7 +87,7 @@ export class UsersService {
         const options: any = {
             limit: limit || 10,
             offset: offset || 0,
-            attributes: ['id', 'login'],
+            attributes: ['id', 'login', 'avatar'],
         };
 
         if (search) {

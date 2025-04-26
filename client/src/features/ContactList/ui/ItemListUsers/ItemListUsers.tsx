@@ -1,15 +1,18 @@
 import { memo } from 'react';
-import defaultAvatar from 'shared/assets/defaultAvatar.png';
 import * as cls from './ItemListUsers.module.scss';
 import { truncateString } from '@/shared/lib/string/truncateString';
+import { getUserAvatar } from '@/shared/lib/getUserAvatar/getUserAvatar';
 
 export interface ItemListUsersProps {
     id: number;
     login: string;
+    avatar: string | null;
     onClick: () => void;
 }
 
-export const ItemListUsers = memo(({ id, login, onClick }: ItemListUsersProps) => {
+export const ItemListUsers = memo((props: ItemListUsersProps) => {
+    const { id, login, avatar, onClick } = props;
+
     return (
         <div
             className={cls.container}
@@ -17,8 +20,8 @@ export const ItemListUsers = memo(({ id, login, onClick }: ItemListUsersProps) =
         >
             <div className={cls.image}>
                 <img
-                    src={defaultAvatar}
-                    alt={'Нет картинки'}
+                    src={getUserAvatar(avatar)}
+                    alt={'Аватар пользователя'}
                 />
             </div>
             <div className={cls.info}>{truncateString(login, 10)}</div>

@@ -14,6 +14,7 @@ import {
     getRouteProfile,
     getRouteUserSettings,
 } from '@/shared/const/router';
+import { getUserAvatar } from '@/shared/lib/getUserAvatar/getUserAvatar';
 
 export const ProfileMenu = () => {
     const dispatch = useAppDispatch();
@@ -60,8 +61,8 @@ export const ProfileMenu = () => {
                 trigger={
                     <div className={cls.avatar}>
                         <img
-                            src={defaultAvatar as string}
-                            alt={'Нет аватарки'}
+                            src={getUserAvatar(user.avatar)}
+                            alt={'Аватарка пользователя'}
                         />
                     </div>
                 }

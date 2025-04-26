@@ -1,0 +1,31 @@
+.ChatInfoPanel {
+  width: 100%;
+  align-self: flex-start;
+  background-color: var(--bg-panel-color);
+  box-shadow: 0 0 10px var(--shadow-border-panel-start);
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.starIcon {
+  color: var(--color-icon);
+}

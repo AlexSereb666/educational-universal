@@ -3,10 +3,13 @@ import { ChatMessanger } from '../types/chatMessanger';
 import { fetchChatByUserIds } from '../../model/services/searchChatMessanger/searchChatMessanger';
 import { Chat, Message } from '../../model/types/chatMessanger';
 import { ConnectionStatus } from '@/shared/const/connectionStatus';
+import { User } from '@/entities/User';
+import { getMessagesChat } from '../services/getMessagesChat/getMessagesChat';
 
 const initialState: ChatMessanger = {
     chat: null,
     messages: [],
+    participants: [],
     isLoading: false,
     error: undefined,
     connectionStatus: ConnectionStatus.IDLE,
@@ -52,14 +55,21 @@ export const chatMessangerSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchChatByUserIds.pending, (state) => {
+                state.messages = [];
                 state.error = undefined;
                 state.isLoading = true;
             })
             .addCase(
                 fetchChatByUserIds.fulfilled,
-                (state, action: PayloadAction<{ chat: Chat; messages: Message[] }>) => {
+                (
+                    state,
+                    action: PayloadAction<{
+                        chat: Chat;
+                        participants: User[];
+                    }>,
+                ) => {
                     state.chat = action.payload.chat;
-                    state.messages = action.payload.messages;
+                    state.participants = action.payload.participants;
                     state.isLoading = false;
                     state.connectionStatus = ConnectionStatus.IDLE;
                 },
@@ -68,7 +78,13 @@ export const chatMessangerSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload;
                 state.connectionStatus = ConnectionStatus.IDLE;
-            });
+            })
+            .addCase(
+                getMessagesChat.fulfilled,
+                (state, action: PayloadAction<Message[]>) => {
+                    state.messages = [...state.messages, ...action.payload];
+                },
+            );
     },
 });
 

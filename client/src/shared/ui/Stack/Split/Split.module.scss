@@ -1,9 +1,12 @@
 .Split {
   display: flex;
   align-items: flex-start;
+  width: 100%;
+  height: 100%;
 }
 
 .SplitItem {
+  height: 100%;
   display: flex;
   justify-content: center;
 }

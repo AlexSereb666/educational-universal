@@ -8,3 +8,5 @@ export const getChatMessangerError = (state: StateSchema) => state?.chatMessange
 export const getChatMessangerChat = (state: StateSchema) => state?.chatMessanger?.chat;
 export const getChatMessangerConnectionStatus = (state: StateSchema) =>
     state?.chatMessanger?.connectionStatus;
+export const getChatMessangerParticipants = (state: StateSchema) =>
+    state?.chatMessanger?.participants;

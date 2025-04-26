@@ -1,4 +1,5 @@
 import { ConnectionStatus } from '@/shared/const/connectionStatus';
+import { User } from '@/entities/User';
 
 export interface Message {
     id: number;
@@ -28,6 +29,7 @@ export interface Chat {
 export interface ChatMessanger {
     chat: Chat | null;
     messages: Message[];
+    participants: User[];
     isLoading: boolean;
     error?: string;
     connectionStatus: ConnectionStatus;

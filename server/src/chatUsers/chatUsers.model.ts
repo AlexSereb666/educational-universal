@@ -1,10 +1,22 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {
+    BelongsTo,
+    Column,
+    DataType,
+    ForeignKey,
+    Model,
+    Table,
+} from 'sequelize-typescript';
 import { Chat } from '../chat/chat.model';
 import { User } from '../users/users.model';
 
 @Table({ tableName: 'chat_users' })
 export class ChatUser extends Model<ChatUser> {
-    @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
+    @Column({
+        type: DataType.INTEGER,
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true,
+    })
     id: number;
 
     @ForeignKey(() => Chat)

@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { useAuthUser } from '@/shared/lib/hooks/useAuthUser/useAuthUser';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import defaultAvatar from '@/shared/assets/defaultAvatar.png';
 import { Input } from '@/shared/ui/Input';
 import { profileCardActions } from '../../model/slice/ProfileCardSlice';
 import { Button } from '@/shared/ui/Button';
@@ -22,6 +21,7 @@ import editIcon from '@/shared/assets/icons/Edit.svg';
 import { Icon } from '@/shared/ui/Icon';
 import { FileInput } from '@/shared/ui/FileInput/FileInput';
 import { updateAvatar, User } from '@/entities/User';
+import { getUserAvatar } from '@/shared/lib/getUserAvatar/getUserAvatar';
 
 interface ProfileCardProps {
     className?: string;
@@ -79,7 +79,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
     };
 
     const getAvatar = (item: User) => {
-        return item?.avatar ? `${__API__}/uploads/${item?.avatar}` : defaultAvatar;
+        return getUserAvatar(item?.avatar);
     };
 
     const permissionEdit = user.id === dataProfile?.id;
